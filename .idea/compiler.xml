@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="JJDZR11-Konstruktorsi" />
         <module name="pl.JJDZR11-Konstruktorsi.www" />
       </profile>
     </annotationProcessing>
