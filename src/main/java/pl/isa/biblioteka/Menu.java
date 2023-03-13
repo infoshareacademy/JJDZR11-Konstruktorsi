@@ -1,5 +1,6 @@
 package pl.isa.biblioteka;
 
+import java.io.BufferedReader;
 import java.util.Scanner;
 
 public class Menu {
@@ -9,31 +10,27 @@ public class Menu {
 
         while (isContinue) {
             System.out.println("Wybierz numer menu");
-            System.out.println("1. Menu 1");
-            System.out.println("2. Menu 2");
-            System.out.println("3. Menu 3");
-            System.out.println("4. Menu 4");
+            System.out.println("1. Widok książek");
+            System.out.println("2. Wypożycz książkę");
+            System.out.println("3. Użytkownicy");
+            System.out.println("4. Edycja katalogu książek");
             System.out.println("5. Zakończ program");
 
-         //   int userChoose = scanner.nextInt();
-
-
             if (scanner.hasNextInt()) {
-                   int userChoose = scanner.nextInt();
+                int userChoose = scanner.nextInt();
+              //  if (userChoose > 0 && userChoose < 6) {
 
-                switch (userChoose) {
-                    case 1 -> System.out.println("Menu 1");
-                    case 2 -> System.out.println("Menu 2");
-                    case 3 -> System.out.println("Menu 3");
-                    case 4 -> System.out.println("Menu 4");
-                    case 5 -> {System.out.println("Zakończ program"); isContinue = false;
+                    switch (userChoose) {
+                        case 1 -> System.out.println("Widok książek"); //Metoda
+                        case 2 -> System.out.println("Wypożycz książkę");
+                        case 3 -> System.out.println("Użytkownicy");
+                        case 4 -> System.out.println("Edycja katalogu książek");
+                        case 5 -> {System.out.println("Zakończ program");isContinue = false;}
                     }
+                } else {
+                    System.out.println("Wybierz poprawny numer menu");
+                    break;
                 }
-            } else {
-                System.out.println("Wybierz poprawny numer menu");
-                break;
             }
         }
     }
-}
-
