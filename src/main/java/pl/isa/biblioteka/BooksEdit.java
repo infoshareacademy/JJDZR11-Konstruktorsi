@@ -22,12 +22,6 @@ public class BooksEdit {
         }
     }
 
-    public void showBooks(List<Book> books){
-        for (Book book : books) {
-            System.out.println(book);
-        }
-    }
-
     public List<Book> getBooks() {
         return books;
     }
