@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public class BooksEdit {
     //Przemysław Wenderholm
@@ -16,14 +17,17 @@ public class BooksEdit {
             books.add(book);
     }
 
-    public void deleteBookByTitle(List<Book> books, String title){
-        if (!books.removeIf(book -> book.getTitle().equalsIgnoreCase(title))) {
-            System.out.println("nie ma takiej książki ");
-        }
+    public boolean deleteBookByTitle(List<Book> books, String title){
+        return !books.removeIf(foundBookByTitle(title));
+    }
+
+    private static Predicate<Book> foundBookByTitle(String title) {
+        return book -> book.getTitle().equalsIgnoreCase(title);
     }
 
     public List<Book> getBooks() {
         return books;
     }
+
 
 }
