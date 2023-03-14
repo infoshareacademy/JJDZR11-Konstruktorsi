@@ -18,19 +18,25 @@ public class Menu {
 
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
-              //  if (userChoose > 0 && userChoose < 6) {
-
+                if (userChoose > 0 && userChoose < 6) {
                     switch (userChoose) {
-                        case 1 -> System.out.println("Widok książek"); //Metoda
-                        case 2 -> System.out.println("Wypożycz książkę");
-                        case 3 -> System.out.println("Użytkownicy");
-                        case 4 -> System.out.println("Edycja katalogu książek");
-                        case 5 -> {System.out.println("Zakończ program");isContinue = false;}
+                        case 1 -> System.out.println("Widok książek"); // add method
+                        case 2 -> System.out.println("Wypożycz książkę"); // add method
+                        case 3 -> System.out.println("Użytkownicy"); // add method
+                        case 4 -> System.out.println("Edycja katalogu książek"); // add method
+                        case 5 -> {
+                            System.out.println("Zakończ program");
+                            isContinue = false;
+                        }
                     }
                 } else {
                     System.out.println("Wybierz poprawny numer menu");
                     break;
                 }
+            } else {
+                System.out.println("Wybierz poprawny numer menu");
+                break;
             }
         }
     }
+}
