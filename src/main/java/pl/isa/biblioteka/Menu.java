@@ -1,30 +1,48 @@
 package pl.isa.biblioteka;
 
-import java.io.BufferedReader;
+import java.util.List;
 import java.util.Scanner;
+
+import static pl.isa.biblioteka.FolderBooks.readBooks;
 
 public class Menu {
     public void ShowMenu() {
+
+        AddUsers users = new AddUsers();
+        Book book = new Book();
+        BooksEdit booksEdit = new BooksEdit();
+        BorrowBooks borrowBooks = new BorrowBooks();
+        FolderBooks folderBooks = new FolderBooks();
+        List<Book> books = readBooks();
+
+
         Scanner scanner = new Scanner(System.in);
         boolean isContinue = true;
 
         while (isContinue) {
-            System.out.println("Wybierz numer menu");
+            System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
             System.out.println("2. Wypożycz książkę");
-            System.out.println("3. Użytkownicy");
-            System.out.println("4. Edycja katalogu książek");
-            System.out.println("5. Zakończ program");
+            System.out.println("3. Dodaj użytkownika");
+            System.out.println("4. Lista użytkowników");
+            System.out.println("5. Edycja katalogu książek");
+            System.out.println("6. Dodanie książki");
+            System.out.println("7. usuwanie ksiązki");
+            System.out.println("8. Zakończ program");
+
 
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
                 if (userChoose > 0 && userChoose < 6) {
                     switch (userChoose) {
-                        case 1 -> System.out.println("Widok książek"); // add method
-                        case 2 -> System.out.println("Wypożycz książkę"); // add method
-                        case 3 -> System.out.println("Użytkownicy"); // add method
-                        case 4 -> System.out.println("Edycja katalogu książek"); // add method
-                        case 5 -> {
+                        case 1 -> books.forEach(System.out::println); // add method
+                        case 2 -> book.getTitle(); // add method
+                        case 3 -> users.addUser(); // add method
+                        case 4 -> users.listUsers(); // add method
+                        case 5 -> System.out.println("Edycja katalogu książek"); // add method
+                        case 6 -> booksEdit.addBook(); // add method
+                        case 7 -> booksEdit.deleteBookByTitle(); // add method
+                        case 8 -> {
                             System.out.println("Zakończ program");
                             isContinue = false;
                         }
