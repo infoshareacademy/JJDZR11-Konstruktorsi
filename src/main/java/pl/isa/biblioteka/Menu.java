@@ -33,15 +33,15 @@ public class Menu {
 
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
-                if (userChoose > 0 && userChoose < 6) {
+                if (userChoose > 0 && userChoose < 9) {
                     switch (userChoose) {
                         case 1 -> books.forEach(System.out::println); // add method
                         case 2 -> book.getTitle(); // add method
                         case 3 -> users.addUser(); // add method
                         case 4 -> users.listUsers(); // add method
                         case 5 -> System.out.println("Edycja katalogu książek"); // add method
-                        case 6 -> booksEdit.addBook(); // add method
-                        case 7 -> booksEdit.deleteBookByTitle(); // add method
+                        case 6 -> System.out.println("6. Dodanie książki"); // add method
+                        case 7 -> System.out.println("7. usuwanie ksiązki"); // add method
                         case 8 -> {
                             System.out.println("Zakończ program");
                             isContinue = false;
