@@ -11,7 +11,7 @@ public class Book {
     @JsonProperty("kind")
     private String category;
     @JsonIgnore
-    private boolean state;
+    private boolean state = true;
 
     public String getTitle() {
         return title;
