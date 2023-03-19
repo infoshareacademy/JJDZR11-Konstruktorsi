@@ -1,17 +1,17 @@
 package pl.isa.biblioteka;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Book {
     private String title;
     private String author;
+    @JsonProperty("kind")
     private String category;
+    @JsonIgnore
     private boolean state;
-
-    public Book(String title, String author, String category, boolean state) {
-        this.title = title;
-        this.author = author;
-        this.category = category;
-        this.state = state;
-    }
 
     public String getTitle() {
         return title;
