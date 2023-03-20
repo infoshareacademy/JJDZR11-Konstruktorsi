@@ -1,33 +1,61 @@
 package pl.isa.biblioteka;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class BooksEdit {
     //Przemysław Wenderholm
-//    TASK TO DO:
-//    Jako bibliotekarz mam możliwość edycji katalogu książek, poprzez dodanie nowej książki lub usunięcie istniejącej.
+    Scanner sc = new Scanner(System.in);
+    public List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 
-    private List<Book> books = new ArrayList<>();
-
-    public void addBook(Book book){
-            books.add(book);
+    public List<Book> getBooksList() {
+        return booksList;
     }
 
-    public boolean deleteBookByTitle(List<Book> books, String title){
-        return !books.removeIf(foundBookByTitle(title));
+    public void addBook() {
+        System.out.println("Podaj tytył:");
+        String title = sc.nextLine();
+        System.out.println("Podaj autora:");
+        String author = sc.nextLine();
+        System.out.println("Podaj kategorię:");
+        String category = sc.nextLine();
+        Book book = new Book(title,author,category,true);
+        booksList.add(book);
+        System.out.println("Dodano książkę: " + book.getTitle() + " autora: "+ book.getAuthor());
+    }
+
+    public boolean deleteBookByTitle() {
+        System.out.println("wpisz tytul ksiazki do usuniecia");
+        String title = sc.nextLine();
+        return !booksList.removeIf(foundBookByTitle(title));
     }
 
     private static Predicate<Book> foundBookByTitle(String title) {
         return book -> book.getTitle().equalsIgnoreCase(title);
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public void showAllAvailableBooks(){
+        booksList.stream().filter(Book::isState)
+                .forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s %n",
+                        el.getTitle(),
+                        el.getAuthor(),
+                        el.getCategory()));
     }
-
+//TODO dodać przy wyswietlaniu wypożyczonych przez kogo została wypożyczona
+    public void showAllBorrowedBooks(){
+        booksList.stream().filter(book -> !book.isState())
+                .forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s  %n",
+                        el.getTitle(),
+                        el.getAuthor(),
+                        el.getCategory()));
+    }
+    public void showAllBooks(){
+        booksList.forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s %n",
+                el.getTitle(),
+                el.getAuthor(),
+                el.getCategory()));
+    }
 
 }

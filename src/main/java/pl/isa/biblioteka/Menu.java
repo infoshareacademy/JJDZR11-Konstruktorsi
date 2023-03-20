@@ -25,24 +25,23 @@ public class Menu {
             System.out.println("2. Wypożycz książkę");
             System.out.println("3. Dodaj użytkownika");
             System.out.println("4. Lista użytkowników");
-            System.out.println("5. Edycja katalogu książek");
-            System.out.println("6. Dodanie książki");
-            System.out.println("7. usuwanie ksiązki");
-            System.out.println("8. Zakończ program");
+            System.out.println("5. Dodanie książki");
+            System.out.println("6. Usuwanie ksiązki");
+            System.out.println("7. Zakończ program");
 
 
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
                 if (userChoose > 0 && userChoose < 9) {
                     switch (userChoose) {
-                        case 1 -> books.forEach(System.out::println); // add method
-                        case 2 -> book.getTitle(); // add method
+                        case 1 -> booksEdit.showAllBooks(); // add method
+                        case 2 -> borrowBooks.mainLoop(); // add method
                         case 3 -> users.addUser(); // add method
-                        case 4 -> users.listUsers(); // add method
-                        case 5 -> System.out.println("Edycja katalogu książek"); // add method
-                        case 6 -> System.out.println("6. Dodanie książki"); // add method
-                        case 7 -> System.out.println("7. usuwanie ksiązki"); // add method
-                        case 8 -> {
+                        case 4 -> users.listsUsers(); // add method
+                        case 5 -> booksEdit.addBook(); // add method
+                        case 6 -> booksEdit.deleteBookByTitle(); // add method
+                        //TODO dodanie opcji wypisania pojedyncczego użytkownika
+                        case 7 -> {
                             System.out.println("Zakończ program");
                             isContinue = false;
                         }

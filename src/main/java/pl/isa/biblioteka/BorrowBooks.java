@@ -1,113 +1,150 @@
 package pl.isa.biblioteka;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class BorrowBooks {
-    //wszyscy
-//    Jako użytkownik chciałbym mieć możliwość wypożyczenia książki. W katalogu książek, mogę wybrać książkę do
-//        wypożyczenia i mogę zwrócić wypożyczoną książkę. Książek raz wypożyczoną, nie można wypożyczyć,
-//        a książkę dostępną w katalogu nie można zwrócić.
-
-    public static void main(String[] args) {
-
-        AddUsers addUsers = new AddUsers();
-        addUsers.addUser();
-
-        List<Book> books = FolderBooks.readBooks();
-        showAvailableBooks(books);
-        addUsers.listUsers();
+    public static Scanner scanner = new Scanner(System.in);
+    public static AddUsers addUsers = new AddUsers();
+    public static BooksEdit booksEdit = new BooksEdit();
+    public static Person person;
 
 
-
-//        Scanner sc = new Scanner(System.in);
-//        System.out.println("dokładny tytuł do wypozyczenia:");
-//        String bookTitle = sc.nextLine();
-        String bookTitle1 = "Cisza wieczorna";
-        String bookTitle2 = "Wiatr halny";
-
-
-//        tytuły książek do zwrotu
-//        String bookTitle1 = "ksiazka1";
-//        String bookTitle2 = "ksiazka2";
-//
-//        BorrowBooks borBook = new BorrowBooks();
-//        borBook.addBookToPerson(books, person1, bookTitle1);
-//        borBook.addBookToPerson(books, person1, bookTitle2);
-//
-//        System.out.println("osoby po oddaniu ksiązki");
-//        showPersons(personList);
-//        System.out.println();
-//
-//        System.out.println("dostępne książki po wypożyczeniu");
-//        availableBook(books, borBook);
-////        System.out.println("tytul ksiazki do zwrotu");
-////        String bookReturnTitle = sc.nextLine();
-//
-////        oddanie pierwszej ksiązki
-//        String bookReturnTitle1 = "ksiazka1";
-//        borBook.returnBook(person1, bookReturnTitle1);
-//
-//        System.out.println("ksiazki uzytkowników po oddaniu pierwszej ksiazki");
-//        showPersons(personList);
-//
-//        System.out.println("dostępne ksiazki po zwrocie pierwszej ksiazki-----------");
-//        availableBook(books, borBook);
-//
-//        String bookReturnTitle2 = "ksiazka2";
-//        System.out.println("ostępne ksiazki po zwrocie drugiej ksiazki-----------");
-//        borBook.returnBook(person1, bookReturnTitle2);
-//        availableBook(books, borBook);
-    }
-
-
-    public static void addBookToPerson(List<Book> books, Person person, String bookTitle) {
-        for (Book book : books) {
-            if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
-                book.setState(false);
-                person.books.add(book);
+    public static void addBookToPerson() {
+        //TODO dodanie komunikatu jezeli nie ma takiego użutkownika oraz jezeli nie masz szukanej książki
+        List<Book> booksList = booksEdit.getBooksList();
+        List<Person> users = AddUsers.getUsers();
+        System.out.println("Podaj swoje imię czytelniku:");
+        String firstName = scanner.nextLine();
+        System.out.println("Podaj swoje nazwisko czytelniku:");
+        String lastName = scanner.nextLine();
+        for (Person user : users) {
+            if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
+                System.out.println("Mamy Cię w naszej bazie ;)");
+                System.out.println("Podaj tytuł książki do wypożyczenia: ");
+                String bookTitle = scanner.nextLine();
+                for (Book book : booksList) {
+                    if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
+                        book.setState(false);
+                        user.personBooks.add(book);
+                        System.out.println("Książka została wypożyczona");
+                    }
+                }
             }
         }
     }
 
-    public static void showAvailableBooks(List<Book> books) {
-        for (Book book : books) {
-            if (book.isState()) {
-                System.out.println(book);
+    public void returnBook() {
+        List<Person> users = AddUsers.getUsers();
+        String firstName = getName();
+        System.out.println("Podaj swoje nazwisko czytelniku:");
+        String lastName = scanner.nextLine();
+        for (Person user : users) {
+            if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
+                System.out.println("Mamy Cię w naszej bazie ;)");
+                List<Book> personBooks = user.getPersonBooks();
+                System.out.println("Podaj tytuł książki do zwrócenia: ");
+                String bookTitleToReturn = scanner.nextLine();
+                for (Book personBook : personBooks) {
+                    if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
+                        personBook.setState(true);
+                        personBooks.removeIf(foundBookByTitle(bookTitleToReturn));
+                        break;
+                    }
+                }
+
             }
         }
     }
 
-    public void returnBook(Person person, String bookReturnTitle) {
-        List<Book> personBooks = person.getBooks();
-        for (Book personBook : personBooks) {
-            if (personBook.getTitle().equalsIgnoreCase(bookReturnTitle) && !personBook.isState()) {
-                personBook.setState(true);
-                personBooks.removeIf(foundBookByTitle(bookReturnTitle));
-                break;
-            }
-        }
+    private static String getName() {
+        System.out.println("Podaj swoje imię czytelniku:");
+        String firstName = scanner.nextLine();
+        return firstName;
     }
 
     private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
         return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
     }
 
-    private static void showBooks(List<Book> books) {
-        for (Book book : books) {
-            System.out.println(book);
+    public void mainLoop() {
+        System.out.println("Co chcesz zrobić");
+        Option option = null;
+        do {
+            printMenu();
+            try {
+                option = chooseOption();
+                executeOption(option);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (option != Option.EXIT);
+    }
+
+    private Option chooseOption() {
+        int option = scanner.nextInt();
+        scanner.nextLine();
+        return Option.fromInt(option);
+    }
+
+    private void executeOption(Option option) {
+        switch (option) {
+            case BORROW_BOOK -> addBookToPerson();
+            case RETURN_BOOK -> returnBook();
+            case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
+            case SHOW_BORROWED_BOOK -> booksEdit.showAllBorrowedBooks();
+
+            //TODO dodanie opcji sortowania listy po kategorii
+            //TODO dodanie opcji wyszukania książki po nazwie
+           //TODO dostosowanie menu głownego dla użytkownika oraz bibliotekarza np
+//            zarządzanie wypożyczeniami - dla bibliotekarza oraz osoby
+//            zarządzanie osobami(dodawanie, przegladanie, usuwanie) - dla bibliotekarza
+//            zarządzanie książkami(dodawnie, przegladanie, usuwanie) - dla bibliotekarza
+
+            //TODO - pokazanie starystyk wypożyczających (osoba wypożyczająca - ile książek)
+            case EXIT -> close();
         }
     }
 
-    private static void showPersons(List<Person> personList) {
-        for (Person person : personList) {
-            System.out.println(person);
+    private void close() {
+        System.out.println("Bye Bye!");
+    }
+
+    private void printMenu() {
+        System.out.println("Wybierz opcję:");
+        for (Option option : Option.values()) {
+            System.out.println(option.toString());
         }
     }
 
-//    private static void availableBook(List<Book> books, BorrowBooks borBook) {
-//        List<Book> availableBooks = borBook.showAvailableBooks(books);
-//        showBooks(availableBooks);
-//    }
+    private static enum Option {
+        BORROW_BOOK(1, "Wypożycz książkę"),
+        RETURN_BOOK(2, "Oddaj książkę"),
+        SHOW_AVAILABLE_BOOK(3, "Zobacz dostępne książki"),
+        SHOW_BORROWED_BOOK(4, "Pokaż wypożyczone książki"),
+        EXIT(5, "Wróć do głównego menu");
+
+        private final int optionNumber;
+        private final String description;
+
+        Option(int optionNumber, String description) {
+            this.optionNumber = optionNumber;
+            this.description = description;
+        }
+
+        static Option fromInt(int option) {
+            if (option < 0 || option > values().length) {
+                throw new IllegalArgumentException("Opcja o takim numerze nie istnieje");
+            }
+            return values()[option - 1];
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%d - %s", optionNumber, description);
+        }
+    }
+
+
 }

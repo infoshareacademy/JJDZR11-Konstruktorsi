@@ -21,9 +21,4 @@ public class FolderBooks {
             return Collections.emptyList();
         }
     }
-
-    public static void main(String[] args) {
-        List<Book> books = readBooks();
-        books.forEach(System.out::println);
-    }
 }

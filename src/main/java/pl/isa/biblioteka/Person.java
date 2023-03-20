@@ -2,23 +2,23 @@ package pl.isa.biblioteka;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Person {
     private String firstName;
     private String secondName;
 
-    public List<Book> books = new ArrayList<>() ;
+    public List<Book> personBooks = new ArrayList<>() ;
+
 
     public Person(String firstName, String secondName) {
         this.firstName = firstName;
         this.secondName = secondName;
     }
 
-    public Person(String firstName, String secondName, List<Book> books) {
+    public Person(String firstName, String secondName, List<Book> personBooks) {
         this.firstName = firstName;
         this.secondName = secondName;
-        this.books = books;
+        this.personBooks = personBooks;
     }
 
     public String getFirstName() {
@@ -37,21 +37,29 @@ public class Person {
         this.secondName = secondName;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Book> getPersonBooks() {
+        return personBooks;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void showPersonBooks(){
+        for (Book personBook : personBooks) {
+            System.out.printf("Tytuł: %s, Autor: %s %n", personBook.getTitle(),personBook.getAuthor());
+        }
+    }
+    public void setPersonBooks(List<Book> personBooks) {
+        this.personBooks = personBooks;
     }
 
+    public void addBookToPersonList(Book book){
+        personBooks.add(book);
+    }
 
     @Override
     public String toString() {
         return "Person{" +
                 "firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
-                ", books=" + books +
+                ", books=" + personBooks +
                 '}';
     }
 }
