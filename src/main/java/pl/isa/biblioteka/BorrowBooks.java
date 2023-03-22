@@ -6,19 +6,15 @@ import java.util.function.Predicate;
 
 public class BorrowBooks {
     public static Scanner scanner = new Scanner(System.in);
-    public static AddUsers addUsers = new AddUsers();
     public static BooksEdit booksEdit = new BooksEdit();
-    public static Person person;
 
 
     public static void addBookToPerson() {
         //TODO dodanie komunikatu jezeli nie ma takiego użutkownika oraz jezeli nie masz szukanej książki
-        List<Book> booksList = booksEdit.getBooksList();
+        List<Book> booksList = booksEdit.booksList;
         List<Person> users = AddUsers.getUsers();
-        System.out.println("Podaj swoje imię czytelniku:");
-        String firstName = scanner.nextLine();
-        System.out.println("Podaj swoje nazwisko czytelniku:");
-        String lastName = scanner.nextLine();
+        String firstName = getFirstName();
+        String lastName = getLastName();
         for (Person user : users) {
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
                 System.out.println("Mamy Cię w naszej bazie ;)");
@@ -37,9 +33,8 @@ public class BorrowBooks {
 
     public void returnBook() {
         List<Person> users = AddUsers.getUsers();
-        String firstName = getName();
-        System.out.println("Podaj swoje nazwisko czytelniku:");
-        String lastName = scanner.nextLine();
+        String firstName = getFirstName();
+        String lastName = getLastName();
         for (Person user : users) {
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
                 System.out.println("Mamy Cię w naszej bazie ;)");
@@ -58,10 +53,14 @@ public class BorrowBooks {
         }
     }
 
-    private static String getName() {
+    private static String getLastName() {
+        System.out.println("Podaj swoje nazwisko czytelniku:");
+        return scanner.nextLine();
+    }
+
+    private static String getFirstName() {
         System.out.println("Podaj swoje imię czytelniku:");
-        String firstName = scanner.nextLine();
-        return firstName;
+        return scanner.nextLine();
     }
 
     private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
@@ -101,7 +100,6 @@ public class BorrowBooks {
 //            zarządzanie wypożyczeniami - dla bibliotekarza oraz osoby
 //            zarządzanie osobami(dodawanie, przegladanie, usuwanie) - dla bibliotekarza
 //            zarządzanie książkami(dodawnie, przegladanie, usuwanie) - dla bibliotekarza
-
             //TODO - pokazanie starystyk wypożyczających (osoba wypożyczająca - ile książek)
             case EXIT -> close();
         }
