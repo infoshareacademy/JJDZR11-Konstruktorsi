@@ -8,7 +8,7 @@ public class AddUsers {
     //Mikołaj Malinowski
     //Dodanie nowego użytkownika
     public static Person person;
-    public static List<Person> users = new ArrayList<>();
+    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
 
     public void addUser() {
         Scanner input = new Scanner(System.in);
