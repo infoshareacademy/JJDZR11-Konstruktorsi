@@ -23,12 +23,21 @@ public class AddUsers {
 
     public void listsUsers(){
         System.out.println("Uzytkownicy w naszej aplikacji: ");
+        System.out.println("---------------------------------");
         int index = 1;
         for (Person user : users) {
-            System.out.println(index + " Imię: " + user.getFirstName() +
-                    ", Nazwisko: " + user.getSecondName() +
-                    ", Wypożyczone książki: " + ((user.personBooks != null) ? user.getPersonBooks() : "Brak książek"));
-            index++;
+            System.out.println(" Imię: " + user.getFirstName() + ", Nazwisko: " + user.getSecondName());
+            List<Book> personBooks = user.personBooks;
+            if (!personBooks.isEmpty()){
+                System.out.println("    Wypożyczone książki");
+                for (Book personBook : personBooks) {
+                    System.out.println("        Tytył: " + personBook.getTitle() + ", Autor: " + personBook.getAuthor());
+                    index++;
+                }
+            } else {
+                System.out.println("        - Brak wypożyczonych książek");
+            }
+            System.out.println("---------------------------------");
         }
     }
 

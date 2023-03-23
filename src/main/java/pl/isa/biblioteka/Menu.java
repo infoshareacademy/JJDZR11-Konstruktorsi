@@ -43,7 +43,8 @@ public class Menu {
                         //TODO dodanie opcji wypisania pojedyncczego użytkownika
                         case 7 -> {
                             PersonService.saveUsers();
-                            System.out.println("Zakończ program");
+                            FolderBooks.saveBooks();
+                            System.out.println("Baza użytkowników i książek zapisana poprawnie");
                             isContinue = false;
                         }
                     }
