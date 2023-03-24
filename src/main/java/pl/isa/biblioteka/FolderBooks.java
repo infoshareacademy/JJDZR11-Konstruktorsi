@@ -14,7 +14,7 @@ public class FolderBooks {
     //Kinga Biereg
     public static List<Book> readBooks() {
         try {
-            byte[] jsonData = Files.readAllBytes(Paths.get("books1.json"));
+            byte[] jsonData = Files.readAllBytes(Paths.get("booksFile.json"));
             ObjectMapper folderBooks = new ObjectMapper();
             return Arrays.asList(folderBooks.readValue(jsonData, Book[].class));
         } catch (IOException e) {
@@ -27,7 +27,7 @@ public class FolderBooks {
         ObjectMapper mapper = new ObjectMapper();
         List<Book> booksList = BooksEdit.booksList;
         try {
-            mapper.writeValue(new File("books1.json"), booksList);
+            mapper.writeValue(new File("booksFile.json"), booksList);
         } catch (IOException e) {
             e.printStackTrace();
         }
