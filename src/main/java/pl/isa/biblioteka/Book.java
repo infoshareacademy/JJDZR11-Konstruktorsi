@@ -10,7 +10,6 @@ public class Book {
     private String author;
     @JsonProperty("kind")
     private String category;
-    @JsonIgnore
     private boolean state = true;
 
     public Book() {

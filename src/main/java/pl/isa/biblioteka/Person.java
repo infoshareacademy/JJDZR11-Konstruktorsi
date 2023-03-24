@@ -9,6 +9,8 @@ public class Person {
 
     public List<Book> personBooks = new ArrayList<>() ;
 
+    public Person() {
+    }
 
     public Person(String firstName, String secondName) {
         this.firstName = firstName;

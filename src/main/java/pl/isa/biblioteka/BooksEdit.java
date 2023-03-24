@@ -8,11 +8,7 @@ import java.util.function.Predicate;
 public class BooksEdit {
     //Przemysław Wenderholm
     Scanner sc = new Scanner(System.in);
-    public List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
-
-    public List<Book> getBooksList() {
-        return booksList;
-    }
+    public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 
     public void addBook() {
         System.out.println("Podaj tytył:");

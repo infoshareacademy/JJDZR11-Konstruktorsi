@@ -42,7 +42,9 @@ public class Menu {
                         case 6 -> booksEdit.deleteBookByTitle(); // add method
                         //TODO dodanie opcji wypisania pojedyncczego użytkownika
                         case 7 -> {
-                            System.out.println("Zakończ program");
+                            PersonService.saveUsers();
+                            FolderBooks.saveBooks();
+                            System.out.println("Baza użytkowników i książek zapisana poprawnie");
                             isContinue = false;
                         }
                     }
