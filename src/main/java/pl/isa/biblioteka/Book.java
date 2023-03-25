@@ -10,8 +10,17 @@ public class Book {
     private String author;
     @JsonProperty("kind")
     private String category;
-    @JsonIgnore
-    private boolean state;
+    private boolean state = true;
+
+    public Book() {
+    }
+
+    public Book(String title, String author, String category, boolean state) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.state = state;
+    }
 
     public String getTitle() {
         return title;
