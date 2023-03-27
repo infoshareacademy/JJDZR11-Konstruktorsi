@@ -2,12 +2,13 @@ package pl.isa.biblioteka;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class BorrowBooks {
     public static Scanner scanner = new Scanner(System.in);
     public static BooksEdit booksEdit = new BooksEdit();
-
 
     public static void addBookToPerson() {
         //TODO dodanie komunikatu jezeli nie ma takiego użutkownika oraz jezeli nie masz szukanej książki
@@ -53,6 +54,37 @@ public class BorrowBooks {
         }
     }
 
+    public static void sortByCategory() {
+        List<Book> books = BooksEdit.booksList.stream().filter(Book::isState).toList();
+        Set<String> availableCategory = showAvailableCategory(books);
+        showFilterBookByCategory(books, availableCategory);
+
+    }
+
+    private static Set<String> showAvailableCategory(List<Book> books) {
+        Set<String> availableCategory = books.stream().map(book1 -> book1.getCategory().toLowerCase()).collect(Collectors.toSet());
+        for (String category : availableCategory) {
+            System.out.print("'" + category + "'  ");
+        }
+        return availableCategory;
+    }
+
+    private static void showFilterBookByCategory(List<Book> books, Set<String> availableCategory) {
+        System.out.println();
+        System.out.println("Wybierz odpowiednia kategorię: ");
+        String searchCategory = scanner.nextLine();
+        if(availableCategory.contains(searchCategory)){
+            List<Book> sortedBooks = books.stream().filter(book -> book.getCategory().equalsIgnoreCase(searchCategory)).toList();
+            for (Book sortedBook : sortedBooks) {
+                System.out.println("Książka: " + sortedBook.getTitle()
+                        + " Autor: " + sortedBook.getAuthor()
+                        + " Kategoria : " + sortedBook.getCategory());
+            }
+        }else{
+            System.out.println("Brak kategorii "+ searchCategory +". Wybierz odpowiednią kategorię z listy");
+        }
+    }
+
     private static String getLastName() {
         System.out.println("Podaj swoje nazwisko czytelniku:");
         return scanner.nextLine();
@@ -93,10 +125,10 @@ public class BorrowBooks {
             case RETURN_BOOK -> returnBook();
             case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
             case SHOW_BORROWED_BOOK -> booksEdit.showAllBorrowedBooks();
-
             //TODO dodanie opcji sortowania listy po kategorii
+            case SHOW_SORTED_BOOK -> sortByCategory();
             //TODO dodanie opcji wyszukania książki po nazwie
-           //TODO dostosowanie menu głownego dla użytkownika oraz bibliotekarza np
+            //TODO dostosowanie menu głownego dla użytkownika oraz bibliotekarza np
 //            zarządzanie wypożyczeniami - dla bibliotekarza oraz osoby
 //            zarządzanie osobami(dodawanie, przegladanie, usuwanie) - dla bibliotekarza
 //            zarządzanie książkami(dodawnie, przegladanie, usuwanie) - dla bibliotekarza
@@ -121,7 +153,8 @@ public class BorrowBooks {
         RETURN_BOOK(2, "Oddaj książkę"),
         SHOW_AVAILABLE_BOOK(3, "Zobacz dostępne książki"),
         SHOW_BORROWED_BOOK(4, "Pokaż wypożyczone książki"),
-        EXIT(5, "Wróć do głównego menu");
+        SHOW_SORTED_BOOK(5, "Wybierz książki po kategorii"),
+        EXIT(6, "Wróć do głównego menu");
 
         private final int optionNumber;
         private final String description;
