@@ -1,6 +1,8 @@
 package pl.isa.biblioteka;
 
-import java.util.*;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -54,26 +56,32 @@ public class BorrowBooks {
 
     public static void sortByCategory() {
         List<Book> books = BooksEdit.booksList.stream().filter(Book::isState).toList();
-        showAvailableCategory(books);
-        showFilterBooksByCategory(books);
+        Set<String> availableCategory = showAvailableCategory(books);
+        showFilterBookByCategory(books, availableCategory);
+
     }
 
-    private static void showAvailableCategory(List<Book> books) {
-        Set<String> availableCategory = books.stream().map(Book::getCategory).collect(Collectors.toSet());
+    private static Set<String> showAvailableCategory(List<Book> books) {
+        Set<String> availableCategory = books.stream().map(book1 -> book1.getCategory().toLowerCase()).collect(Collectors.toSet());
         for (String category : availableCategory) {
             System.out.print("'" + category + "'  ");
         }
+        return availableCategory;
     }
 
-    private static void showFilterBooksByCategory(List<Book> books) {
+    private static void showFilterBookByCategory(List<Book> books, Set<String> availableCategory) {
         System.out.println();
         System.out.println("Wybierz odpowiednia kategorię: ");
         String searchCategory = scanner.nextLine();
-        List<Book> sortedBooks = books.stream().filter(book -> book.getCategory().equalsIgnoreCase(searchCategory)).toList();
-        for (Book sortedBook : sortedBooks) {
-            System.out.println("Książka: " + sortedBook.getTitle()
-                    + " Autor: " + sortedBook.getAuthor()
-                    + " Kategoria : " + sortedBook.getCategory());
+        if(availableCategory.contains(searchCategory)){
+            List<Book> sortedBooks = books.stream().filter(book -> book.getCategory().equalsIgnoreCase(searchCategory)).toList();
+            for (Book sortedBook : sortedBooks) {
+                System.out.println("Książka: " + sortedBook.getTitle()
+                        + " Autor: " + sortedBook.getAuthor()
+                        + " Kategoria : " + sortedBook.getCategory());
+            }
+        }else{
+            System.out.println("Brak kategorii "+ searchCategory +". Wybierz odpowiednią kategorię z listy");
         }
     }
 
