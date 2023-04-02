@@ -23,13 +23,12 @@ public class Users {
         users.add(addPerson);
         System.out.printf("Dodano nowego użytkownika: %s %s ", firstName, lastName);
     }
+
     public boolean deleteUser() {
-//        System.out.println("Podaj imie uzytkownika: ");
-//        String firstName = scanner.nextLine();
         System.out.println("Podaj nazwisko użytkownika: ");
         String lastName = scanner.nextLine();
         System.out.println("Użytkownik usunięty");
-return users.removeIf(findPersonByLastName(lastName));
+        return users.removeIf(findPersonByLastName(lastName));
 
 
 

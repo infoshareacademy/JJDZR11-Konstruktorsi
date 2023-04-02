@@ -28,7 +28,7 @@ public class Menu {
 
     public void librarianMenu() {
 
-        AddUsers users = new AddUsers();
+        Users users = new Users();
         BooksEdit booksEdit = new BooksEdit();
 
         Scanner scanner = new Scanner(System.in);
@@ -37,7 +37,6 @@ public class Menu {
         while (isContinue) {
             System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
-            System.out.println("2. Dodaj użytkownika");
             System.out.println("3. Lista użytkowników");
             System.out.println("4. Dodanie książki");
             System.out.println("5. Usuwanie ksiązki");
@@ -74,7 +73,7 @@ public class Menu {
 
     public void userMenu() {
 
-        AddUsers users = new AddUsers();
+        Users users = new Users();
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
 
