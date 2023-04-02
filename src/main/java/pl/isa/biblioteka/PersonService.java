@@ -24,7 +24,7 @@ public class PersonService {
 
     public static void saveUsers() {
         ObjectMapper mapper = new ObjectMapper();
-        List<Person> personList = AddUsers.users;
+        List<Person> personList = Users.users;
         try {
             mapper.writeValue(new File("users.json"), personList);
         } catch (IOException e) {

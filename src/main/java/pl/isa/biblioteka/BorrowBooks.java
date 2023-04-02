@@ -12,7 +12,7 @@ public class BorrowBooks {
     public static void addBookToPerson() {
         //TODO dodanie komunikatu jezeli nie ma takiego użutkownika oraz jezeli nie masz szukanej książki
         List<Book> booksList = BooksEdit.booksList;
-        List<Person> users = AddUsers.getUsers();
+        List<Person> users = Users.getUsers();
         String firstName = getFirstName();
         String lastName = getLastName();
         for (Person user : users) {
@@ -32,7 +32,7 @@ public class BorrowBooks {
     }
 
     public void returnBook() {
-        List<Person> users = AddUsers.getUsers();
+        List<Person> users = Users.getUsers();
         String firstName = getFirstName();
         String lastName = getLastName();
         for (Person user : users) {
