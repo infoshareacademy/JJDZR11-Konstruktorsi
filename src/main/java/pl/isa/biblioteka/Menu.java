@@ -37,13 +37,13 @@ public class Menu {
         while (isContinue) {
             System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
-<<<<<<<<< Temporary merge branch 1
             System.out.println("2. Dodaj użytkownika");
-            System.out.println("3. Lista użytkowników");
-            System.out.println("4. Dodanie książki");
-            System.out.println("5. Usuwanie ksiązki");
-            System.out.println("6. Zmień użytkownika");
-            System.out.println("7. Zakończ program");
+            System.out.println("3. Usuń użytkownika");
+            System.out.println("4. Lista użytkowników");
+            System.out.println("5. Dodaj książkę");
+            System.out.println("6. Usuń ksiązki");
+            System.out.println("7. Zmień użytkownika");
+            System.out.println("8. Zakończ program");
 
 
             if (scanner.hasNextInt()) {
@@ -52,11 +52,12 @@ public class Menu {
                     switch (userChoose) {
                         case 1 -> booksEdit.showAllBooks();
                         case 2 -> users.addUser();
-                        case 3 -> users.listsUsers();
-                        case 4 -> booksEdit.addBook();
-                        case 5 -> booksEdit.deleteBookByTitle();
-                        case 6 -> selectUser();
-                        case 7 -> {
+                        case 3 -> users.deleteUser();
+                        case 4 -> users.listsUsers();
+                        case 5 -> booksEdit.addBook();
+                        case 6 -> booksEdit.deleteBookByTitle();
+                        case 7 -> selectUser();
+                        case 8 -> {
                             PersonService.saveUsers();
                             FolderBooks.saveBooks();
                             System.out.println("Baza użytkowników i książek zapisana poprawnie");
@@ -95,11 +96,6 @@ public class Menu {
                 int userChoose = scanner.nextInt();
                 if (userChoose > 0 && userChoose < 9) {
                     switch (userChoose) {
-                        case 1 -> booksEdit.showAllBooks();
-                        case 2 -> borrowBooks.mainLoop();
-                        case 3 -> users.listsUsers();
-                        case 4 -> selectUser();
-                        case 5 -> {
                         case 1 -> booksEdit.showAllBooks(); // add method
                         case 2 -> borrowBooks.mainLoop(); // add method
                         case 3 -> users.addUser(); // add method
