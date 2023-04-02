@@ -37,11 +37,14 @@ public class Menu {
         while (isContinue) {
             System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
+<<<<<<<<< Temporary merge branch 1
+            System.out.println("2. Dodaj użytkownika");
             System.out.println("3. Lista użytkowników");
             System.out.println("4. Dodanie książki");
             System.out.println("5. Usuwanie ksiązki");
             System.out.println("6. Zmień użytkownika");
             System.out.println("7. Zakończ program");
+
 
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
@@ -97,6 +100,14 @@ public class Menu {
                         case 3 -> users.listsUsers();
                         case 4 -> selectUser();
                         case 5 -> {
+                        case 1 -> booksEdit.showAllBooks(); // add method
+                        case 2 -> borrowBooks.mainLoop(); // add method
+                        case 3 -> users.addUser(); // add method
+                        case 4 -> users.listsUsers(); // add method
+                        case 5 -> booksEdit.addBook(); // add method
+                        case 6 -> booksEdit.deleteBookByTitle(); // add method
+                        //TODO dodanie opcji wypisania pojedyncczego użytkownika
+                        case 7 -> {
                             PersonService.saveUsers();
                             FolderBooks.saveBooks();
                             System.out.println("Baza użytkowników i książek zapisana poprawnie");
