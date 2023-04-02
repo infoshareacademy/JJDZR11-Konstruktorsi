@@ -6,8 +6,8 @@ public class Menu {
 
     public void selectUser() {
 
-        System.out.println("Witamy w naszej bibliotece");
-        System.out.println("Kim jesteś wybierz odpowiednią opcję w menu");
+        System.out.println("\nWitamy w naszej bibliotece");
+        System.out.println("Kim jesteś ?\nWybierz odpowiednią opcję w menu");
         System.out.println("1 - Bibliotekarz");
         System.out.println("2 - Użytkownik");
 
