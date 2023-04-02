@@ -1,14 +1,34 @@
 package pl.isa.biblioteka;
 
-import java.util.List;
 import java.util.Scanner;
 
-import static pl.isa.biblioteka.FolderBooks.readBooks;
-
 public class Menu {
-    public void ShowMenu() {
 
-        Users users = new Users();
+    public void selectUser() {
+
+        System.out.println("\nWitamy w naszej bibliotece");
+        System.out.println("Kim jesteś ?\nWybierz odpowiednią opcję w menu");
+        System.out.println("1 - Bibliotekarz");
+        System.out.println("2 - Użytkownik");
+
+        Scanner scanner = new Scanner(System.in);
+        try {
+            int userChoose1 = scanner.nextInt();
+
+            if (userChoose1 == 1) {
+                librarianMenu();
+            } else if (userChoose1 == 2) {
+                userMenu();
+                System.out.println("Wybierz poprawny numer menu");
+            }
+        } catch (Exception e) {
+            System.out.println("Wprowadź poprawny numer menu");
+        }
+    }
+
+    public void librarianMenu() {
+
+        AddUsers users = new AddUsers();
         Book book = new Book();
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
@@ -24,11 +44,10 @@ public class Menu {
             System.out.println("1. Widok książek");
             System.out.println("2. Wypożycz książkę");
             System.out.println("3. Dodaj użytkownika");
-            System.out.println("4. Usuwanie użytkownika");
-            System.out.println("5. Lista użytkowników");
-            System.out.println("6. Dodanie książki");
-            System.out.println("7. Usuwanie ksiązki");
-            System.out.println("8. Zakończ program");
+            System.out.println("4. Lista użytkowników");
+            System.out.println("5. Dodanie książki");
+            System.out.println("6. Usuwanie ksiązki");
+            System.out.println("7. Zakończ program");
 
 
             if (scanner.hasNextInt()) {
@@ -38,12 +57,11 @@ public class Menu {
                         case 1 -> booksEdit.showAllBooks(); // add method
                         case 2 -> borrowBooks.mainLoop(); // add method
                         case 3 -> users.addUser(); // add method
-                        case 4 -> users.deleteUser();
-                        case 5 -> users.listsUsers(); // add method
-                        case 6 -> booksEdit.addBook(); // add method
-                        case 7 -> booksEdit.deleteBookByTitle(); // add method
+                        case 4 -> users.listsUsers(); // add method
+                        case 5 -> booksEdit.addBook(); // add method
+                        case 6 -> booksEdit.deleteBookByTitle(); // add method
                         //TODO dodanie opcji wypisania pojedyncczego użytkownika
-                        case 8 -> {
+                        case 7 -> {
                             PersonService.saveUsers();
                             FolderBooks.saveBooks();
                             System.out.println("Baza użytkowników i książek zapisana poprawnie");
