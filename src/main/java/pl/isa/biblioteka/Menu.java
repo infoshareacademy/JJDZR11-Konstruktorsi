@@ -9,15 +9,23 @@ public class Menu {
         System.out.println("1. Bibliotekarz");
         System.out.println("2. Użytkownik");
         Scanner scanner = new Scanner(System.in);
-        try {
-            int userChoose = scanner.nextInt();
-            if (userChoose == 1) {
-                librarianMenu();
-            } else if (userChoose == 2) {
-                userMenu();
+        boolean isContinue = true;
+        while (isContinue) {
+            try {
+                int userChoose = scanner.nextInt();
+                if (userChoose == 1) {
+                    librarianMenu();
+                } else if (userChoose == 2) {
+                    userMenu();
+                } else {
+                    System.out.println("Wprowadź poprawny numer");
+                    selectUser();
+                }
+            } catch (Exception e) {
+                System.out.println("Wprowadziłeś niepoprawny znak");
+                selectUser();
             }
-        } catch (Exception e) {
-            System.out.println("Wprowadź poprawny numer menu");
+         //   isContinue = false;
         }
     }
 
@@ -66,7 +74,6 @@ public class Menu {
     }
 
     public void userMenu() {
-        Users users = new Users();
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
         Scanner scanner = new Scanner(System.in);
@@ -75,21 +82,19 @@ public class Menu {
             System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
             System.out.println("2. Operacje na książkach");
-            System.out.println("3. Lista użytkowników");
-            System.out.println("4. Zmień użytkownika");
-            System.out.println("5. Zakończ program");
+            System.out.println("3. Zmień użytkownika");
+            System.out.println("4. Zakończ program");
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
-                if (userChoose > 0 && userChoose < 9) {
+                if (userChoose > 0 && userChoose < 5) {
                     switch (userChoose) {
                         case 1 -> booksEdit.showAllBooks();
                         case 2 -> borrowBooks.mainLoop();
-                        case 3 -> users.listsUsers();
-                        case 4 -> selectUser();
-                        case 5 -> {
-                            PersonService.saveUsers();
+                        case 3 -> selectUser();
+                        case 4 -> {
+                            //   PersonService.saveUsers();
                             FolderBooks.saveBooks();
-                            System.out.println("Baza użytkowników i książek zapisana poprawnie");
+                            System.out.println("Baza książek zapisana poprawnie");
                             isContinue = false;
                         }
                     }
