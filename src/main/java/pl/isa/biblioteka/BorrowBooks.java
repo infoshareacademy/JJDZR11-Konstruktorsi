@@ -11,7 +11,6 @@ public class BorrowBooks {
     public static BooksEdit booksEdit = new BooksEdit();
 
     public static void addBookToPerson() {
-        //TODO dodanie komunikatu jezeli nie ma takiego użutkownika oraz jezeli nie masz szukanej książki
         List<Book> booksList = BooksEdit.booksList;
         List<Person> users = AddUsers.getUsers();
         String firstName = getFirstName();
@@ -32,14 +31,14 @@ public class BorrowBooks {
                         break;
                     }
                 }
-                if(!findBook){
+                if (!findBook) {
                     System.out.println("Nie posiadamy książki o podanym tytule");
                 }
                 findUser = true;
                 break;
             }
         }
-        if (!findUser){
+        if (!findUser) {
             System.out.println("Brak Użytkownika o podanych danych");
         }
     }
@@ -54,7 +53,7 @@ public class BorrowBooks {
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
                 System.out.println("Mamy Cię w naszej bazie ;)");
                 List<Book> personBooks = user.getPersonBooks();
-                System.out.println("Użytkownik: " + user.getFirstName() +" "+ user.getSecondName() +" posiada książki:");
+                System.out.println("Użytkownik: " + user.getFirstName() + " " + user.getSecondName() + " posiada książki:");
                 personBooks.forEach(x -> System.out.println("Tytuł: " + x.getTitle() + ", Autor: " + x.getAuthor()));
                 System.out.println("Podaj tytuł książki do zwrócenia: ");
                 String bookTitleToReturn = scanner.nextLine();
@@ -66,14 +65,14 @@ public class BorrowBooks {
                         break;
                     }
                 }
-                if(!findBook){
+                if (!findBook) {
                     System.out.println("Użytkoniku nie posiadasz książki o tytule: " + bookTitleToReturn);
                 }
                 findUser = true;
                 break;
             }
         }
-        if (!findUser){
+        if (!findUser) {
             System.out.println("Brak Użytkownika o podanych danych");
         }
     }
@@ -97,15 +96,15 @@ public class BorrowBooks {
         System.out.println();
         System.out.println("Wybierz odpowiednia kategorię: ");
         String searchCategory = scanner.nextLine();
-        if(availableCategory.contains(searchCategory)){
+        if (availableCategory.contains(searchCategory)) {
             List<Book> sortedBooks = books.stream().filter(book -> book.getCategory().equalsIgnoreCase(searchCategory)).toList();
             for (Book sortedBook : sortedBooks) {
                 System.out.println("Książka: " + sortedBook.getTitle()
                         + " Autor: " + sortedBook.getAuthor()
                         + " Kategoria : " + sortedBook.getCategory());
             }
-        }else{
-            System.out.println("Brak kategorii "+ searchCategory +". Wybierz odpowiednią kategorię z listy");
+        } else {
+            System.out.println("Brak kategorii " + searchCategory + ". Wybierz odpowiednią kategorię z listy");
         }
     }
 
@@ -149,14 +148,7 @@ public class BorrowBooks {
             case RETURN_BOOK -> returnBook();
             case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
             case SHOW_BORROWED_BOOK -> booksEdit.showAllBorrowedBooks();
-            //TODO dodanie opcji sortowania listy po kategorii
             case SHOW_SORTED_BOOK -> sortByCategory();
-            //TODO dodanie opcji wyszukania książki po nazwie
-            //TODO dostosowanie menu głownego dla użytkownika oraz bibliotekarza np
-//            zarządzanie wypożyczeniami - dla bibliotekarza oraz osoby
-//            zarządzanie osobami(dodawanie, przegladanie, usuwanie) - dla bibliotekarza
-//            zarządzanie książkami(dodawnie, przegladanie, usuwanie) - dla bibliotekarza
-            //TODO - pokazanie starystyk wypożyczających (osoba wypożyczająca - ile książek)
             case EXIT -> close();
         }
     }
@@ -172,7 +164,7 @@ public class BorrowBooks {
         }
     }
 
-    private static enum Option {
+    private enum Option {
         BORROW_BOOK(1, "Wypożycz książkę"),
         RETURN_BOOK(2, "Oddaj książkę"),
         SHOW_AVAILABLE_BOOK(3, "Zobacz dostępne książki"),
