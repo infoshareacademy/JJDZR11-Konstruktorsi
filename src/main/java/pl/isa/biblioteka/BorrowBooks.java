@@ -16,6 +16,8 @@ public class BorrowBooks {
         List<Person> users = AddUsers.getUsers();
         String firstName = getFirstName();
         String lastName = getLastName();
+        boolean findUser = false;
+        boolean findBook = false;
         for (Person user : users) {
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
                 System.out.println("Mamy Cię w naszej bazie ;)");
@@ -26,9 +28,19 @@ public class BorrowBooks {
                         book.setState(false);
                         user.personBooks.add(book);
                         System.out.println("Książka została wypożyczona");
+                        findBook = true;
+                        break;
                     }
                 }
+                if(!findBook){
+                    System.out.println("Nie posiadamy książki o podanym tytule");
+                }
+                findUser = true;
+                break;
             }
+        }
+        if (!findUser){
+            System.out.println("Brak Użytkownika o podanych danych");
         }
     }
 
