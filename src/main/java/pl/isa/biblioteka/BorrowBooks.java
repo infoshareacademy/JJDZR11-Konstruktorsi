@@ -54,6 +54,8 @@ public class BorrowBooks {
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
                 System.out.println("Mamy Cię w naszej bazie ;)");
                 List<Book> personBooks = user.getPersonBooks();
+                System.out.println("Użytkownik: " + user.getFirstName() +" "+ user.getSecondName() +" posiada książki:");
+                personBooks.forEach(x -> System.out.println("Tytuł: " + x.getTitle() + ", Autor: " + x.getAuthor()));
                 System.out.println("Podaj tytuł książki do zwrócenia: ");
                 String bookTitleToReturn = scanner.nextLine();
                 for (Book personBook : personBooks) {
