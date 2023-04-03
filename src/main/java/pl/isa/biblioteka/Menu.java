@@ -15,7 +15,6 @@ public class Menu {
                 librarianMenu();
             } else if (userChoose == 2) {
                 userMenu();
-                System.out.println("Wybierz poprawny numer menu");
             }
         } catch (Exception e) {
             System.out.println("Wprowadź poprawny numer menu");
@@ -34,7 +33,7 @@ public class Menu {
             System.out.println("3. Usuń użytkownika");
             System.out.println("4. Lista użytkowników");
             System.out.println("5. Dodaj książkę");
-            System.out.println("6. Usuń ksiązki");
+            System.out.println("6. Usuń książkę");
             System.out.println("7. Zmień użytkownika");
             System.out.println("8. Zakończ program");
             if (scanner.hasNextInt()) {
@@ -75,7 +74,7 @@ public class Menu {
         while (isContinue) {
             System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
-            System.out.println("2. Wypożycz książkę");
+            System.out.println("2. Operacje na książkach");
             System.out.println("3. Lista użytkowników");
             System.out.println("4. Zmień użytkownika");
             System.out.println("5. Zakończ program");
