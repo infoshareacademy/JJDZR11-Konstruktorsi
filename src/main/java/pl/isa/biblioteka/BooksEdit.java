@@ -49,7 +49,6 @@ public class BooksEdit {
                         el.getAuthor(),
                         el.getCategory()));
     }
-//TODO dodać przy wyswietlaniu wypożyczonych przez kogo została wypożyczona
     public void showAllBorrowedBooks(){
         booksList.stream().filter(book -> !book.isState())
                 .forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s  %n",

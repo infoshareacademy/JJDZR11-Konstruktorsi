@@ -15,7 +15,6 @@ public class Menu {
                 librarianMenu();
             } else if (userChoose == 2) {
                 userMenu();
-                System.out.println("Wybierz poprawny numer menu");
             }
         } catch (Exception e) {
             System.out.println("Wprowadź poprawny numer menu");
