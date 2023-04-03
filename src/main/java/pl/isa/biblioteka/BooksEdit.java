@@ -22,10 +22,20 @@ public class BooksEdit {
         System.out.println("Dodano książkę: " + book.getTitle() + " autora: "+ book.getAuthor());
     }
 
-    public boolean deleteBookByTitle() {
+    public void deleteBookByTitle() {
         System.out.println("wpisz tytul ksiazki do usuniecia");
         String title = sc.nextLine();
-        return !booksList.removeIf(foundBookByTitle(title));
+        boolean findBook = false;
+        for (Book book : booksList) {
+            if(foundBookByTitle(title).test(book)){
+                booksList.removeIf(foundBookByTitle(title));
+                findBook = true;
+                break;
+            }
+        }
+        if(!findBook){
+            System.out.println("W naszej bazie nie ma takiej książki o tytule: " + title);
+        }
     }
 
     private static Predicate<Book> foundBookByTitle(String title) {

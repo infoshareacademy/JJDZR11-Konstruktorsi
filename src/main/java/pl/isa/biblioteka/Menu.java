@@ -34,7 +34,7 @@ public class Menu {
             System.out.println("3. Usuń użytkownika");
             System.out.println("4. Lista użytkowników");
             System.out.println("5. Dodaj książkę");
-            System.out.println("6. Usuń ksiązki");
+            System.out.println("6. Usuń książkę");
             System.out.println("7. Zmień użytkownika");
             System.out.println("8. Zakończ program");
             if (scanner.hasNextInt()) {
