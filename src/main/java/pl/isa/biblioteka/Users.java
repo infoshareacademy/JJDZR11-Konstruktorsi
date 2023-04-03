@@ -3,12 +3,15 @@ package pl.isa.biblioteka;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
-public class AddUsers {
+public class Users {
     //Mikołaj Malinowski
     //Dodanie nowego użytkownika
     public static Person person;
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
+    Scanner scanner = new Scanner(System.in);
+
 
     public void addUser() {
         Scanner input = new Scanner(System.in);
@@ -21,6 +24,18 @@ public class AddUsers {
         System.out.printf("Dodano nowego użytkownika: %s %s ", firstName, lastName);
     }
 
+    public boolean deleteUser() {
+        System.out.println("Podaj nazwisko użytkownika: ");
+        String lastName = scanner.nextLine();
+        System.out.println("Użytkownik usunięty");
+        return users.removeIf(findPersonByLastName(lastName));
+
+
+
+    }
+    private static Predicate<Person> findPersonByLastName (String secondName) {
+        return user -> user.getSecondName().equalsIgnoreCase(secondName);
+    }
     public void listsUsers(){
         System.out.println("Uzytkownicy w naszej aplikacji: ");
         System.out.println("---------------------------------");
@@ -45,4 +60,7 @@ public class AddUsers {
     public static List<Person> getUsers() {
         return users;
     }
+
+
+
 }

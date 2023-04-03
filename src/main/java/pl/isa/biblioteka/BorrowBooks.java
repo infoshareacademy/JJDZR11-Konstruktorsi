@@ -12,7 +12,7 @@ public class BorrowBooks {
 
     public static void addBookToPerson() {
         List<Book> booksList = BooksEdit.booksList;
-        List<Person> users = AddUsers.getUsers();
+        List<Person> users = Users.getUsers();
         String firstName = getFirstName();
         String lastName = getLastName();
         boolean findUser = false;
@@ -44,7 +44,7 @@ public class BorrowBooks {
     }
 
     public void returnBook() {
-        List<Person> users = AddUsers.getUsers();
+        List<Person> users = Users.getUsers();
         String firstName = getFirstName();
         String lastName = getLastName();
         boolean findUser = false;
