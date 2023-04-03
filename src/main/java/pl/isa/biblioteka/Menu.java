@@ -75,7 +75,7 @@ public class Menu {
         while (isContinue) {
             System.out.println("\nWybierz numer menu");
             System.out.println("1. Widok książek");
-            System.out.println("2. Wypożycz książkę");
+            System.out.println("2. Operacje na książkach");
             System.out.println("3. Lista użytkowników");
             System.out.println("4. Zmień użytkownika");
             System.out.println("5. Zakończ program");
