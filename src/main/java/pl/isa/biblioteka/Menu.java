@@ -25,7 +25,7 @@ public class Menu {
                 System.out.println("Wprowadziłeś niepoprawny znak");
                 selectUser();
             }
-         //   isContinue = false;
+            isContinue = false;
         }
     }
 
@@ -33,18 +33,18 @@ public class Menu {
         Users users = new Users();
         BooksEdit booksEdit = new BooksEdit();
         Scanner scanner = new Scanner(System.in);
-        boolean isContinue = true;
-        while (isContinue) {
-            System.out.println("\nWybierz numer menu");
-            System.out.println("1. Widok książek");
-            System.out.println("2. Dodaj użytkownika");
-            System.out.println("3. Usuń użytkownika");
-            System.out.println("4. Lista użytkowników");
-            System.out.println("5. Dodaj książkę");
-            System.out.println("6. Usuń książkę");
-            System.out.println("7. Zmień użytkownika");
-            System.out.println("8. Zakończ program");
-            if (scanner.hasNextInt()) {
+        try {
+            boolean isContinue = true;
+            while (isContinue) {
+                System.out.println("\nWybierz numer menu");
+                System.out.println("1. Widok książek");
+                System.out.println("2. Dodaj użytkownika");
+                System.out.println("3. Usuń użytkownika");
+                System.out.println("4. Lista użytkowników");
+                System.out.println("5. Dodaj książkę");
+                System.out.println("6. Usuń książkę");
+                System.out.println("7. Zmień użytkownika");
+                System.out.println("8. Zakończ program");
                 int userChoose = scanner.nextInt();
                 if (userChoose > 0 && userChoose < 9) {
                     switch (userChoose) {
@@ -64,12 +64,12 @@ public class Menu {
                     }
                 } else {
                     System.out.println("Wybierz poprawny numer menu");
-                    break;
+                    continue;
                 }
-            } else {
-                System.out.println("Wybierz poprawny numer menu");
-                break;
             }
+        } catch (Exception e) {
+            System.out.println("warunek liber");
+            librarianMenu();
         }
     }
 
@@ -77,14 +77,14 @@ public class Menu {
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
         Scanner scanner = new Scanner(System.in);
-        boolean isContinue = true;
-        while (isContinue) {
-            System.out.println("\nWybierz numer menu");
-            System.out.println("1. Widok książek");
-            System.out.println("2. Operacje na książkach");
-            System.out.println("3. Zmień użytkownika");
-            System.out.println("4. Zakończ program");
-            if (scanner.hasNextInt()) {
+        try {
+            boolean isContinue = true;
+            while (isContinue) {
+                System.out.println("\nWybierz numer menu");
+                System.out.println("1. Widok książek");
+                System.out.println("2. Operacje na książkach");
+                System.out.println("3. Zmień użytkownika");
+                System.out.println("4. Zakończ program");
                 int userChoose = scanner.nextInt();
                 if (userChoose > 0 && userChoose < 5) {
                     switch (userChoose) {
@@ -92,7 +92,6 @@ public class Menu {
                         case 2 -> borrowBooks.mainLoop();
                         case 3 -> selectUser();
                         case 4 -> {
-                            //   PersonService.saveUsers();
                             FolderBooks.saveBooks();
                             System.out.println("Baza książek zapisana poprawnie");
                             isContinue = false;
@@ -100,12 +99,12 @@ public class Menu {
                     }
                 } else {
                     System.out.println("Wybierz poprawny numer menu");
-                    break;
+                    continue;
                 }
-            } else {
-                System.out.println("Wybierz poprawny numer menu");
-                break;
             }
+        } catch (Exception e) {
+            System.out.println("user");
+            userMenu();
         }
     }
 }
