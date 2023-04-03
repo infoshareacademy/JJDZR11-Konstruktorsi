@@ -68,7 +68,7 @@ public class Menu {
                 }
             }
         } catch (Exception e) {
-            System.out.println("warunek liber");
+            System.out.println("Wprowadziłeś niepoprawny znak");
             librarianMenu();
         }
     }
@@ -103,7 +103,7 @@ public class Menu {
                 }
             }
         } catch (Exception e) {
-            System.out.println("user");
+            System.out.println("Wprowadziłeś niepoprawny znak");
             userMenu();
         }
     }
