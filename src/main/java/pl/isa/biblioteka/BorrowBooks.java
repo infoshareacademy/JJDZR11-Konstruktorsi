@@ -10,36 +10,22 @@ public class BorrowBooks {
     public static Scanner scanner = new Scanner(System.in);
     public static BooksEdit booksEdit = new BooksEdit();
 
-    public static void addBookToPerson() {
+    public static void addBookToPerson(List<Book> personBooks) {
         List<Book> booksList = BooksEdit.booksList;
-        List<Person> users = Users.getUsers();
-        String firstName = getFirstName();
-        String lastName = getLastName();
-        boolean findUser = false;
+        System.out.println("Podaj tytuł książki do wypożyczenia: ");
+        String bookTitle = scanner.nextLine();
         boolean findBook = false;
-        for (Person user : users) {
-            if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
-                System.out.println("Mamy Cię w naszej bazie ;)");
-                System.out.println("Podaj tytuł książki do wypożyczenia: ");
-                String bookTitle = scanner.nextLine();
-                for (Book book : booksList) {
-                    if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
-                        book.setState(false);
-                        user.personBooks.add(book);
-                        System.out.println("Książka została wypożyczona");
-                        findBook = true;
-                        break;
-                    }
-                }
-                if (!findBook) {
-                    System.out.println("Nie posiadamy książki o podanym tytule");
-                }
-                findUser = true;
+        for (Book book : booksList) {
+            if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
+                book.setState(false);
+                personBooks.add(book);
+                System.out.println("Książka została wypożyczona");
+                findBook = true;
                 break;
             }
         }
-        if (!findUser) {
-            System.out.println("Brak Użytkownika o podanych danych");
+        if (!findBook) {
+            System.out.println("Nie posiadamy książki o podanym tytule");
         }
     }
 
@@ -122,14 +108,14 @@ public class BorrowBooks {
         return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
     }
 
-    public void mainLoop() {
+    public void mainLoop(List<Book> personBooks) {
         System.out.println("Co chcesz zrobić");
         Option option = null;
         do {
             printMenu();
             try {
                 option = chooseOption();
-                executeOption(option);
+                executeOption(option, personBooks);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -142,12 +128,14 @@ public class BorrowBooks {
         return Option.fromInt(option);
     }
 
-    private void executeOption(Option option) {
+    private void executeOption(Option option, List<Book> personBooks) {
         switch (option) {
-            case BORROW_BOOK -> addBookToPerson();
+            case BORROW_BOOK -> addBookToPerson(personBooks);
             case RETURN_BOOK -> returnBook();
             case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
-            case SHOW_BORROWED_BOOK -> booksEdit.showAllBorrowedBooks();
+            case SHOW_BORROWED_BOOK -> personBooks.forEach(
+                    (book)-> System.out.println("Tytuł: " + book.getTitle() + " Autor: " + book.getAuthor())
+            );
             case SHOW_SORTED_BOOK -> sortByCategory();
             case EXIT -> close();
         }
@@ -168,8 +156,8 @@ public class BorrowBooks {
         BORROW_BOOK(1, "Wypożycz książkę"),
         RETURN_BOOK(2, "Oddaj książkę"),
         SHOW_AVAILABLE_BOOK(3, "Zobacz dostępne książki"),
-        SHOW_BORROWED_BOOK(4, "Pokaż wypożyczone książki"),
-        SHOW_SORTED_BOOK(5, "Wybierz książki po kategorii"),
+        SHOW_BORROWED_BOOK(4, "Pokaż moje wypożyczone książki"),
+        SHOW_SORTED_BOOK(5, "Wyszukaj książki po kategorii"),
         EXIT(6, "Wróć do głównego menu");
 
         private final int optionNumber;
