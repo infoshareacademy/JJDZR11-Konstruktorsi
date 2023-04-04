@@ -30,12 +30,17 @@ public class BorrowBooks {
     }
 
     public void returnBook(List<Book> personBooks) {
+        List<Book> booksList = BooksEdit.booksList;
         boolean findBook = false;
         System.out.println("Podaj tytuł książki do zwrócenia: ");
         String bookTitleToReturn = scanner.nextLine();
         for (Book personBook : personBooks) {
             if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
-                personBook.setState(true);
+                for (Book book : booksList) {
+                    if (book.getTitle().equalsIgnoreCase(bookTitleToReturn)) {
+                        book.setState(true);
+                    }
+                }
                 personBooks.removeIf(foundBookByTitle(bookTitleToReturn));
                 findBook = true;
                 break;

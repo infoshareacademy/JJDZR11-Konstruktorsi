@@ -16,24 +16,16 @@ public class Menu {
             if (userChoose == 1) {
                 librarianMenu();
             } else if (userChoose == 2) {
-//                TODO przekazanie użtykownika do user menu
-                String firstName = getFirstName();
-                String lastName = getLastName();
+                scanner.nextLine();
+                System.out.println("Podaj swoje imię czytelniku:");
+                String firstName = scanner.nextLine();
+                System.out.println("Podaj swoje nazwisko czytelniku:");
+                String lastName = scanner.nextLine();
                 userMenu(firstName,lastName);
             }
         } catch (Exception e) {
             System.out.println("Wprowadź poprawny numer menu");
         }
-    }
-
-    private static String getLastName() {
-        System.out.println("Podaj swoje nazwisko czytelniku:");
-        return scanner.nextLine();
-    }
-
-    private static String getFirstName() {
-        System.out.println("Podaj swoje imię czytelniku:");
-        return scanner.nextLine();
     }
 
     public void librarianMenu() {
@@ -49,7 +41,9 @@ public class Menu {
             System.out.println("4. Lista użytkowników");
             System.out.println("5. Dodaj książkę");
             System.out.println("6. Usuń książkę");
-            System.out.println("7. Zmień użytkownika");
+//            System.out.println("lista dostępnych książek");
+//            System.out.println("lista wypożyczonych książek książek");
+            System.out.println("7. Zmień użytkoobacz dostępne książkwnika");
             System.out.println("8. Zakończ program");
             if (scanner.hasNextInt()) {
                 int userChoose = scanner.nextInt();
@@ -86,7 +80,7 @@ public class Menu {
         boolean findUser = false;
         for (Person user : users) {
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
-                System.out.println("Witamy Cię : " + firstName + " " + lastName);
+                System.out.println("Witamy Cię : " + firstName.toUpperCase() + " " + lastName.toUpperCase());
                 List<Book> personBooks = user.getPersonBooks();
                 boolean isContinue = true;
                 while (isContinue) {
@@ -105,9 +99,9 @@ public class Menu {
                                 case 4 -> {
                                     PersonService.saveUsers();
                                     FolderBooks.saveBooks();
-                                    System.out.println("Baza użytkowników i książek zapisana poprawnie");
                                     findUser = true;
                                     isContinue = false;
+                                    System.out.println("Baza użytkowników i książek zapisana poprawnie");
                                 }
                             }
                         } else {
