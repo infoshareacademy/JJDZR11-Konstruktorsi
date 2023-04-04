@@ -29,37 +29,20 @@ public class BorrowBooks {
         }
     }
 
-    public void returnBook() {
-        List<Person> users = Users.getUsers();
-        String firstName = getFirstName();
-        String lastName = getLastName();
-        boolean findUser = false;
+    public void returnBook(List<Book> personBooks) {
         boolean findBook = false;
-        for (Person user : users) {
-            if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
-                System.out.println("Mamy Cię w naszej bazie ;)");
-                List<Book> personBooks = user.getPersonBooks();
-                System.out.println("Użytkownik: " + user.getFirstName() + " " + user.getSecondName() + " posiada książki:");
-                personBooks.forEach(x -> System.out.println("Tytuł: " + x.getTitle() + ", Autor: " + x.getAuthor()));
-                System.out.println("Podaj tytuł książki do zwrócenia: ");
-                String bookTitleToReturn = scanner.nextLine();
-                for (Book personBook : personBooks) {
-                    if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
-                        personBook.setState(true);
-                        personBooks.removeIf(foundBookByTitle(bookTitleToReturn));
-                        findBook = true;
-                        break;
-                    }
-                }
-                if (!findBook) {
-                    System.out.println("Użytkoniku nie posiadasz książki o tytule: " + bookTitleToReturn);
-                }
-                findUser = true;
+        System.out.println("Podaj tytuł książki do zwrócenia: ");
+        String bookTitleToReturn = scanner.nextLine();
+        for (Book personBook : personBooks) {
+            if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
+                personBook.setState(true);
+                personBooks.removeIf(foundBookByTitle(bookTitleToReturn));
+                findBook = true;
                 break;
             }
         }
-        if (!findUser) {
-            System.out.println("Brak Użytkownika o podanych danych");
+        if (!findBook) {
+            System.out.println("Użytkoniku nie posiadasz kiążki o tytule: " + bookTitleToReturn);
         }
     }
 
@@ -94,16 +77,6 @@ public class BorrowBooks {
         }
     }
 
-    private static String getLastName() {
-        System.out.println("Podaj swoje nazwisko czytelniku:");
-        return scanner.nextLine();
-    }
-
-    private static String getFirstName() {
-        System.out.println("Podaj swoje imię czytelniku:");
-        return scanner.nextLine();
-    }
-
     private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
         return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
     }
@@ -131,10 +104,10 @@ public class BorrowBooks {
     private void executeOption(Option option, List<Book> personBooks) {
         switch (option) {
             case BORROW_BOOK -> addBookToPerson(personBooks);
-            case RETURN_BOOK -> returnBook();
+            case RETURN_BOOK -> returnBook(personBooks);
             case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
             case SHOW_BORROWED_BOOK -> personBooks.forEach(
-                    (book)-> System.out.println("Tytuł: " + book.getTitle() + " Autor: " + book.getAuthor())
+                    (book) -> System.out.println("Tytuł: " + book.getTitle() + " Autor: " + book.getAuthor())
             );
             case SHOW_SORTED_BOOK -> sortByCategory();
             case EXIT -> close();
@@ -157,7 +130,7 @@ public class BorrowBooks {
         RETURN_BOOK(2, "Oddaj książkę"),
         SHOW_AVAILABLE_BOOK(3, "Zobacz dostępne książki"),
         SHOW_BORROWED_BOOK(4, "Pokaż moje wypożyczone książki"),
-        SHOW_SORTED_BOOK(5, "Wyszukaj książki po kategorii"),
+        SHOW_SORTED_BOOK(5, "Wyszukaj dostępne książki po kategorii"),
         EXIT(6, "Wróć do głównego menu");
 
         private final int optionNumber;

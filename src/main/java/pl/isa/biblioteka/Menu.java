@@ -79,22 +79,15 @@ public class Menu {
             }
         }
     }
-
     public void userMenu(String firstName, String lastName) {
         List<Person> users = Users.getUsers();
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
         boolean findUser = false;
         for (Person user : users) {
-            // - operacje wypożyczenia na jego książkach
-            // - operacje oddania na jego książkach
-
             if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
                 System.out.println("Witamy Cię : " + firstName + " " + lastName);
                 List<Book> personBooks = user.getPersonBooks();
-//                System.o ut.println("Użytkownik: " + user.getFirstName() + " " + user.getSecondName() + " posiada książki:");
-//                personBooks.forEach(x -> System.out.println("Tytuł: " + x.getTitle() + ", Autor: " + x.getAuthor()));
-
                 boolean isContinue = true;
                 while (isContinue) {
                     System.out.println("\nWybierz numer menu");
@@ -113,6 +106,7 @@ public class Menu {
                                     PersonService.saveUsers();
                                     FolderBooks.saveBooks();
                                     System.out.println("Baza użytkowników i książek zapisana poprawnie");
+                                    findUser = true;
                                     isContinue = false;
                                 }
                             }
@@ -125,18 +119,10 @@ public class Menu {
                         break;
                     }
                 }
-
             }
-
         }
         if (!findUser) {
             System.out.println("Brak Użytkownika " + firstName + " " + lastName + " w naszej bazie");
         }
-
-////        Users users = new Users();
-
-
-////        Scanner scanner = new Scanner(System.in);
-
     }
 }
