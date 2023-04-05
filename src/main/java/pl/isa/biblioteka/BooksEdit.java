@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class BooksEdit {
-    //Przemysław Wenderholm
     Scanner sc = new Scanner(System.in);
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 

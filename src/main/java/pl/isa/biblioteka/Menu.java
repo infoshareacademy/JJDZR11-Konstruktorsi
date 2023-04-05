@@ -52,8 +52,8 @@ public class Menu {
             System.out.println("4 - Lista użytkowników");
             System.out.println("5 - Dodaj książkę");
             System.out.println("6 - Usuń książkę");
-            System.out.println("7 - lista dostępnych książek");
-            System.out.println("8 - lista wypożyczonych książek książek");
+            System.out.println("7 - Lista dostępnych książek");
+            System.out.println("8 - Lista wypożyczonych książek książek");
             System.out.println("9 - Zmień użytkownika");
             System.out.println("10 - Zakończ program");
             try {
