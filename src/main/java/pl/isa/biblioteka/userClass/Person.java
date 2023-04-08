@@ -1,7 +1,6 @@
 package pl.isa.biblioteka.userClass;
 
 import pl.isa.biblioteka.booksClass.Book;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +80,6 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", personBooks=" + personBooks +
-                '}' ;
+                '}';
     }
 }

@@ -30,7 +30,7 @@ public class Users {
             }
         }
         if (found) {
-            System.out.println("Użytkownik: " + login + " istnieje w naszej bazie, wprowadź inny login");
+            System.out.println("Użytkownik: " + login + " istnieje w naszej bazie, wprowadź inny login\n");
         } else {
             int id = 1;
             if (!users.isEmpty()) {

@@ -7,6 +7,7 @@ import pl.isa.biblioteka.booksClass.FolderBooks;
 import pl.isa.biblioteka.userClass.Person;
 import pl.isa.biblioteka.userClass.PersonService;
 import pl.isa.biblioteka.userClass.Users;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -50,13 +51,14 @@ public class Menu {
 
     protected void selectUser() {
         List<Person> persons = Users.getUsers();
+        Users users = new Users();
         System.out.println("Podaj swój login");
         String login = scanner.nextLine().trim();
         System.out.println("Podaj swoje hasło");
         String password = scanner.nextLine().trim();
         boolean found = false;
         for (Person person1 : persons) {
-            if (login.equalsIgnoreCase("Bibliotekarz") && password.equals("0000")) {
+            if (login.equalsIgnoreCase(persons.get(0).getLogin()) && password.equals(persons.get(0).getPassword())) {
                 librarianMenu();
             } else if (person1.getLogin().equalsIgnoreCase(login) && person1.getPassword().equals(password)) {
                 found = true;
@@ -74,7 +76,8 @@ public class Menu {
         BooksEdit booksEdit = new BooksEdit();
         boolean isContinue = true;
         while (isContinue) {
-            System.out.println("\nWybierz numer menu");
+            System.out.println("Witaj Bibliotekarzu");
+            System.out.println("Wybierz numer menu aby przystąpić do pracy");
             System.out.println("1 - Widok książek");
             System.out.println("2 - Dodaj użytkownika");
             System.out.println("3 - Usuń użytkownika");
@@ -123,7 +126,8 @@ public class Menu {
         boolean findUser = false;
         for (Person user : users) {
             if (login.equalsIgnoreCase(user.getLogin()) && password.equalsIgnoreCase(user.getPassword())) {
-                System.out.println("Witamy Cię : " + user.getFirstName().toUpperCase() + " " + user.getFirstName().toUpperCase());
+                System.out.println("Witamy Cię : " + user.getFirstName().toUpperCase() + " " + user.getFirstName().toUpperCase()
+                        + "\nTwój logi to " + user.getLogin() + " jesteś naszym " + user.getId() + " użytkownikiem");
                 List<Book> personBooks = user.getPersonBooks();
                 boolean isContinue = true;
                 while (isContinue) {
@@ -159,26 +163,6 @@ public class Menu {
         }
         if (!findUser) {
             System.out.println("Brak użytkownika: " + login + " w naszej bazie");
-        }
-    }
-    protected void checkAddUser() {
-        List<Person> persons = Users.getUsers();
-        System.out.println("Podaj swój login");
-        String login = scanner.nextLine().trim();
-        System.out.println("Podaj swoje hasło");
-        String password = scanner.nextLine().trim();
-        boolean found = false;
-        for (Person person1 : persons) {
-            if (login.equalsIgnoreCase("Bibliotekarz") && password.equals("0000")) {
-                librarianMenu();
-            } else if (person1.getLogin().equalsIgnoreCase(login) && person1.getPassword().equals(password)) {
-                found = true;
-            }
-        }
-        if (found) {
-            userMenu(login, password);
-        } else {
-            System.out.println("Brak użytkownika: " + login + " lub niepoprawne hasło");
         }
     }
 }
