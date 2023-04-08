@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Person {
     private Integer id;
+    private String login;
+    private String password;
     private String firstName;
     private String secondName;
 
@@ -12,16 +14,42 @@ public class Person {
 
     public Person() {
     }
-    public Person(String firstName, String secondName, Integer id){
+
+    public Person(String firstName, String secondName, Integer id, String login, String password) {
         this.id = id;
+        this.login = login;
+        this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
     }
-    public Person(String firstName, String secondName, List<Book> personBooks, Integer id) {
+
+    public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String login, String password) {
         this.id = id;
+        this.login = login;
+        this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.personBooks = personBooks;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {
@@ -58,6 +86,18 @@ public class Person {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", personBooks=" + personBooks +
+                '}';
+    }
+
     public void setPersonBooks(List<Book> personBooks) {
         this.personBooks = personBooks;
     }
@@ -66,13 +106,4 @@ public class Person {
         personBooks.add(book);
     }
 
-    @Override
-    public String toString() {
-        return "Person{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", personBooks=" + personBooks +
-                '}';
-    }
 }

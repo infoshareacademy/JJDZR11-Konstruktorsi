@@ -8,35 +8,25 @@ public class Menu {
     private static Scanner scanner = new Scanner(System.in);
 
     protected void selectUser() {
-        System.out.println("Witamy w naszej bibliotece\nKim jesteś ?");
-        boolean isContinue = true;
-        while (isContinue) {
-            System.out.println("Wybierz odpowiednią opcję w menu");
-            System.out.println("1 - Bibliotekarz");
-            System.out.println("2 - Użytkownik");
-            System.out.println("3 - Zakończ program");
-            try {
-                int userChoose = scanner.nextInt();
-                switch (userChoose) {
-                    case 1 -> librarianMenu();
-                    case 2 -> {
-                        scanner.nextLine();
-                        System.out.println("Podaj swoje imię czytelniku:");
-                        String firstName = scanner.nextLine();
-                        System.out.println("Podaj swoje nazwisko czytelniku:");
-                        String lastName = scanner.nextLine();
-                        userMenu(firstName, lastName);
-                    }
-                    case 3 -> {
-                        isContinue = false;
-                        System.exit(0);
-                    }
-                    default -> System.out.println("Został wprowadzony niewłaściwy numer.\n");
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Został wprowadzony niewłaściwy znak\n");
-                scanner.next();
+
+        List<Person> persons = Users.getUsers();
+        System.out.println("Witamy w naszej bibliotece");
+        System.out.println("Podaj login");
+        String login = scanner.nextLine().trim();
+        System.out.println("Podaj hasło");
+        String password = scanner.nextLine().trim();
+        boolean found = false;
+        for (Person person1 : persons) {
+            if (login.equalsIgnoreCase("Bibliotekarz") && password.equals("0000")) {
+                librarianMenu();
+            } else if (person1.getLogin().equalsIgnoreCase(login) && person1.getPassword().equals(password)) {
+                found = true;
             }
+        }
+        if (found) {
+            userMenu(login, password);
+        } else {
+            System.out.println("Brak użytkownika: " + login + " lub niepoprawne hasło");
         }
     }
 
@@ -67,7 +57,10 @@ public class Menu {
                     case 6 -> booksEdit.deleteBookByTitle();
                     case 7 -> booksEdit.showAllAvailableBooks();
                     case 8 -> booksEdit.showAllBorrowedBooks();
-                    case 9 -> selectUser();
+                    case 9 -> {
+                        scanner.skip("\n");
+                        selectUser();
+                    }
                     case 10 -> {
                         PersonService.saveUsers();
                         FolderBooks.saveBooks();
@@ -84,14 +77,14 @@ public class Menu {
         }
     }
 
-    protected void userMenu(String firstName, String lastName) {
+    protected void userMenu(String login, String password) {
         List<Person> users = Users.getUsers();
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
         boolean findUser = false;
         for (Person user : users) {
-            if (firstName.equalsIgnoreCase(user.getFirstName()) && lastName.equalsIgnoreCase(user.getSecondName())) {
-                System.out.println("Witamy Cię : " + firstName.toUpperCase() + " " + lastName.toUpperCase());
+            if (login.equalsIgnoreCase(user.getLogin()) && password.equalsIgnoreCase(user.getPassword())) {
+                System.out.println("Witamy Cię : " + user.getFirstName().toUpperCase() + " " + user.getFirstName().toUpperCase());
                 List<Book> personBooks = user.getPersonBooks();
                 boolean isContinue = true;
                 while (isContinue) {
@@ -105,7 +98,10 @@ public class Menu {
                         switch (userChoose) {
                             case 1 -> booksEdit.showAllBooks();
                             case 2 -> borrowBooks.mainLoop(personBooks);
-                            case 3 -> selectUser();
+                            case 3 -> {
+                                scanner.skip("\n");
+                                selectUser();
+                            }
                             case 4 -> {
                                 FolderBooks.saveBooks();
                                 System.out.println("Baza książek zapisana poprawnie");
@@ -119,10 +115,10 @@ public class Menu {
                         scanner.next();
                     }
                 }
-             }
-         }
-         if (!findUser) {
-            System.out.println("Brak użytkownika o imieniu: " + firstName + " i nzazwisku " + lastName + " w naszej bazie");
-         }
+            }
+        }
+        if (!findUser) {
+            System.out.println("Brak użytkownika: " + login + " w naszej bazie");
+        }
     }
 }

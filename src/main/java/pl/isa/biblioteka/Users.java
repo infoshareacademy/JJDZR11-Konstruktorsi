@@ -19,12 +19,16 @@ public class Users {
         String firstName = input.nextLine().trim();
         System.out.println("Podaj nazwisko nowego użytkownika: ");
         String lastName = input.nextLine().trim();
+        System.out.println("Podaj login nowego użytkownika: ");
+        String login = input.nextLine().trim();
+        System.out.println("Podaj hasło nowego użytkownika: ");
+        String password = input.nextLine().trim();
         int id = 1;
         if (!users.isEmpty()) {
             Person lastPerson = users.get(users.size() - 1);
             id = lastPerson.getId() + 1;
         }
-        Person addPerson = new Person(firstName, lastName, id);
+        Person addPerson = new Person(firstName, lastName, id, login, password);
         users.add(addPerson);
         System.out.printf("Dodano nowego użytkownika: %d%n %s %s ", id, firstName, lastName);
     }
