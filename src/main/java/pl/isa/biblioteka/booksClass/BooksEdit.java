@@ -1,4 +1,4 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.booksClass;
 
 import java.util.ArrayList;
 import java.util.List;

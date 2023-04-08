@@ -1,5 +1,6 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.userClass;
 
+import pl.isa.biblioteka.booksClass.Book;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

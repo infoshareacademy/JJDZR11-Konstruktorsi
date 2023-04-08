@@ -1,4 +1,4 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.booksClass;
 
 import java.util.List;
 import java.util.Scanner;
@@ -152,12 +152,9 @@ public class BorrowBooks {
             }
             return values()[option - 1];
         }
-
         @Override
         public String toString() {
             return String.format("%d - %s", optionNumber, description);
         }
     }
-
-
 }

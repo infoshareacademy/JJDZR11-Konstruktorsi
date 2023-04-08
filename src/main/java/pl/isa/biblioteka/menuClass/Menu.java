@@ -1,5 +1,12 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.menuClass;
 
+import pl.isa.biblioteka.booksClass.Book;
+import pl.isa.biblioteka.booksClass.BooksEdit;
+import pl.isa.biblioteka.booksClass.BorrowBooks;
+import pl.isa.biblioteka.booksClass.FolderBooks;
+import pl.isa.biblioteka.userClass.Person;
+import pl.isa.biblioteka.userClass.PersonService;
+import pl.isa.biblioteka.userClass.Users;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +14,7 @@ import java.util.Scanner;
 public class Menu {
     private static Scanner scanner = new Scanner(System.in);
 
-    protected void start() {
+    public void start() {
         Users users = new Users();
         boolean isContinue = true;
         while (isContinue) {
