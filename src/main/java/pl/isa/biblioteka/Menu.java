@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    public static Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
     protected void selectUser() {
         System.out.println("Witamy w naszej bibliotece\nKim jesteś ?");
@@ -84,7 +84,7 @@ public class Menu {
         }
     }
 
-    public void userMenu(String firstName, String lastName) {
+    protected void userMenu(String firstName, String lastName) {
         List<Person> users = Users.getUsers();
         BooksEdit booksEdit = new BooksEdit();
         BorrowBooks borrowBooks = new BorrowBooks();
@@ -96,10 +96,10 @@ public class Menu {
                 boolean isContinue = true;
                 while (isContinue) {
                     System.out.println("\nWybierz numer menu");
-                    System.out.println("1. Widok książek");
-                    System.out.println("2. Operacje na książkach");
-                    System.out.println("3. Zmień użytkownika");
-                    System.out.println("4. Zakończ program");
+                    System.out.println("1 - Widok książek");
+                    System.out.println("2 - Operacje na książkach");
+                    System.out.println("3 - Zmień użytkownika");
+                    System.out.println("4 - Zakończ program");
                     try {
                         int userChoose = scanner.nextInt();
                         switch (userChoose) {
@@ -119,10 +119,10 @@ public class Menu {
                         scanner.next();
                     }
                 }
-            }
-        }
-        if (!findUser) {
-            System.out.println("Brak użytkownika o imieniu: " + firstName + " i zazwisku " + lastName + " w naszej bazie");
-        }
+             }
+         }
+         if (!findUser) {
+            System.out.println("Brak użytkownika o imieniu: " + firstName + " i nzazwisku " + lastName + " w naszej bazie");
+         }
     }
 }

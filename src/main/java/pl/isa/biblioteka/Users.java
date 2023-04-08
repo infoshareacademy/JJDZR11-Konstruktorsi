@@ -19,31 +19,45 @@ public class Users {
         String firstName = input.nextLine().trim();
         System.out.println("Podaj nazwisko nowego użytkownika: ");
         String lastName = input.nextLine().trim();
-        Person addPerson = new Person(firstName, lastName);
+        int id = 1;
+        if (!users.isEmpty()) {
+            Person lastPerson = users.get(users.size() - 1);
+            id = lastPerson.getId() + 1;
+        }
+        Person addPerson = new Person(firstName, lastName, id);
         users.add(addPerson);
-        System.out.printf("Dodano nowego użytkownika: %s %s ", firstName, lastName);
+        System.out.printf("Dodano nowego użytkownika: %d%n %s %s ", id, firstName, lastName);
     }
 
+    /*    public boolean deleteUser() {
+            System.out.println("Podaj nazwisko użytkownika: ");
+            String lastName = scanner.nextLine();
+            System.out.println("Użytkownik usunięty");
+            return users.removeIf(findPersonByLastName(lastName));
+        }*/
     public boolean deleteUser() {
-        System.out.println("Podaj nazwisko użytkownika: ");
-        String lastName = scanner.nextLine();
+        System.out.println("Podaj ID użytkownika: ");
+        Integer id = scanner.nextInt();
         System.out.println("Użytkownik usunięty");
-        return users.removeIf(findPersonByLastName(lastName));
-
-
-
+        return users.removeIf(findByID(id));
     }
-    private static Predicate<Person> findPersonByLastName (String secondName) {
+
+    public static Predicate<Person> findByID(Integer id) {
+        return users -> users.getId() == id;
+    }
+
+/*    private static Predicate<Person> findPersonByLastName(String secondName) {
         return user -> user.getSecondName().equalsIgnoreCase(secondName);
-    }
-    public void listsUsers(){
+    }*/
+
+    public void listsUsers() {
         System.out.println("Uzytkownicy w naszej aplikacji: ");
         System.out.println("---------------------------------");
         int index = 1;
         for (Person user : users) {
-            System.out.println(" Imię: " + user.getFirstName() + ", Nazwisko: " + user.getSecondName());
+            System.out.println("ID: " + user.getId() + " Imię: " + user.getFirstName() + ", Nazwisko: " + user.getSecondName());
             List<Book> personBooks = user.personBooks;
-            if (!personBooks.isEmpty()){
+            if (!personBooks.isEmpty()) {
                 System.out.println("    Wypożyczone książki");
                 for (Book personBook : personBooks) {
                     System.out.println("        Tytył: " + personBook.getTitle() + ", Autor: " + personBook.getAuthor());
@@ -60,7 +74,5 @@ public class Users {
     public static List<Person> getUsers() {
         return users;
     }
-
-
 
 }
