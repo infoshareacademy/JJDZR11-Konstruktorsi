@@ -40,40 +40,20 @@ public class Person {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getSecondName() {
         return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
     }
 
     public List<Book> getPersonBooks() {
@@ -84,6 +64,14 @@ public class Person {
         for (Book personBook : personBooks) {
             System.out.printf("Tytuł: %s, Autor: %s %n", personBook.getTitle(), personBook.getAuthor());
         }
+    }
+
+    public void setPersonBooks(List<Book> personBooks) {
+        this.personBooks = personBooks;
+    }
+
+    public void addBookToPersonList(Book book) {
+        personBooks.add(book);
     }
 
     @Override
@@ -97,13 +85,4 @@ public class Person {
                 ", personBooks=" + personBooks +
                 '}';
     }
-
-    public void setPersonBooks(List<Book> personBooks) {
-        this.personBooks = personBooks;
-    }
-
-    public void addBookToPersonList(Book book) {
-        personBooks.add(book);
-    }
-
 }

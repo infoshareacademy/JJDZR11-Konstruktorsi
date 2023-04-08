@@ -6,12 +6,9 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class Users {
-    //Mikołaj Malinowski
-    //Dodanie nowego użytkownika
     public static Person person;
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
     Scanner scanner = new Scanner(System.in);
-
 
     public void addUser() {
         Scanner input = new Scanner(System.in);
@@ -33,16 +30,10 @@ public class Users {
         System.out.printf("Dodano nowego użytkownika: %d%n %s %s ", id, firstName, lastName);
     }
 
-    /*    public boolean deleteUser() {
-            System.out.println("Podaj nazwisko użytkownika: ");
-            String lastName = scanner.nextLine();
-            System.out.println("Użytkownik usunięty");
-            return users.removeIf(findPersonByLastName(lastName));
-        }*/
-    public boolean deleteUser() {
+    public boolean deleteUser() {  // metoda Kingi delikatnie przerobiona podaję ID zamiast last name
         System.out.println("Podaj ID użytkownika: ");
         Integer id = scanner.nextInt();
-        System.out.println("Użytkownik usunięty");
+        System.out.println("Użytkownik o nr " + id + " został usunięty");
         return users.removeIf(findByID(id));
     }
 
@@ -50,16 +41,12 @@ public class Users {
         return users -> users.getId() == id;
     }
 
-/*    private static Predicate<Person> findPersonByLastName(String secondName) {
-        return user -> user.getSecondName().equalsIgnoreCase(secondName);
-    }*/
-
     public void listsUsers() {
         System.out.println("Uzytkownicy w naszej aplikacji: ");
         System.out.println("---------------------------------");
         int index = 1;
         for (Person user : users) {
-            System.out.println("ID: " + user.getId() + " Imię: " + user.getFirstName() + ", Nazwisko: " + user.getSecondName());
+            System.out.println("ID: " + user.getId() + ", Login: " + user.getLogin() + ", Imię: " + user.getFirstName() + ", Nazwisko: " + user.getSecondName());
             List<Book> personBooks = user.personBooks;
             if (!personBooks.isEmpty()) {
                 System.out.println("    Wypożyczone książki");
@@ -74,9 +61,7 @@ public class Users {
         }
     }
 
-
     public static List<Person> getUsers() {
         return users;
     }
-
 }

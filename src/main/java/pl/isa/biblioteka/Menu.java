@@ -13,8 +13,7 @@ public class Menu {
         while (isContinue) {
             System.out.println("Witamy w naszej bibliotece wybierz numer menu");
             System.out.println("\nINFORMACJA TECHNICZNA do skasowania :) \n Można się zalogować jako Bibliotekarz z hasłem 0000 " +
-                    "\nlub jako user test i hasło test, ale zachęcam do zakładania własnej karty ;)\n");
-
+                    "\nlub jako user test i hasło test, ale zachęcam do zakładania własnej karty ;)\n");  // do skasowania
             System.out.println("1 - Zaloguj się");
             System.out.println("2 - Załóż kartę biblioteczną");
             System.out.println("3 - Zakończ program");
