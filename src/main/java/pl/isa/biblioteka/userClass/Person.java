@@ -81,6 +81,6 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", personBooks=" + personBooks +
-                '}';
+                '}' ;
     }
 }

@@ -1,6 +1,7 @@
 package pl.isa.biblioteka.userClass;
 
 import pl.isa.biblioteka.booksClass.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,8 @@ public class Users {
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
     Scanner scanner = new Scanner(System.in);
 
-    public void addUser() {
+    public void addUser() { // dodanie loginu i hasła oraz sprawdzenie czy istnieje już użytkownik o wskazanym loginie.
+        List<Person> persons = Users.getUsers();
         Scanner input = new Scanner(System.in);
         System.out.println("Podaj imię nowego użytkownika: ");
         String firstName = input.nextLine().trim();
@@ -21,14 +23,24 @@ public class Users {
         String login = input.nextLine().trim();
         System.out.println("Podaj hasło nowego użytkownika: ");
         String password = input.nextLine().trim();
-        int id = 1;
-        if (!users.isEmpty()) {
-            Person lastPerson = users.get(users.size() - 1);
-            id = lastPerson.getId() + 1;
+        boolean found = false;
+        for (Person person1 : persons) {
+            if (person1.getLogin().equalsIgnoreCase(login)) {
+                found = true;
+            }
         }
-        Person addPerson = new Person(firstName, lastName, id, login, password);
-        users.add(addPerson);
-        System.out.printf("Dodano nowego użytkownika: %d%n %s %s ", id, firstName, lastName);
+        if (found) {
+            System.out.println("Użytkownik: " + login + " istnieje w naszej bazie, wprowadź inny login");
+        } else {
+            int id = 1;
+            if (!users.isEmpty()) {
+                Person lastPerson = users.get(users.size() - 1);
+                id = lastPerson.getId() + 1;
+            }
+            Person addPerson = new Person(firstName, lastName, id, login, password);
+            users.add(addPerson);
+            System.out.printf("Dodano nowego użytkownika: %d%n %s %s ", id, firstName, lastName);
+        }
     }
 
     public boolean deleteUser() {  // metoda Kingi delikatnie przerobiona podaję ID zamiast last name

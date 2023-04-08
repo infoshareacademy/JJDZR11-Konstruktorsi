@@ -50,9 +50,9 @@ public class Menu {
 
     protected void selectUser() {
         List<Person> persons = Users.getUsers();
-        System.out.println("Podaj login");
+        System.out.println("Podaj swój login");
         String login = scanner.nextLine().trim();
-        System.out.println("Podaj hasło");
+        System.out.println("Podaj swoje hasło");
         String password = scanner.nextLine().trim();
         boolean found = false;
         for (Person person1 : persons) {
@@ -159,6 +159,26 @@ public class Menu {
         }
         if (!findUser) {
             System.out.println("Brak użytkownika: " + login + " w naszej bazie");
+        }
+    }
+    protected void checkAddUser() {
+        List<Person> persons = Users.getUsers();
+        System.out.println("Podaj swój login");
+        String login = scanner.nextLine().trim();
+        System.out.println("Podaj swoje hasło");
+        String password = scanner.nextLine().trim();
+        boolean found = false;
+        for (Person person1 : persons) {
+            if (login.equalsIgnoreCase("Bibliotekarz") && password.equals("0000")) {
+                librarianMenu();
+            } else if (person1.getLogin().equalsIgnoreCase(login) && person1.getPassword().equals(password)) {
+                found = true;
+            }
+        }
+        if (found) {
+            userMenu(login, password);
+        } else {
+            System.out.println("Brak użytkownika: " + login + " lub niepoprawne hasło");
         }
     }
 }
