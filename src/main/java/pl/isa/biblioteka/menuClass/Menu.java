@@ -127,7 +127,7 @@ public class Menu {
         for (Person user : users) {
             if (login.equalsIgnoreCase(user.getLogin()) && password.equalsIgnoreCase(user.getPassword())) {
                 System.out.println("Witamy Cię : " + user.getFirstName().toUpperCase() + " " + user.getSecondName().toUpperCase()
-                        + "\nTwój logi to " + user.getLogin() + " jesteś naszym " + user.getId() + " użytkownikiem");
+                        + "\nTwój login to " + user.getLogin() + " jesteś naszym " + user.getId() + " użytkownikiem");
                 List<Book> personBooks = user.getPersonBooks();
                 boolean isContinue = true;
                 while (isContinue) {
