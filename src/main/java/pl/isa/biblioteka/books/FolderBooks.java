@@ -1,4 +1,4 @@
-package pl.isa.biblioteka.userClass;
+package pl.isa.biblioteka.books;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -10,25 +10,26 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class PersonService {
-    public static List<Person> readUsers() {
+public class FolderBooks {
+    public static List<Book> readBooks() {
         try {
-            byte[] jsonData = Files.readAllBytes(Paths.get("users.json"));
-            ObjectMapper folderPerson = new ObjectMapper();
-            return Arrays.asList(folderPerson.readValue(jsonData, Person[].class));
+            byte[] jsonData = Files.readAllBytes(Paths.get("booksFile.json"));
+            ObjectMapper folderBooks = new ObjectMapper();
+            return Arrays.asList(folderBooks.readValue(jsonData, Book[].class));
         } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
     }
 
-    public static void saveUsers() {
+    public static void saveBooks() {
         ObjectMapper mapper = new ObjectMapper();
-        List<Person> personList = Users.users;
+        List<Book> booksList = BooksEdit.booksList;
         try {
-            mapper.writeValue(new File("users.json"), personList);
+            mapper.writeValue(new File("booksFile.json"), booksList);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

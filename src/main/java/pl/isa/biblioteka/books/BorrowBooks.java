@@ -1,4 +1,4 @@
-package pl.isa.biblioteka.booksClass;
+package pl.isa.biblioteka.books;
 
 import java.util.List;
 import java.util.Scanner;

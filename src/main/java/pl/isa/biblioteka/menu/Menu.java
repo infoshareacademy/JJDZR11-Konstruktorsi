@@ -1,12 +1,12 @@
-package pl.isa.biblioteka.menuClass;
+package pl.isa.biblioteka.menu;
 
-import pl.isa.biblioteka.booksClass.Book;
-import pl.isa.biblioteka.booksClass.BooksEdit;
-import pl.isa.biblioteka.booksClass.BorrowBooks;
-import pl.isa.biblioteka.booksClass.FolderBooks;
-import pl.isa.biblioteka.userClass.Person;
-import pl.isa.biblioteka.userClass.PersonService;
-import pl.isa.biblioteka.userClass.Users;
+import pl.isa.biblioteka.books.Book;
+import pl.isa.biblioteka.books.BooksEdit;
+import pl.isa.biblioteka.books.BorrowBooks;
+import pl.isa.biblioteka.books.FolderBooks;
+import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.user.PersonService;
+import pl.isa.biblioteka.user.Users;
 
 import java.util.InputMismatchException;
 import java.util.List;
