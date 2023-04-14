@@ -2,8 +2,8 @@ package pl.isa.biblioteka.menu;
 
 import pl.isa.biblioteka.books.Book;
 import pl.isa.biblioteka.books.BooksEdit;
-import pl.isa.biblioteka.books.BorrowBooks;
 import pl.isa.biblioteka.books.FolderBooks;
+import pl.isa.biblioteka.user.LogUser;
 import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonService;
 import pl.isa.biblioteka.user.Users;
@@ -51,7 +51,7 @@ public class Menu {
 
     protected void selectUser() {
         List<Person> persons = Users.getUsers();
-        Users users = new Users();
+        LogUser logUser = new LogUser();
         System.out.println("Podaj swój login");
         String login = scanner.nextLine().trim();
         System.out.println("Podaj swoje hasło");
@@ -60,8 +60,10 @@ public class Menu {
         for (Person person1 : persons) {
             if (login.equalsIgnoreCase(persons.get(0).getLogin()) && password.equals(persons.get(0).getPassword())) {
                 librarianMenu();
+                logUser.setLogPerson(person1);
             } else if (person1.getLogin().equalsIgnoreCase(login) && person1.getPassword().equals(password)) {
                 found = true;
+                logUser.setLogPerson(person1);
             }
         }
         if (found) {
@@ -122,7 +124,7 @@ public class Menu {
     protected void userMenu(String login, String password) {
         List<Person> users = Users.getUsers();
         BooksEdit booksEdit = new BooksEdit();
-        BorrowBooks borrowBooks = new BorrowBooks();
+        BooksBorrowMenu booksBorrowMenu = new BooksBorrowMenu();
         boolean findUser = false;
         for (Person user : users) {
             if (login.equalsIgnoreCase(user.getLogin()) && password.equalsIgnoreCase(user.getPassword())) {
@@ -140,7 +142,7 @@ public class Menu {
                         int userChoose = scanner.nextInt();
                         switch (userChoose) {
                             case 1 -> booksEdit.showAllBooks();
-                            case 2 -> borrowBooks.mainLoop(personBooks);
+                            case 2 -> booksBorrowMenu.mainLoop();
                             case 3 -> {
                                 scanner.skip("\n");
                                 selectUser();

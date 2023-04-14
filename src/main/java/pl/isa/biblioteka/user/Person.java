@@ -57,11 +57,6 @@ public class Person {
         return personBooks;
     }
 
-    public void showPersonBooks() {
-        for (Book personBook : personBooks) {
-            System.out.printf("Tytuł: %s, Autor: %s %n", personBook.getTitle(), personBook.getAuthor());
-        }
-    }
 
     public void setPersonBooks(List<Book> personBooks) {
         this.personBooks = personBooks;
