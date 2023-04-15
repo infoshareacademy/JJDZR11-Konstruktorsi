@@ -38,6 +38,7 @@ public class BooksBorrowMenu {
             case SHOW_BORROWED_BOOK -> checkBorrowedBooks();
             case SHOW_SORTED_BOOK -> sortByCategory();
             case SHOW_SORTED_BOOK_BY_AUTHOR -> sortByAuthor();
+            case FIND_BOOK_BY_TITLE -> booksEdit.findBookByTitle();
             case EXIT -> close();
         }
     }
@@ -89,7 +90,8 @@ public class BooksBorrowMenu {
         SHOW_BORROWED_BOOK(4, "Pokaż moje wypożyczone książki"),
         SHOW_SORTED_BOOK(5, "Wyszukaj dostępne książki po kategorii"),
         SHOW_SORTED_BOOK_BY_AUTHOR(6, "Wyszukaj dostepne ksiazki po autorze"),
-        EXIT(6, "Wróć do głównego menu");
+        FIND_BOOK_BY_TITLE(7, "Wyszukaj dostepna ksiazke po tytule"),
+        EXIT(8, "Wróć do głównego menu");
 
         private final int optionNumber;
         private final String description;

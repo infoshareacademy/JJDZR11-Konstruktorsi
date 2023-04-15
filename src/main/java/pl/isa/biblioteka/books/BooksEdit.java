@@ -40,6 +40,22 @@ public class BooksEdit {
     private static Predicate<Book> foundBookByTitle(String title) {
         return book -> book.getTitle().equalsIgnoreCase(title);
     }
+    public void findBookByTitle() {
+        System.out.println("Wpisz tytul szukanej ksiazki");
+        String title = sc.nextLine().toLowerCase();
+        boolean findBook = false;
+        for (Book book : booksList) {
+            if (foundBookByTitle(title).test(book)) {
+                System.out.println("W bazie istnieje ksiazka " + book.getTitle() +  " " + "autora " + book.getAuthor());
+                findBook=true;
+                break;
+            }
+        }
+        if (!findBook) {
+            System.out.println("W naszej bazie nie ma ksiazki o tytule: " + title);
+        }
+    }
+
 
     public void showAllAvailableBooks(){
         booksList.stream().filter(Book::isState)
