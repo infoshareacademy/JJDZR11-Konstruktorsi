@@ -15,10 +15,9 @@ public class BorrowBooks {
 
     public static LogUser logUser = new LogUser();
 
-    public static boolean addBookToPerson() {
+    public static boolean addBookToPerson(String bookTitle) {
         List<Book> booksList = BooksEdit.booksList;
-        System.out.println("Podaj tytuł książki do wypożyczenia: ");
-        String bookTitle = scanner.nextLine();
+
         for (Book book : booksList) {
             if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
                 book.setState(false);

@@ -33,13 +33,8 @@ public class BooksBorrowMenu {
     private void executeOption(Option option) {
         LogUser logUser = new LogUser();
         switch (option) {
-            case BORROW_BOOK -> {
-                if ((addBookToPerson())) {
-                    System.out.println("Książka została wypożyczona");
-                } else {
-                    System.out.println("Nie posiadamy książki o podanym tytule");
-                }
-            }
+            case BORROW_BOOK -> borrowBookMethod();
+
             case RETURN_BOOK -> {
                 if (returnBook()) {
                     System.out.println("Książka została zwrócona");
@@ -60,6 +55,16 @@ public class BooksBorrowMenu {
             }
             case SHOW_SORTED_BOOK -> sortByCategory();
             case EXIT -> close();
+        }
+    }
+
+    private static void borrowBookMethod() {
+        System.out.println("Podaj tytuł książki do wypożyczenia: ");
+        String bookTitle = scanner.nextLine();
+        if ((addBookToPerson(bookTitle))) {
+            System.out.println("Książka została wypożyczona");
+        } else {
+            System.out.println("Nie posiadamy książki o podanym tytule");
         }
     }
 
