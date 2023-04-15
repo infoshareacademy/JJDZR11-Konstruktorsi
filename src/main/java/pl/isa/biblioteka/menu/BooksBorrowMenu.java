@@ -34,15 +34,7 @@ public class BooksBorrowMenu {
         LogUser logUser = new LogUser();
         switch (option) {
             case BORROW_BOOK -> borrowBookMethod();
-
-            case RETURN_BOOK -> {
-                if (returnBook()) {
-                    System.out.println("Książka została zwrócona");
-                } else {
-                    System.out.println("Użytkoniku nie posiadasz takiej kiążki");
-                }
-                ;
-            }
+            case RETURN_BOOK -> returnMethod();
             case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
             case SHOW_BORROWED_BOOK -> {
                 if (!logUser.getPersonBooks().isEmpty()) {
@@ -55,6 +47,16 @@ public class BooksBorrowMenu {
             }
             case SHOW_SORTED_BOOK -> sortByCategory();
             case EXIT -> close();
+        }
+    }
+
+    private static void returnMethod() {
+        System.out.println("Podaj tytuł książki do zwrócenia: ");
+        String bookTitleToReturn = scanner.nextLine();
+        if (returnBook(bookTitleToReturn)) {
+            System.out.println("Książka została zwrócona");
+        } else {
+            System.out.println("Użytkoniku nie posiadasz takiej kiążki");
         }
     }
 

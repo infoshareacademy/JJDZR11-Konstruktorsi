@@ -17,7 +17,6 @@ public class BorrowBooks {
 
     public static boolean addBookToPerson(String bookTitle) {
         List<Book> booksList = BooksEdit.booksList;
-
         for (Book book : booksList) {
             if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
                 book.setState(false);
@@ -28,10 +27,8 @@ public class BorrowBooks {
         return false;
     }
 
-    public static boolean returnBook() {
+    public static boolean returnBook(String bookTitleToReturn) {
         List<Book> booksList = BooksEdit.booksList;
-        System.out.println("Podaj tytuł książki do zwrócenia: ");
-        String bookTitleToReturn = scanner.nextLine();
         for (Book personBook : logUser.getLogPerson().getPersonBooks()) {
             if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
                 for (Book book : booksList) {
