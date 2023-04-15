@@ -77,4 +77,29 @@ public class BorrowBooks {
     private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
         return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
     }
-}
+
+    public static void sortByAuthor() {
+        List<Book> books = BooksEdit.booksList.stream().filter(Book::isState).toList();
+        Set<String> authorList = showAuthors(books);
+        showFilterBookByAuthor(books, authorList);
+    }
+
+    private static Set<String> showAuthors(List<Book> books) {
+        Set<String> authorList = books.stream().map(book2 -> book2.getAuthor().toLowerCase()).collect(Collectors.toSet());
+        return authorList;
+    }
+
+    private static void showFilterBookByAuthor(List<Book> books, Set<String> authorList) {
+        System.out.println("Podaj imie i nazwisko autora");
+        String searchAuthor = scanner.nextLine().toLowerCase();
+        if (authorList.contains(searchAuthor)) {
+            List<Book> sortedBooks = books.stream().filter(book3 -> book3.getAuthor().equalsIgnoreCase(searchAuthor)).toList();
+            for (Book sortedBook : sortedBooks) {
+                System.out.println(sortedBook.getTitle());
+            }
+            } else {
+                System.out.println("Brak ksiazek autora " + searchAuthor.toUpperCase());
+            }
+        }
+    }
+
