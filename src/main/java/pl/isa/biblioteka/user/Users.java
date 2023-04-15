@@ -64,7 +64,7 @@ public class Users {
             if (!personBooks.isEmpty()) {
                 System.out.println("    Wypożyczone książki");
                 for (Book personBook : personBooks) {
-                    System.out.println("        Tytył: " + personBook.getTitle() + ", Autor: " + personBook.getAuthor());
+                    System.out.println("        Tytuł: " + personBook.getTitle() + ", Autor: " + personBook.getAuthor());
                     index++;
                 }
             } else {

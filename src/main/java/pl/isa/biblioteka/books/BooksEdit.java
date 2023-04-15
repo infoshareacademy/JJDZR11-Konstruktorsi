@@ -10,7 +10,7 @@ public class BooksEdit {
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 
     public void addBook() {
-        System.out.println("Podaj tytył:");
+        System.out.println("Podaj tytuł:");
         String title = sc.nextLine();
         System.out.println("Podaj autora:");
         String author = sc.nextLine();

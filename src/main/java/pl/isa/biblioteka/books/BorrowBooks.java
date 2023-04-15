@@ -20,7 +20,7 @@ public class BorrowBooks {
         for (Book book : booksList) {
             if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
                 book.setState(false);
-                logUser.getPersonBooks().add(book);
+                LogUser.logPerson.getPersonBooks().add(book);
                 return true;
             }
         }
@@ -29,7 +29,7 @@ public class BorrowBooks {
 
     public static boolean returnBook(String bookTitleToReturn) {
         List<Book> booksList = BooksEdit.booksList;
-        for (Book personBook : logUser.getLogPerson().getPersonBooks()) {
+        for (Book personBook : LogUser.logPerson.getPersonBooks()) {
             if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
                 for (Book book : booksList) {
                     if (book.getTitle().equalsIgnoreCase(bookTitleToReturn)) {

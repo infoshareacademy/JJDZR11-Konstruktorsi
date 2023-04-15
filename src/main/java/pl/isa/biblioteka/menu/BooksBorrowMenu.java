@@ -31,22 +31,23 @@ public class BooksBorrowMenu {
     }
 
     private void executeOption(Option option) {
-        LogUser logUser = new LogUser();
         switch (option) {
             case BORROW_BOOK -> borrowBookMethod();
             case RETURN_BOOK -> returnMethod();
             case SHOW_AVAILABLE_BOOK -> booksEdit.showAllAvailableBooks();
-            case SHOW_BORROWED_BOOK -> {
-                if (!logUser.getPersonBooks().isEmpty()) {
-                    logUser.getPersonBooks().forEach(
-                            (book) -> System.out.println("Tytuł: " + book.getTitle() + " Autor: " + book.getAuthor())
-                    );
-                } else {
-                    System.out.println("Nie wypożyczono jeszcze żadnej książki");
-                }
-            }
+            case SHOW_BORROWED_BOOK -> checkBorrowedBooks();
             case SHOW_SORTED_BOOK -> sortByCategory();
             case EXIT -> close();
+        }
+    }
+
+    private static void checkBorrowedBooks() {
+        if (!LogUser.logPerson.getPersonBooks().isEmpty()) {
+            LogUser.logPerson.getPersonBooks().forEach(
+                    (book) -> System.out.println("Tytuł: " + book.getTitle() + " Autor: " + book.getAuthor())
+            );
+        } else {
+            System.out.println("Nie wypożyczono jeszcze żadnej książki");
         }
     }
 
@@ -56,7 +57,7 @@ public class BooksBorrowMenu {
         if (returnBook(bookTitleToReturn)) {
             System.out.println("Książka została zwrócona");
         } else {
-            System.out.println("Użytkoniku nie posiadasz takiej kiążki");
+            System.out.println("Użytkowniku nie posiadasz takiej kiążki");
         }
     }
 
@@ -71,7 +72,6 @@ public class BooksBorrowMenu {
     }
 
     private void close() {
-        System.out.println("Bye Bye!");
     }
 
     private void printMenu() {
