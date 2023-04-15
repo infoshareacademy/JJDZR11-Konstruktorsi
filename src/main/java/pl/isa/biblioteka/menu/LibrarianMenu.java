@@ -5,7 +5,6 @@ import pl.isa.biblioteka.books.FolderBooks;
 import pl.isa.biblioteka.user.LogUser;
 import pl.isa.biblioteka.user.PersonService;
 import pl.isa.biblioteka.user.Users;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -46,7 +45,7 @@ public class LibrarianMenu {
                     case 10 -> {
                         PersonService.saveUsers();
                         FolderBooks.saveBooks();
-                        System.out.println("Baza użytkowników i książek zapisana poprawnie");
+                        System.out.println("Bazay użytkowników i książek zostałay zapisane.");
                         isContinue = false;
                         System.exit(0);
                     }

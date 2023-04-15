@@ -1,15 +1,10 @@
 package pl.isa.biblioteka.menu;
 
-import pl.isa.biblioteka.books.Book;
-import pl.isa.biblioteka.books.BooksEdit;
 import pl.isa.biblioteka.books.FolderBooks;
 import pl.isa.biblioteka.user.LogUser;
-import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonService;
 import pl.isa.biblioteka.user.Users;
-
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -20,8 +15,8 @@ public class Menu {
         boolean isContinue = true;
         while (isContinue) {
             System.out.println("Witamy w naszej bibliotece wybierz numer menu");
-            System.out.println("\nINFORMACJA TECHNICZNA do skasowania :) \n Można się zalogować jako Bibliotekarz z hasłem 0000 " +
-                    "\nlub jako user test i hasło test, ale zachęcam do zakładania własnej karty ;)\n");  // do skasowania
+/*            System.out.println("\nINFORMACJA TECHNICZNA do skasowania :) \n Można się zalogować jako Bibliotekarz z hasłem 0000 " +
+                    "\nlub jako user test i hasło test, ale zachęcam do zakładania własnej karty ;)\n"); */ // do skasowania
             System.out.println("1 - Zaloguj się");
             System.out.println("2 - Załóż kartę biblioteczną");
             System.out.println("3 - Zakończ program");
@@ -48,5 +43,4 @@ public class Menu {
             }
         }
     }
-
 }

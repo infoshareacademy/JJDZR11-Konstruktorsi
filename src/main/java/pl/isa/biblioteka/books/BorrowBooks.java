@@ -1,7 +1,6 @@
 package pl.isa.biblioteka.books;
 
 import pl.isa.biblioteka.user.LogUser;
-import pl.isa.biblioteka.user.Person;
 
 import java.util.List;
 import java.util.Scanner;

@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 public class UserMenu {
     private static Scanner scanner = new Scanner(System.in);
+
     public static void userMenu(String login, String password) {
         List<Person> users = Users.getUsers();
         BooksEdit booksEdit = new BooksEdit();
@@ -22,7 +23,7 @@ public class UserMenu {
         for (Person user : users) {
             if (login.equalsIgnoreCase(user.getLogin()) && password.equalsIgnoreCase(user.getPassword())) {
                 System.out.println("Witamy Cię : " + user.getFirstName().toUpperCase() + " " + user.getSecondName().toUpperCase()
-                        + "\nTwój login to " + user.getLogin() + " jesteś naszym " + user.getId() + " użytkownikiem");
+                        + "\nTwój login to " + user.getLogin() + " Twoje ID: " + user.getId() + " użytkownikiem");
                 List<Book> personBooks = user.getPersonBooks();
                 boolean isContinue = true;
                 while (isContinue) {
@@ -43,7 +44,7 @@ public class UserMenu {
                             case 4 -> {
                                 PersonService.saveUsers();
                                 FolderBooks.saveBooks();
-                                System.out.println("Baza użytkowników i książek zapisana poprawnie");
+                                System.out.println("Bazay użytkowników i książek zostały zapisane.");
                                 isContinue = false;
                                 System.exit(0);
                             }
