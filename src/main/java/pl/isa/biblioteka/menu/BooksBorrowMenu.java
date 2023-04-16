@@ -39,7 +39,7 @@ public class BooksBorrowMenu {
             case SHOW_SORTED_BOOK -> sortByCategory();
             case SHOW_SORTED_BOOK_BY_AUTHOR -> sortByAuthor();
             case FIND_BOOK_BY_TITLE -> booksEdit.findBookByTitle();
-            case EXIT -> close();
+            case EXIT -> {}
         }
     }
 
@@ -71,9 +71,6 @@ public class BooksBorrowMenu {
         } else {
             System.out.println("Nie posiadamy książki o podanym tytule");
         }
-    }
-
-    private void close() {
     }
 
     private void printMenu() {

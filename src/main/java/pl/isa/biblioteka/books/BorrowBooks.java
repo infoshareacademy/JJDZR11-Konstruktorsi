@@ -12,7 +12,7 @@ public class BorrowBooks {
     public static Scanner scanner = new Scanner(System.in);
     public static BooksEdit booksEdit = new BooksEdit();
 
-    public static LogUser logUser = new LogUser();
+//    public static LogUser logUser = new LogUser();
 
     public static boolean addBookToPerson(String bookTitle) {
         List<Book> booksList = BooksEdit.booksList;
@@ -35,7 +35,7 @@ public class BorrowBooks {
                         book.setState(true);
                     }
                 }
-                logUser.getPersonBooks().removeIf(foundBookByTitle(bookTitleToReturn));
+                LogUser.logPerson.getPersonBooks().removeIf(foundBookByTitle(bookTitleToReturn));
                 return true;
             }
         }
@@ -60,7 +60,7 @@ public class BorrowBooks {
     private static void showFilterBookByCategory(List<Book> books, Set<String> availableCategory) {
         System.out.println();
         System.out.println("Wybierz odpowiednia kategorię: ");
-        String searchCategory = scanner.nextLine();
+        String searchCategory = scanner.nextLine().toLowerCase();
         if (availableCategory.contains(searchCategory)) {
             List<Book> sortedBooks = books.stream().filter(book -> book.getCategory().equalsIgnoreCase(searchCategory)).toList();
             for (Book sortedBook : sortedBooks) {

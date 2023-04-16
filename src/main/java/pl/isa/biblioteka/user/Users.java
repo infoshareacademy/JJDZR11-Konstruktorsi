@@ -12,7 +12,7 @@ public class Users {
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
     Scanner scanner = new Scanner(System.in);
 
-    public void addUser() { // dodanie loginu i hasła oraz sprawdzenie czy istnieje już użytkownik o wskazanym loginie.
+    public void addUser() {
         List<Person> persons = Users.getUsers();
         Scanner input = new Scanner(System.in);
         System.out.println("Podaj imię nowego użytkownika: ");
@@ -43,7 +43,7 @@ public class Users {
         }
     }
 
-    public boolean deleteUser() {  // metoda Kingi delikatnie przerobiona podaję ID zamiast last name
+    public boolean deleteUser() {
         System.out.println("Podaj ID użytkownika: ");
         Integer id = scanner.nextInt();
         System.out.println("Użytkownik o nr " + id + " został usunięty");

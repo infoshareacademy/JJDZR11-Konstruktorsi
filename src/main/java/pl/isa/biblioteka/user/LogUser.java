@@ -10,8 +10,6 @@ import java.util.Scanner;
 public class LogUser {
     private static Scanner scanner = new Scanner(System.in);
     public static Person logPerson;
-    public LogUser() {
-    }
 
     public static void setLogPerson(Person logPerson) {
         LogUser.logPerson = logPerson;
