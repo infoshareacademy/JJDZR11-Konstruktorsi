@@ -1,4 +1,4 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.books;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class FolderBooks {
-    //Kinga Biereg
     public static List<Book> readBooks() {
         try {
             byte[] jsonData = Files.readAllBytes(Paths.get("booksFile.json"));

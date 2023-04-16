@@ -1,6 +1,5 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.books;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

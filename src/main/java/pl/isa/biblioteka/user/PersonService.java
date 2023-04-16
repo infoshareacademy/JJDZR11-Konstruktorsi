@@ -1,4 +1,4 @@
-package pl.isa.biblioteka;
+package pl.isa.biblioteka.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
