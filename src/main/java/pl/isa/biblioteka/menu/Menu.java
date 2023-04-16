@@ -31,7 +31,7 @@ public class Menu {
                     case 3 -> {
                         PersonService.saveUsers();
                         FolderBooks.saveBooks();
-                        System.out.println("Baza użytkowników i książek zapisana poprawnie");
+                        System.out.println("Bazy użytkowników i książek zapisane poprawnie");
                         isContinue = false;
                         System.exit(0);
                     }

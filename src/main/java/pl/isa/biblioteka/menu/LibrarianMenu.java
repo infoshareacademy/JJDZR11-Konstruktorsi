@@ -45,7 +45,7 @@ public class LibrarianMenu {
                     case 10 -> {
                         PersonService.saveUsers();
                         FolderBooks.saveBooks();
-                        System.out.println("Bazay użytkowników i książek zostałay zapisane.");
+                        System.out.println("Bazy użytkowników i książek zostały zapisane.");
                         isContinue = false;
                         System.exit(0);
                     }
