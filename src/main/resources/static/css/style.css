@@ -21,12 +21,25 @@ a:hover {
     border-bottom: 1px solid lightgray;
 }
 
+#logo {
+    font-size: 30px;
+    color: darkslateblue;
+
+}
+#logo:hover {
+    font-size: 30px;
+    color: darkslateblue;
+}
+
 h1.logo a {
     color: cornflowerblue;
+    font-size: 40px;
 }
+
 
 .navbar {
     padding: 0;
+
 }
 
 .navbar ul {
@@ -168,6 +181,7 @@ h2 {
 .member h4 {
     color: dodgerblue;
 }
+
 .member-name {
     font-size: 14px;
     color: gray;
@@ -202,48 +216,4 @@ h2 {
 
 
 
-
-@media (max-width: 991px) {
-    #navbar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background-color: #212529;
-        overflow-y: auto;
-        transition: 0.3s ease-in-out;
-    }
-    #navbar.navbar-mobile {
-        left: 0;
-    }
-    #navbar ul {
-        display: block;
-        margin: 60px 0 0;
-        padding: 0;
-        text-align: center;
-    }
-    #navbar ul li {
-        display: block;
-        margin: 0;
-    }
-    #navbar ul li a {
-        display: inline-block;
-        padding: 10px 20px;
-        font-size: 1.2rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: #fff;
-        transition: 0.3s ease-in-out;
-    }
-    #navbar ul li a:hover {
-        color: #ffc107;
-    }
-    #navbar .login {
-        display: block;
-        margin: 30px 0 0;
-        text-align: center;
-    }
-}
 
