@@ -1,5 +1,6 @@
 body {
-    font-family: "Open Sans", sans-serif;
+    /*background-image: url("/public/img/hexellence.png");*/
+    font-family: 'Lato', sans-serif;
     color: #444444;
 }
 
@@ -13,111 +14,70 @@ a:hover {
     text-decoration: none;
 }
 
-#header {
-    transition: all 0.5s;
-    background: white;
-    z-index: 997;
-    padding: 15px 0;
-    border-bottom: 1px solid lightgray;
+.navbar .navbar-brand,
+.navbar .navbar-nav .nav-link {
+    color: white;
+    font-size: 20px;
 }
 
-#logo {
-    font-size: 30px;
-    color: darkslateblue;
-
-}
-#logo:hover {
-    font-size: 30px;
-    color: darkslateblue;
+.navbar .navbar-nav .nav-link:hover {
+    color: lightskyblue;
 }
 
-h1.logo a {
-    color: cornflowerblue;
-    font-size: 40px;
+.navbar .navbar-brand {
+    font-size: 26px;
 }
 
-
-.navbar {
-    padding: 0;
-
-}
-
-.navbar ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    list-style: none;
-    align-items: center;
-}
-
-.navbar li {
-    position: relative;
-}
-
-.navbar a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 0 10px 30px;
-    font-size: 14px;
-    color: dodgerblue;
-    white-space: nowrap;
-    transition: 0.3s;
-}
-
-
-.navbar a:hover {
-    color: deepskyblue;
-}
-
-.navbar .login {
-    background: dodgerblue;
-    padding: 8px 20px;
-    margin-left: 30px;
-    border-radius: 4px;
+.dropdown-menu {
+    background-color: #0d6efd;
     color: white;
 }
 
-.dropdown ul {
-    display: block;
-    position: absolute;
-    left: 14px;
-    top: calc(100% + 30px);
-    margin: 0;
-    padding: 10px 0;
-    z-index: 99;
-    opacity: 0;
-    visibility: hidden;
-    background: white;
-    box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
-    transition: 0.3s;
-    border-radius: 4px;
+.dropdown-menu a {
+    color: white;
 }
 
-.dropdown ul li {
-    min-width: 150px;
-}
-
-.dropdown:hover > ul {
-    opacity: 1;
-    top: 100%;
-    visibility: visible;
-}
-
+/*#start {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: url("/public/img/bg.jpg") top center;
+    background-size: cover;
+    position: relative;
+}*/
 
 #start {
     width: 100%;
     height: 100vh;
     position: relative;
-    /* Background pattern from subtlepatterns.com */
-    background: url("public/img/hexellence.png") top center;
-    background-size: cover;
-    position: relative;
+    background: rgba(0,0,0,0.9%) url("/public/img/bg.jpg") top center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
-#start .container {
-    padding-top: 80px;
+@media (min-width: 768px) {
+    #start {
+        background-size: cover;
+    }
 }
+
+@media (max-width: 480px) {
+    #start {
+        background-position: center center;
+    }
+}
+
+@media (max-width: 300px) {
+    #start {
+        background-size: 300px;
+    }
+}
+
+
+
+/*#start .container {*/
+/*    padding-top: 80px;*/
+/*}*/
 
 h1 {
     margin: 0;
@@ -134,7 +94,7 @@ h2 {
 }
 
 .tiles {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .tile {
@@ -142,7 +102,9 @@ h2 {
     position: relative;
     overflow: hidden;
     background: white;
-    box-shadow: 0 0 29px 0 rgba(18, 66, 101, 0.08);
+    -webkit-box-shadow: 5px 5px 25px -4px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 5px 5px 25px -4px rgba(66, 68, 90, 1);
+    box-shadow: 5px 5px 25px -4px rgba(66, 68, 90, 1);
     transition: all 0.3s ease-in-out;
     border-radius: 8px;
     z-index: 1;
@@ -174,7 +136,9 @@ h2 {
     text-align: center;
     border-radius: 4px;
     background: #fff;
-    box-shadow: 2px 4px 15px rgba(18, 66, 101, 0.08);
+    -webkit-box-shadow: 5px 5px 25px -4px rgba(66, 68, 90, 1);
+    -moz-box-shadow: 5px 5px 25px -4px rgba(66, 68, 90, 1);
+    box-shadow: 5px 5px 25px -4px rgba(66, 68, 90, 1);
 
 }
 
