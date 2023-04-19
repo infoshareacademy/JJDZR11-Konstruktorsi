@@ -48,8 +48,8 @@ a:hover {
     position: relative;
     background: url("/public/img/bg.png") top center;
     background-size: auto; /*cover*/
-    position: relative;
 }
+
 
 @media (max-height: 800px) {
     #start {
@@ -72,7 +72,9 @@ h2 {
 }
 
 .tiles {
-    margin-top: 80px;
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
@@ -94,7 +96,6 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     text-align: center;
 }
 
@@ -114,7 +115,21 @@ h2 {
     transition: all 0.3s ease-in-out;
     border-radius: 8px;
     z-index: 1;
+    height: 300px;
+
+
 }
+
+.tile2 {
+    padding: 50px 30px;
+    position: relative;
+    overflow: hidden;
+    background: #f8fbfe;
+    transition: all 0.3s ease-in-out;
+    border-radius: 8px;
+    z-index: 1;
+}
+
 
 .section-title {
     text-align: center;
@@ -183,3 +198,62 @@ h2 {
     padding-top: 120px;
     padding-bottom: 40px
 }
+
+
+.yt a {
+    float: left;
+    margin: 10px;
+    color: #cccccc;
+
+}
+
+.yt a:hover {
+    color: #d94348;
+    cursor: pointer;
+}
+
+.fb a {
+    float: left;
+    margin: 10px;
+    color: #cccccc;
+
+}
+
+.fb a:hover {
+    color: #4668b3;
+    cursor: pointer;
+}
+
+.gplus a {
+    float: left;
+    margin: 10px;
+    color: #cccccc;
+}
+
+.gplus a:hover {
+    color: #d95333;
+    cursor: pointer;
+}
+
+.tw a {
+    float: left;
+    margin: 10px;
+    color: #cccccc;
+}
+
+.tw a:hover {
+    color: #3095d3;
+    cursor: pointer;
+}
+
+.in a {
+    float: left;
+    margin: 10px;
+    color: #cccccc;
+}
+
+.in a:hover {
+    color: #0e76a8;
+    cursor: pointer;
+}
+
