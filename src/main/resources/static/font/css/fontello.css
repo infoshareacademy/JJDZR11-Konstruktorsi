@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fontello';
-  src: url('font/fontello.eot?30190285');
-  src: url('font/fontello.eot?30190285#iefix') format('embedded-opentype'),
-       url('font/fontello.woff2?30190285') format('woff2'),
-       url('font/fontello.woff?30190285') format('woff'),
-       url('font/fontello.ttf?30190285') format('truetype'),
-       url('font/fontello.svg?30190285#fontello') format('svg');
+  src: url('../font/fontello.eot?30190285');
+  src: url('../font/fontello.eot?30190285#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?30190285') format('woff2'),
+       url('../font/fontello.woff?30190285') format('woff'),
+       url('../font/fontello.ttf?30190285') format('truetype'),
+       url('../font/fontello.svg?30190285#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -54,7 +54,7 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
-.icon-twitter:before { content: '\f099'; font-size: 76px; margin-top: 20px;} /* '' */
+.icon-twitter:before { content: '\f099'; font-size: 76px; margin-top: 20px; } /* '' */
 .icon-facebook:before { content: '\f09a'; font-size: 76px; margin-top: 20px;} /* '' */
 .icon-github-circled:before { content: '\f09b'; font-size: 76px; margin-top: 20px;} /* '' */
 .icon-linkedin:before { content: '\f0e1'; font-size: 76px; margin-top: 20px;} /* '' */
