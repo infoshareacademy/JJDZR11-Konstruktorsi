@@ -40,29 +40,35 @@ a:hover {
 #start {
     width: 100%;
     height: 100vh;
+    height: 1900px;
     position: relative;
     background-image: url("/images/bg.png");
-    background-size: auto;
-    position: relative;
+    /*
+    background-image: url("/static/images/bg.png");
+    */
+    background-size: 500px;
+    padding-bottom: 230px;
 }
 
-@media (max-height: 800px) {
+@media (max-height: 1600px) {
     #start {
         height: auto;
     }
 }
 
 h1 {
-    margin: 0;
-    font-size: 56px;
-    font-weight: 700;
+    margin-top: 90px;
+    padding-top: 60px;
+    position: relative;
+    font-size: 58px;
+    font-weight: 900;
     line-height: 72px;
     color: dodgerblue;
 }
 
 h2 {
     color: #5e5e5e;
-    margin: 10px 0 0 0;
+    margin: 20px 0 0 0;
     font-size: 22px;
 }
 
