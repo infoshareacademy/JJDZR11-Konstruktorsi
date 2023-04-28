@@ -284,5 +284,18 @@ h2 {
     margin-top: 90px;
     padding-top: 60px;
     position: relative;
-    font-size: 36px;
+    font-size: 26px;
+}
+.cntentTemplate h1 {
+    text-align: center;
+    font-size: 44px;
+    color: dimgray;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+#table {
+    background-color: white;
+    font-size: 20px;
+
 }

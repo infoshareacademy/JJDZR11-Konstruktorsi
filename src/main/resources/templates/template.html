@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
 
 <header id="header" class="fixed-top">
     <nav class="navbar navbar-dark bg-primary navbar-expand-xl">
-        <a class="navbar-brand" href="/"><img src="/images/logo.png"
+        <a class="navbar-brand" href="/"><img src="/images/logo.png" srcset="/images/logo.png, /static/images/logo2.png"
                                               height="36"
                                               class="d-inline-block ms-3 me-3 align-bottom">BIBLIOTEKA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu">
@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link scrollto me-1" href="#start">Start</a>
+                    <a class="nav-link scrollto me-1" href="/#start">Start</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle me-1" href="#" data-bs-toggle="dropdown" role="button">Operacje
@@ -48,13 +48,13 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link scrollto me-1" href="#service">Usługi</a>
+                    <a class="nav-link scrollto me-1" href="/#service">Usługi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link scrollto me-1" href="#product">Content</a>
+                    <a class="nav-link scrollto me-1" href="/#product">Content</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link scrollto me-1" href="#team">Zespół</a>
+                    <a class="nav-link scrollto me-1" href="/#team">Zespół</a>
                 </li>
 
 
@@ -75,14 +75,17 @@
 
     <section id="start" class="d-flex align-items-center">
         <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-7 col-lg-9 text-center cntentTemplate">
+            <div class="row">
+                <div class="cntentTemplate">
 
-                    <h2>Tu wrzucamy coś</h2>
+                    <section>
 
+                        <h1>Tu coś wprowadzamy :)</h1>
+                        <!--Columny zamiast sekcji -->
+
+                    </section>
                 </div>
             </div>
-
         </div>
     </section>
 </main>
@@ -119,10 +122,10 @@
                 <div class="col-lg-2 col-md-6 footer-links ms-5 ps-5">
                     <h4>Nawigacja</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#start">Start</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#service">Usługi</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#product">Content</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#team">Zespół</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/#start">Start</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/#service">Usługi</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/#product">Content</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="/#team">Zespół</a></li>
                         <li><i class="bx bx-chevron-right"></i> <a href="template">Template</a></li>
                     </ul>
                 </div>
