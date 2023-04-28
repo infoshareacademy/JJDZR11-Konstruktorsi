@@ -22,9 +22,9 @@
 
 <header id="header" class="fixed-top">
     <nav class="navbar navbar-dark bg-primary navbar-expand-xl">
-        <a class="navbar-brand" href="#"><img src="/images/logo.png" srcset="/images/logo.png, /static/images/logo2.png"
-                                              height="36"
-                                              class="d-inline-block ms-3 me-3 align-bottom">BIBLIOTEKA</a>
+        <a class="navbar-brand" href="/"><img src="/images/logo.png"
+                                                       height="36"
+                                                       class="d-inline-block ms-3 me-3 align-bottom">BIBLIOTEKA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +38,7 @@
                         na książkach</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" th:href="@{/bookList}">Lista książek</a>
-                        <a class="dropdown-item" href="#">Opcja 2</a>
+                        <a class="dropdown-item" href="template">Template</a>
                         <a class="dropdown-item" href="#">Opcja 3</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Opcja 4</a>
@@ -298,36 +298,38 @@
             <div class="row">
 
                 <div class="col-lg-6 col-md-6">
-                    <h4>Lorem ipsum</h4>
+                    <h4>Bootcamp Java Deweloper + Spring Boot</h4>
+                    <p>Zakres bootcampu:</p>
                     <p>
-                        Można wpisać co chcemy jakieś dane kontaktowe czy coś ? Jakieś pomysły ? Lorem Ipsum is simply
-                        dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s,
+                        Praca z systemem Linux,
+                        praca zespołowa w Scrum,
+                        praca z systemem kontroli wersji Git,
+                        programowanie w Java,
+                        programowanie w Java z użyciem frameworka Spring,
+                        budowa prostych stron internetowych,
+                        obsługa bazy danych.
+
                     </p>
                     <p>
-                        Można wpisać co chcemy jakieś dane kontaktowe czy coś ? Jakieś pomysły ? Lorem Ipsum is simply
-                        dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s,
+                        Debugowanie,
+                        pisanie testów jednostkowych i integracyjnych,
+                        uruchamianie aplikacji w środowisku Docker,
+                        stosowanie podstawowych przekształceń kodu (refactoring),
+                        stosowanie podstawowych wzorców projektowych,
+                        udostępnianie i konsumowanie REST API,
+                        HTML, CSS, Java Script.
                     </p>
                 </div>
 
-                <div class="col-lg-6 col-md-6">
-                    <div class="in"><a href="https://linkedin.com" target="_blank"><i
-                            class="icon-linkedin"></i></a>
-                    </div>
-
-                    <div class="yt"><a href="http://youtube.com" target="_blank"><i
-                            class="icon-youtube"></i></a>
-                    </div>
-                    <div class="fb"><a href="http://facebook.com" target="_blank"><i
-                            class="icon-facebook"></i></a>
-                    </div>
-                    <div class="gplus"><a href="http://google.com" target="_blank"><i
-                            class="icon-gplus"></i></a>
-                    </div>
-                    <div class="tw"><a href="http://twitter.com" target="_blank"><i
-                            class="icon-twitter"></i></a>
-                    </div>
+                <div class="col-lg-2 col-md-6 footer-links ms-5 ps-5">
+                    <h4>Nawigacja</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#start">Start</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#service">Usługi</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#product">Content</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#team">Zespół</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="template">Template</a></li>
+                    </ul>
                 </div>
                 <div style="clear: both"></div>
             </div>
@@ -336,10 +338,34 @@
     </div>
     </div>
 
-    <div class="container d-md-flex py-4">
+    <div class="container d-md-flex d-flex justify-content-center align-items-center">
+
         <div class="me-md-auto text-center text-md-start">
             <div class="copyright">
-                &copy; Stopka
+                <span id="isa" class="me-5"><a href="https://infoshareacademy.com"><img class="img-fluid"
+                                                                                        src="/images/isa.png"></a></span>
+                Copyright &copy; 2023 Konstruktorsi | Wszelkie Prawa Zastrzeżone
+
+            </div>
+
+        </div>
+
+        <div class="col-lg-6 col-md-6 d-flex justify-content-end align-items-center">
+            <div class="in"><a href="https://linkedin.com" target="_blank"><i
+                    class="icon-linkedin"></i></a>
+            </div>
+
+            <div class="yt"><a href="http://youtube.com" target="_blank"><i
+                    class="icon-youtube"></i></a>
+            </div>
+            <div class="fb"><a href="http://facebook.com" target="_blank"><i
+                    class="icon-facebook"></i></a>
+            </div>
+            <div class="gplus"><a href="https://github.com/infoshareacademy/JJDZR11-Konstruktorsi" target="_blank"><i
+                    class="icon-github-circled"></i></a>
+            </div>
+            <div class="tw"><a href="http://twitter.com" target="_blank"><i
+                    class="icon-twitter"></i></a>
             </div>
         </div>
     </div>

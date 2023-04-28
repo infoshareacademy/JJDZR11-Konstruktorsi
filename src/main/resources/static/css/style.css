@@ -197,7 +197,7 @@ h2 {
 
 #team {
     padding-top: 120px;
-    padding-bottom: 40px
+    padding-bottom: 41px
 }
 
 
@@ -232,7 +232,7 @@ h2 {
 }
 
 .gplus a:hover {
-    color: #d95333;
+    color: #171515;
     cursor: pointer;
 }
 
@@ -256,4 +256,33 @@ h2 {
 .in a:hover {
     color: #0e76a8;
     cursor: pointer;
+}
+
+.copyright {
+    font-size: 14px;
+}
+
+#isa img {
+    width: auto;
+    height: auto;
+}
+
+#isa:hover img {
+    content: url('/images/isaHover.png');
+    /*
+    content: url('/static/images/isaHover.png');
+    */
+}
+
+.footer-links {
+    padding-right: 2px;
+    font-size: 18px;
+    line-height: 2;
+}
+
+.cntentTemplate {
+    margin-top: 90px;
+    padding-top: 60px;
+    position: relative;
+    font-size: 36px;
 }

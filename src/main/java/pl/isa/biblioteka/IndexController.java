@@ -11,4 +11,9 @@ public class IndexController {
     public ModelAndView index(){
         return new ModelAndView("index");
     }
+
+    @GetMapping("/template")
+    public ModelAndView template(){
+        return new ModelAndView("template");
+    }
 }
