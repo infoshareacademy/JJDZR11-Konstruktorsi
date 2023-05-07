@@ -71,10 +71,9 @@
 
 </header>
 
-<main id="main">
+<main sec:authorize="hasRole('ROLE_ADMIN')" id="main">
 
 
-<!--    <main sec:authorize="hasRole(ROLE_ADMIN)" id="main">-->
 <!--    <sec:authorize ifAllGranted="ROLE_ADMIN,ROLE_USER">   przykład
         <p>Must have ROLE_ADMIN and ROLE_USER</p>
     </sec:authorize>-->
