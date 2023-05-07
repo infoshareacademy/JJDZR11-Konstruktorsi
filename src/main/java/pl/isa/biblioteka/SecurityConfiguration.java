@@ -7,12 +7,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfiguration {
-    @Bean
-    SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests()
-                .anyRequest().permitAll();
-                /*.and().formLogin().defaultSuccessUrl("index.html");*/
-        return httpSecurity.build();
-    }
+
 
 }

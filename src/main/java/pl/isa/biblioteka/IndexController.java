@@ -1,8 +1,12 @@
 package pl.isa.biblioteka;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class IndexController {
@@ -11,6 +15,14 @@ public class IndexController {
     public ModelAndView index(){
         return new ModelAndView("index");
     }
+/*    @GetMapping("/")
+    public ModelAndView index(Authentication authentication){
+        Optional<? extends GrantedAuthority> admin = authentication.getAuthorities().stream().filter(user -> user.getAuthority().equals("ROLE_ADMIN")).findFirst();
+        if (admin.isPresent()){
+            return new ModelAndView("adminSite");
+        }
+        return new ModelAndView("index");
+    }*/
 
     @GetMapping("/template")
     public ModelAndView template(){
