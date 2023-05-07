@@ -11,18 +11,23 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-    @GetMapping("/")
+/*    @GetMapping("/")
     public ModelAndView index(){
         return new ModelAndView("index");
-    }
-/*    @GetMapping("/")
+    }*/
+    @GetMapping("/")
     public ModelAndView index(Authentication authentication){
         Optional<? extends GrantedAuthority> admin = authentication.getAuthorities().stream().filter(user -> user.getAuthority().equals("ROLE_ADMIN")).findFirst();
         if (admin.isPresent()){
-            return new ModelAndView("adminSite");
+            return new ModelAndView("administration");
         }
         return new ModelAndView("index");
-    }*/
+    }
+
+    @GetMapping("/administration")
+    public ModelAndView administration(){
+        return new ModelAndView("administration");
+    }
 
     @GetMapping("/template")
     public ModelAndView template(){
