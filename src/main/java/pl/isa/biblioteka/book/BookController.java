@@ -23,9 +23,6 @@ public class BookController {
         this.bookService = bookService;
     }
 
-
-
-
     @GetMapping("/search")
     String search(Model model, Book book){
         model.addAttribute("book", book);
