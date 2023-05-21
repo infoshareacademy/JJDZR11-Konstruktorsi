@@ -19,6 +19,7 @@ public class BookController {
     List<Book> bookListByAuthor;
     List<Book> searchCategoryBook;
     List<Book> searchBook;
+    List<Book> localSearchBook;
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
@@ -92,5 +93,18 @@ public class BookController {
         }
 
         return "list2";
+    }
+
+
+    @PostMapping("/filterText")
+    String showByText(@ModelAttribute("valueModel") ValueModel valueModel){
+        localSearchBook = bookService.searchBookByText(valueModel.value);
+        return "redirect:bookByText";
+    }
+
+    @GetMapping("/bookByText")
+    String byText(Model model){
+        model.addAttribute("books", localSearchBook);
+        return "list";
     }
 }

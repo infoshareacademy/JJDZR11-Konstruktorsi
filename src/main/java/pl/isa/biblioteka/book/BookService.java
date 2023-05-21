@@ -124,4 +124,12 @@ public class BookService {
         return bookPage;
     }
 
+    public List<Book> searchBookByText(String text){
+        List<Book> findBook = booksList.stream().filter(book -> book.getTitle().contains(text)
+                        || book.getAuthor().contains(text))
+                .collect(Collectors.toList());
+        return findBook;
+    }
+
+
 }
