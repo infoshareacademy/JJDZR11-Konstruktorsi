@@ -11,6 +11,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static pl.isa.biblioteka.book.BookService.booksList;
+import static pl.isa.biblioteka.book.BookService.extracted;
+
 @Controller
 public class BookController {
 
@@ -19,78 +22,99 @@ public class BookController {
     List<Book> bookListByAuthor;
     List<Book> searchCategoryBook;
     List<Book> searchBook;
+    List<Book> localSearchBook;
+
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
 
     @GetMapping("/search")
-    String search(Model model, Book book){
+    String search(Model model, Book book) {
         model.addAttribute("book", book);
-        model.addAttribute("category",bookService.availableCategory());
+        model.addAttribute("category", bookService.availableCategory());
         return "search";
     }
 
     @PostMapping("/filterAuthor")
-    String showByAuthor(@ModelAttribute("book") Book book){
+    String showByAuthor(@ModelAttribute("book") Book book) {
         bookListByAuthor = bookService.filterByAuthor(book.getAuthor());
         return "redirect:bookAuthorList";
     }
-    @GetMapping("/bookAuthorList")
-    String bookAuthList(Model model){
-        model.addAttribute("books", bookListByAuthor);
+
+
+    @RequestMapping(value = "/bookAuthorList", method = RequestMethod.GET)
+    public String listBooksAuthor(
+            Model model,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(15);
+        extracted(model, currentPage, pageSize, bookListByAuthor);
         return "list";
     }
+
     @PostMapping("/filterTitle")
-    String showByTitle(@ModelAttribute("book") Book book){
+    String showByTitle(@ModelAttribute("book") Book book) {
         searchBook = bookService.findBookByTitle(book.getTitle());
         return "redirect:bookByTitle";
     }
 
-    @GetMapping("/bookByTitle")
-    String bookTitle(Model model){
-        model.addAttribute("books", searchBook);
+//    @GetMapping("/bookByTitle")
+//    String bookTitle(Model model) {
+//        model.addAttribute("books", searchBook);
+//        return "list";
+//    }
+
+    @RequestMapping(value = "/bookByTitle", method = RequestMethod.GET)
+    public String listBooksTitle(
+            Model model,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(15);
+        extracted(model, currentPage, pageSize, searchBook);
         return "list";
     }
 
     @PostMapping("/filterCategory")
-    String showByCategory(@ModelAttribute("book") Book book){
+    String showByCategory(@ModelAttribute("book") Book book) {
         searchCategoryBook = bookService.sortByCategory(book.getCategory());
         return "redirect:bookByCategory";
     }
 
-    @GetMapping("/bookByCategory")
-    String bookCategory(Model model){
-        model.addAttribute("books", searchCategoryBook);
+
+    @RequestMapping(value = "/bookByCategory", method = RequestMethod.GET)
+    public String listBooksCategory(
+            Model model,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(15);
+        extracted(model, currentPage, pageSize, searchCategoryBook);
         return "list";
     }
 
-    @GetMapping("/bookList")
-    String bookList(Model model){
-        List<Book> books = bookService.showAllBooks();
-        model.addAttribute("books", books);
-        return "list";
-    }
 
-    @RequestMapping(value = "/list2", method = RequestMethod.GET)
+    @RequestMapping(value = "/bookList", method = RequestMethod.GET)
     public String listBooks(
             Model model,
             @RequestParam("page") Optional<Integer> page,
             @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
+        extracted(model, currentPage, pageSize, booksList);
+        return "list";
+    }
 
-        Page<Book> bookPage = bookService.findPaginated(PageRequest.of(currentPage - 1, pageSize));
+    @PostMapping("/filterText")
+    String showByText(@RequestParam("text") String value) {
+        localSearchBook = bookService.searchBookByText(value);
+        return "redirect:bookByText";
+    }
 
-        model.addAttribute("bookPage", bookPage);
-
-        int totalPages = bookPage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-
-        return "list2";
+    @GetMapping("/bookByText")
+    String byText(Model model) {
+        model.addAttribute("books", localSearchBook);
+        return "list";
     }
 }

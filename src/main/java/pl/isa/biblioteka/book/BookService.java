@@ -5,11 +5,13 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import pl.isa.biblioteka.file.FolderBooks;
 
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class BookService {
@@ -109,19 +111,54 @@ public class BookService {
     }
 
 
-    public Page<Book> findPaginated(Pageable pageable){
+    public static Page<Book> findPaginated(Pageable pageable, List<Book> bookList){
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
         List<Book> list;
-        if(booksList.size()< startItem){
+        if(bookList.size()< startItem){
             list = Collections.emptyList();
         }else {
-            int toIndex= Math.min(startItem + pageSize, booksList.size());
-            list = booksList.subList(startItem,toIndex);
+            int toIndex= Math.min(startItem + pageSize, bookList.size());
+            list = bookList.subList(startItem,toIndex);
         }
-        Page<Book> bookPage = new PageImpl<>(list, PageRequest.of(currentPage,pageSize),booksList.size());
+        Page<Book> bookPage = new PageImpl<>(list, PageRequest.of(currentPage,pageSize),bookList.size());
         return bookPage;
     }
+
+    public List<Book> searchBookByText(String text){
+        List<Book> findBook = booksList.stream().filter(book -> book.getTitle().contains(text)
+                        || book.getAuthor().contains(text))
+                .collect(Collectors.toList());
+        return findBook;
+    }
+
+
+
+    public static void extracted(Model model, int currentPage, int pageSize, List<Book> bookListCheck) {
+        Page<Book> bookPage = findPaginated(PageRequest.of(currentPage - 1, pageSize),bookListCheck);
+        model.addAttribute("books", bookPage);
+
+        int totalPages = bookPage.getTotalPages();
+        if (totalPages > 0) {
+            int maxVisiblePages = 5; // Maksymalna liczba widocznych numerów stron
+            int startPage = Math.max(1, currentPage - maxVisiblePages);
+            int endPage = Math.min(totalPages, currentPage + maxVisiblePages);
+
+            if (currentPage > 6) {
+                model.addAttribute("firstPage", 1);
+            }
+
+            if (currentPage < totalPages - 5) {
+                model.addAttribute("lastPage", totalPages);
+            }
+
+            List<Integer> pageNumbers = IntStream.rangeClosed(startPage, endPage)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+    }
+
 
 }
