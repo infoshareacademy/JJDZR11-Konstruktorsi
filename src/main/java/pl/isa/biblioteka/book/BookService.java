@@ -152,7 +152,6 @@ public class BookService {
             if (currentPage < totalPages - 5) {
                 model.addAttribute("lastPage", totalPages);
             }
-
             List<Integer> pageNumbers = IntStream.rangeClosed(startPage, endPage)
                     .boxed()
                     .collect(Collectors.toList());
