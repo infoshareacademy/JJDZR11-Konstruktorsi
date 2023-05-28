@@ -3,9 +3,11 @@ package pl.isa.biblioteka;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -24,10 +26,19 @@ public class IndexController {
 //        return new ModelAndView("index");
 //    }
 
+//    @GetMapping("/")
+//    String login() {
+//        return "index";
+//    }
+
     @GetMapping("/")
-    String login() {
+    public String customLogin(Principal principal, Model model) {
+        String user = principal.getName();
+
+        model.addAttribute("user", user);
         return "index";
     }
+
 
 
     @GetMapping("/administration")
