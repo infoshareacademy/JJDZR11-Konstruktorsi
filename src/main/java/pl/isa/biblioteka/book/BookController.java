@@ -106,15 +106,4 @@ public class BookController {
         return "list";
     }
 
-    @PostMapping("/filterText")
-    String showByText(@RequestParam("text") String value) {
-        localSearchBook = bookService.searchBookByText(value);
-        return "redirect:bookByText";
-    }
-
-    @GetMapping("/bookByText")
-    String byText(Model model) {
-        model.addAttribute("books", localSearchBook);
-        return "list";
-    }
 }

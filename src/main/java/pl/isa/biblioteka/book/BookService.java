@@ -126,14 +126,6 @@ public class BookService {
         return bookPage;
     }
 
-    public List<Book> searchBookByText(String text){
-        List<Book> findBook = booksList.stream().filter(book -> book.getTitle().contains(text)
-                        || book.getAuthor().contains(text))
-                .collect(Collectors.toList());
-        return findBook;
-    }
-
-
 
     public static void extracted(Model model, int currentPage, int pageSize, List<Book> bookListCheck) {
         Page<Book> bookPage = findPaginated(PageRequest.of(currentPage - 1, pageSize),bookListCheck);
