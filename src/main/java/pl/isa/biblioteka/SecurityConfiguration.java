@@ -11,8 +11,7 @@ public class SecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests()
                 .anyRequest().permitAll();
-                /*.and().formLogin().defaultSuccessUrl("index.html");*/
+        /*.and().formLogin().defaultSuccessUrl("index.html");*/
         return httpSecurity.build();
     }
-
 }
