@@ -15,14 +15,20 @@ public class IndexController {
     public ModelAndView index(){
         return new ModelAndView("index");
     }*/
-    @GetMapping("/")
-    public ModelAndView index(Authentication authentication){
+//    @GetMapping("/")
+//    public ModelAndView index(Authentication authentication){
 //        Optional<? extends GrantedAuthority> admin = authentication.getAuthorities().stream().filter(user -> user.getAuthority().equals("ROLE_ADMIN")).findFirst();
 //        if (admin.isPresent()){
 //            return new ModelAndView("administration");
 //        }
-        return new ModelAndView("index");
+//        return new ModelAndView("index");
+//    }
+
+    @GetMapping("/")
+    String login() {
+        return "index";
     }
+
 
     @GetMapping("/administration")
     public ModelAndView administration(){
