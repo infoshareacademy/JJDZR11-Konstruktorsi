@@ -32,11 +32,11 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic();
+        http.authorizeHttpRequests(authorize ->authorize.requestMatchers("/", "/images/**", "/css/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .formLogin(login -> login.loginPage("/").usernameParameter("user").passwordParameter("password"));
         return http.build();
     }
 

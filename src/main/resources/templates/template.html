@@ -178,3 +178,27 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+<tbody>
+<tr th:each="tool : ${searchResults}">
+    <td th:text="${tool.id}"></td>
+    <td th:text="${tool.name}"></td>
+    <td th:text="${tool.toolSize.size} + ' ' + ${tool.toolSize.unit}"></td>
+    <td>
+        <ul style="list-style-type: none">
+            <li th:each="action : ${tool.actions}" th:text="${action}"></li>
+        </ul>
+    </td>
+</tr>
+</tbody>

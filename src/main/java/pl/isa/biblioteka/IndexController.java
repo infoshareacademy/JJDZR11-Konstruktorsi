@@ -17,10 +17,10 @@ public class IndexController {
     }*/
     @GetMapping("/")
     public ModelAndView index(Authentication authentication){
-        Optional<? extends GrantedAuthority> admin = authentication.getAuthorities().stream().filter(user -> user.getAuthority().equals("ROLE_ADMIN")).findFirst();
-        if (admin.isPresent()){
-            return new ModelAndView("administration");
-        }
+//        Optional<? extends GrantedAuthority> admin = authentication.getAuthorities().stream().filter(user -> user.getAuthority().equals("ROLE_ADMIN")).findFirst();
+//        if (admin.isPresent()){
+//            return new ModelAndView("administration");
+//        }
         return new ModelAndView("index");
     }
 
