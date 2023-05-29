@@ -2,7 +2,8 @@
 <html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{/fragments/head::head}"></head>
 <body>
-<header th:replace="~{/fragments/header::#header}"></header>
+<header th:replace="~{/fragments/header::login}" ></header>
+<header th:replace="~{/fragments/header::logout}" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"></header>
 
 <section th:replace="~{fragments/section::start}"></section>
 

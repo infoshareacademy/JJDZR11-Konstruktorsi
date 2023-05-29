@@ -27,7 +27,27 @@ public class SecurityConfiguration {
                 .roles("ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
+        UserDetails kamil = User.withUsername("Kamil")
+                .password(passwordEncoder.encode("kamil"))
+                .roles("USER")
+                .build();
+
+        UserDetails mikolaj = User.withUsername("Mikołaj")
+                .password(passwordEncoder.encode("mikolaj"))
+                .roles("USER")
+                .build();
+
+        UserDetails przemek = User.withUsername("Przemek")
+                .password(passwordEncoder.encode("przemek"))
+                .roles("USER")
+                .build();
+
+        UserDetails kinga = User.withUsername("Kinga")
+                .password(passwordEncoder.encode("kinga"))
+                .roles("USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin, kinga, mikolaj, przemek, kamil);
     }
 
     @Bean
