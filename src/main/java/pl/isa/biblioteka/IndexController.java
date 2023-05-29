@@ -26,28 +26,42 @@ public class IndexController {
 //        return new ModelAndView("index");
 //    }
 
-//    @GetMapping("/")
-//    String login() {
-//        return "index";
-//    }
-
-    @GetMapping("/")
-    public String customLogin(Principal principal, Model model) {
-        String user = principal.getName();
-
-        model.addAttribute("user", user);
+    @GetMapping("/static/font/css/fontello.css?continue")
+    String error() {
         return "index";
     }
 
 
+    @GetMapping("/")
+    String login(Principal principal, Model model, Authentication authentication) {
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            Optional<? extends GrantedAuthority> roleAdmin = authentication.getAuthorities().stream().filter(role -> role.getAuthority().equals("ROLE_ADMIN")).findFirst();
+            if (roleAdmin.isPresent()) {
+                return "administration";
+            } else return "index";
+
+        } else return "index";
+
+    }
+
+//    @GetMapping("/")
+//    public String customLogin(Principal principal, Model model, Authentication authentication) {
+//
+//        String user = principal.getName();
+//        model.addAttribute("user", user);
+//        return "index";
+//    }
+
 
     @GetMapping("/administration")
-    public ModelAndView administration(){
+    public ModelAndView administration() {
         return new ModelAndView("administration");
     }
 
     @GetMapping("/template")
-    public ModelAndView template(){
+    public ModelAndView template() {
         return new ModelAndView("template");
     }
 }
