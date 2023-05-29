@@ -36,7 +36,8 @@ public class SecurityConfiguration {
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .formLogin(login -> login.loginPage("/").usernameParameter("user").passwordParameter("password"));
+                .formLogin(login -> login.loginPage("/").usernameParameter("user").passwordParameter("password"))
+                .logout(logout -> logout.logoutSuccessUrl("/logout").permitAll());
         return http.build();
     }
 
@@ -47,6 +48,19 @@ public class SecurityConfiguration {
         return encoder;
     }
 
+//    protected void logoutUser(HttpSecurity httpSecurity) throws Exception {
+//        httpSecurity
+//                .logout()
+//                .logoutSuccessUrl("index")
+//                .permitAll()
+//                .and()
+//                .authorizeHttpRequests().
+//    }
+
+}
+
+
+//todo skasować przed wgraniem na main
 
     /*    @Bean  metoda dopuszcza każdego bez logowania
     SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
@@ -67,4 +81,3 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .and().formLogin().loginPage("/");
     return http.build();
 }*/
-}
