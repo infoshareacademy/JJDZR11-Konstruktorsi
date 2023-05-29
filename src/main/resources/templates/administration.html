@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,10 +59,14 @@
 
 
             </ul>
-            <form class="d-flex ms-3">
-                <input class="form-control me-2" type="text" placeholder="Login" aria-label="Login">
-                <input class="form-control me-2" type="password" placeholder="Hasło" aria-label="Hasło">
-                <button class="btn btn-light me-3" type="submit">Zaloguj</button>
+            <div><a href="/logout">Logout</a></div>
+            <div th:if="${param.error}">
+                Invalid username and password.</div>
+            <div th:if="${param.logout}">You have been logged out.</div>
+            <form th:action="@{/}" method="post" class="d-flex ms-3">
+                <input class="form-control me-2" type="text" name="user" placeholder="Login" aria-label="Login">
+                <input class="form-control me-2" type="password" name="password" placeholder="Hasło" aria-label="Hasło">
+                <button class="btn btn-light me-3" value="Log in" type="submit">Zaloguj</button>
             </form>
         </div>
 
@@ -71,7 +75,12 @@
 
 </header>
 
-<main id="main">
+<main sec:authorize="hasRole('ROLE_ADMIN')" id="main">
+
+
+<!--    <sec:authorize ifAllGranted="ROLE_ADMIN,ROLE_USER">   przykład
+        <p>Must have ROLE_ADMIN and ROLE_USER</p>
+    </sec:authorize>-->
 
     <section id="start" class="d-flex align-items-center">
         <div class="container position-relative">
@@ -80,7 +89,9 @@
 
                     <section>
 
-                        <h1>Tu coś wprowadzamy :)</h1>
+                        <h1>ADMIN:)</h1>
+                        <h1>Welcome, <span th:text="${user}"></h1>
+
                         <!--Columny zamiast sekcji -->
 
                     </section>
@@ -178,27 +189,3 @@
         crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-<tbody>
-<tr th:each="tool : ${searchResults}">
-    <td th:text="${tool.id}"></td>
-    <td th:text="${tool.name}"></td>
-    <td th:text="${tool.toolSize.size} + ' ' + ${tool.toolSize.unit}"></td>
-    <td>
-        <ul style="list-style-type: none">
-            <li th:each="action : ${tool.actions}" th:text="${action}"></li>
-        </ul>
-    </td>
-</tr>
-</tbody>
