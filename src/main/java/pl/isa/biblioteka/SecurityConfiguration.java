@@ -17,9 +17,9 @@ public class SecurityConfiguration {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails user = User.withUsername("user")
-                .password(passwordEncoder.encode("user"))
-                .roles("USER")
+        UserDetails librarian = User.withUsername("Bibliotekarz")
+                .password(passwordEncoder.encode("bibliotekarz"))
+                .roles("ADMIN")
                 .build();
 
         UserDetails admin = User.withUsername("admin")
@@ -47,16 +47,21 @@ public class SecurityConfiguration {
                 .roles("USER")
                 .build();
 
-        return new InMemoryUserDetailsManager(user, admin, kinga, mikolaj, przemek, kamil);
+        UserDetails user = User.withUsername("user")
+                .password(passwordEncoder.encode("user"))
+                .roles("USER")
+                .build();
+
+        return new InMemoryUserDetailsManager(user, admin, kinga, mikolaj, przemek, kamil, librarian);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize ->authorize.requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**", "/**")
+        http.authorizeHttpRequests(authorize ->authorize.requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
-                .formLogin(login -> login.loginPage("/").usernameParameter("user").passwordParameter("password"))
+                .formLogin(login -> login.loginPage("/").defaultSuccessUrl("/", true).usernameParameter("user").passwordParameter("password"))
                 .logout(logout -> logout.logoutSuccessUrl("/logout").permitAll());
         return http.build();
     }
