@@ -17,19 +17,6 @@
                 <li class="nav-item">
                     <a class="nav-link scrollto me-1" th:href="@{/#start}">Start</a>
                 </li>
-                <!--                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle me-1" href="#" data-bs-toggle="dropdown" role="button">Operacje
-                                        na książkach</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" th:href="@{/bookList}">Lista książek</a>
-                                        <a class="dropdown-item" href="template">Template</a>
-                                        <a class="dropdown-item" href="#">Opcja 3</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Opcja 4</a>
-                                        <a class="dropdown-item" href="#">Opcja 5</a>
-                                        <a class="dropdown-item" href="#">Opcja 6</a>
-                                    </div>
-                                </li>-->
                 <li class="nav-item">
                     <a class="nav-link scrollto me-1" th:href="@{/#service}">Usługi</a>
                 </li>
@@ -40,8 +27,6 @@
                     <a class="nav-link scrollto me-1" th:href="@{/#team}">Zespół</a>
                 </li>
             </ul>
-
-
             <div style="color: yellow" th:if="${param.error}">Invalid username or password.</div>
             <div th:if="${param.logout}">You have been logged out.</div>
             <form th:action="@{/}" method="post" class="d-flex ms-3">
@@ -57,7 +42,6 @@
 * logout
 -->
 
-
 <header th:fragment="logout" id="header" class="fixed-top">
     <nav class="navbar navbar-dark bg-primary navbar-expand-xl">
         <a class="navbar-brand" th:href="@{/}"><img src="/images/logo.png"
@@ -71,19 +55,6 @@
                 <li class="nav-item">
                     <a class="nav-link scrollto me-1" th:href="@{/#start}">Start</a>
                 </li>
-                <!--                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle me-1" href="#" data-bs-toggle="dropdown" role="button">Operacje
-                                        na książkach</a>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" th:href="@{/bookList}">Lista książek</a>
-                                        <a class="dropdown-item" href="template">Template</a>
-                                        <a class="dropdown-item" href="#">Opcja 3</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Opcja 4</a>
-                                        <a class="dropdown-item" href="#">Opcja 5</a>
-                                        <a class="dropdown-item" href="#">Opcja 6</a>
-                                    </div>
-                                </li>-->
                 <li class="nav-item">
                     <a class="nav-link scrollto me-1" th:href="@{/#service}">Usługi</a>
                 </li>

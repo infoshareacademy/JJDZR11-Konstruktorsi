@@ -17,7 +17,6 @@ import java.util.Optional;
 @Controller
 public class IndexController {
 
-
     @GetMapping("/")
     String login(Principal principal, Model model, Authentication authentication) {
         if (principal != null) {
@@ -52,8 +51,9 @@ public class IndexController {
 
         return "redirect:/";
     }
+
     @GetMapping("/error")
-    public String error(){
+    public String error() {
         return "index";
     }
 }
