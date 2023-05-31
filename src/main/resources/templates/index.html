@@ -5,7 +5,9 @@
 <header th:replace="~{/fragments/header::login}" ></header>
 <header th:replace="~{/fragments/header::logout}" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"></header>
 
-<section th:replace="~{fragments/section::start}"></section>
+<div th:if="${user}"><section th:replace="~{fragments/startSection::start}"></section></div>
+<div th:if="${user == null}"><section th:replace="~{fragments/startSection::logoff}"></section></div>
+
 
 <main th:replace="~{/fragments/main::main}"></main>
 
