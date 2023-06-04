@@ -10,6 +10,12 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.user.PersonService;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
@@ -17,7 +23,13 @@ public class SecurityConfiguration {
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
-        UserDetails librarian = User.withUsername("Bibliotekarz").password(passwordEncoder.encode("bibliotekarz")).roles("ADMIN").build();
+
+        List<Person> personList = PersonService.readUsers();
+
+        List<UserDetails> admin = personList.stream().map(person -> User.withUsername(person.getLogin()).password(passwordEncoder.encode(person.getPassword())).roles("ADMIN").build()).collect(Collectors.toList());
+
+
+     /*   UserDetails librarian = User.withUsername("Bibliotekarz").password(passwordEncoder.encode("bibliotekarz")).roles("ADMIN").build();
 
         UserDetails admin = User.withUsername("Admin").password(passwordEncoder.encode("admin")).roles("ADMIN").build();
 
@@ -30,15 +42,26 @@ public class SecurityConfiguration {
         UserDetails kinga = User.withUsername("Kinga").password(passwordEncoder.encode("kinga")).roles("USER").build();
 
         UserDetails user = User.withUsername("User").password(passwordEncoder.encode("user")).roles("USER").build();
-
-        return new InMemoryUserDetailsManager(user, admin, kinga, mikolaj, przemek, kamil, librarian);
+*/
+//        return new InMemoryUserDetailsManager(user, admin, kinga, mikolaj, przemek, kamil, librarian);
+        return new InMemoryUserDetailsManager(admin.stream().toArray(UserDetails[] ::new));
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**").permitAll().anyRequest().authenticated()).formLogin(login -> login.loginPage("/").defaultSuccessUrl("/", true).usernameParameter("user").passwordParameter("password")).logout(logout -> logout.logoutSuccessUrl("/logout").permitAll());
+        http.authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated())
+                .formLogin(login -> login.loginPage("/")
+                        .defaultSuccessUrl("/", true)
+                        .usernameParameter("user").passwordParameter("password"))
+                .logout(logout -> logout.logoutSuccessUrl("/logout").permitAll());
         return http.build();
     }
+
+
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -48,6 +71,14 @@ public class SecurityConfiguration {
 
 }
 
+
+
+//
+//
+//
+//
+//
+//
 
 //todo skasować przed wgraniem na main
 
