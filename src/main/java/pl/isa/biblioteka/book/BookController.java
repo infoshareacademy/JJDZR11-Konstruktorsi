@@ -111,16 +111,18 @@ public class BookController {
         return "list";
     }
 
-    @GetMapping("/searchbyText")
-    public String searchByText(Book book) {
-        return "searchText";
+    @GetMapping("/searchText")
+    public String searchByText(Model model) {
+                model.addAttribute("books", localSearchBook);
+
+        return "list";
     }
 
     @PostMapping("/searchByText")
-    public String searchByText(@RequestParam("text") String text, Model model, Book book) {
-        List<Book> searchText = bookService.searchByText(text);
-        model.addAttribute("search", searchText);
-        return "list2";
+    public String searchByText(@RequestParam("text") String text, Model model) {
+        localSearchBook = bookService.searchByText(text);
+//        model.addAttribute("books", searchBook);
+        return "redirect:searchText";
     }
 
 }
