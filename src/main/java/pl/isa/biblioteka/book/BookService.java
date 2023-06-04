@@ -46,6 +46,13 @@ public class BookService {
         }
     }
 
+    public List<Book> searchByText(String text) {
+        List<Book> searchText = booksList.stream().filter(book -> book.getTitle().contains(text) || book.getAuthor().contains(text))
+                .collect(Collectors.toList());
+
+        return searchText;
+    }
+
     private static Predicate<Book> foundBookByTitle(String title) {
         return book -> book.getTitle().equalsIgnoreCase(title);
     }
