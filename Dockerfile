@@ -11,4 +11,5 @@ COPY users.json /app/users.json
 COPY booksFile.json /app/booksFile.json
 RUN mvn package
 
+
 CMD ["java","-jar","./target/biblioteka-0.0.1-SNAPSHOT.jar"]
