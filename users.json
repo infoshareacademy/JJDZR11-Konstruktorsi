@@ -9,8 +9,8 @@
   },
   {
     "id": 1,
-    "login": "Jan",
-    "password": "pass",
+    "login": "Kamil",
+    "password": "kamil",
     "firstName": "Jan",
     "secondName": "Kowalski",
     "personBooks": [
@@ -30,9 +30,9 @@
   },
   {
     "id": 2,
-    "login": "Adam",
-    "password": "pass",
-    "firstName": "Adam",
+    "login": "Mikolas",
+    "password": "mikolaj",
+    "firstName": "Mikołas",
     "secondName": "Nowak",
     "personBooks": [
       {
@@ -57,17 +57,17 @@
   },
   {
     "id": 3,
-    "login": "Tomasz",
-    "password": "pass",
-    "firstName": "Tomasz",
+    "login": "Kinga",
+    "password": "kinga",
+    "firstName": "Kinga",
     "secondName": "Mila",
     "personBooks": []
   },
   {
     "id": 4,
-    "login": "adamm",
-    "password": "pass",
-    "firstName": "Adam",
+    "login": "Przemek",
+    "password": "przemek",
+    "firstName": "Przemek",
     "secondName": "Adamski",
     "personBooks": [
       {
@@ -80,10 +80,10 @@
   },
   {
     "id": 5,
-    "login": "Albert",
-    "password": "pass",
-    "firstName": "Albert",
-    "secondName": "Rogowski",
+    "login": "Admin",
+    "password": "admin",
+    "firstName": "Admin",
+    "secondName": "Root",
     "personBooks": []
   },
   {
@@ -96,7 +96,7 @@
   },
   {
     "id": 7,
-    "login": "Kamil",
+    "login": "testowy",
     "password": "pass",
     "firstName": "Kamil",
     "secondName": "K",
