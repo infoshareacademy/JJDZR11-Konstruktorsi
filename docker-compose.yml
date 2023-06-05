@@ -9,8 +9,8 @@ services:
       MYSQL_ROOT_PASSWORD: kamil
     volumes:
       - ./mysql:/var/lib/mysql
-  demo:
-    image: demo-app
+  JJDZR11-Konstruktorsi:
+    image: library
     depends_on:
       - mysql
     ports:
