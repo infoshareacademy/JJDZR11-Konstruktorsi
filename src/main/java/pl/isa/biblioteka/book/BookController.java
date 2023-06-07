@@ -111,10 +111,21 @@ public class BookController {
         return "list";
     }
 
-    @GetMapping("/searchText")
+/*    @GetMapping("/searchText")
     public String searchByText(Model model) {
                 model.addAttribute("books", localSearchBook);
 
+        return "list";
+    }*/
+
+    @GetMapping("/searchText")
+    public String searchByText(
+            Model model,
+            @RequestParam("page") Optional<Integer> page,
+            @RequestParam("size") Optional<Integer> size) {
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(20);
+        extracted(model, currentPage, pageSize, localSearchBook);
         return "list";
     }
 
