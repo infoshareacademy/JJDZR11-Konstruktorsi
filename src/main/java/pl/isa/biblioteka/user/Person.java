@@ -1,12 +1,9 @@
 package pl.isa.biblioteka.user;
 
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import pl.isa.biblioteka.book.Book;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Person {
@@ -15,27 +12,41 @@ public class Person {
     private String password;
     private String firstName;
     private String secondName;
+    private String email;
 
     public List<Book> personBooks = new ArrayList<>();
+
+    public Person(String login, String password, String firstName, String secondName, String email) {
+    }
 
     public Person() {
     }
 
-    public Person(String firstName, String secondName, Integer id, String login, String password) {
+    public Person(String firstName, String secondName, Integer id, String login, String password, String email) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
+        this.email = email;
     }
 
-    public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String login, String password) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String login, String password, String email) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.personBooks = personBooks;
+        this.email = email;
     }
 
     public String getLogin() {
