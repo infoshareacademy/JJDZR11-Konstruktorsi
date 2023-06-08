@@ -13,9 +13,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Service
 public class PersonService {
+
+    private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
 
 
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
@@ -26,6 +29,14 @@ public class PersonService {
     public PersonService(List<Person> personList) {
         this.personList = personList;
     }
+
+    public void registerUser(Person person) {
+/*        int nextId = users.size() + 1;
+        person.setId(nextId);*/
+        users.add(person);
+        saveUsers();
+    }
+
 
     public static List<Person> readUsers() {
         try {
@@ -44,7 +55,9 @@ public class PersonService {
         List<Person> personList = users;
         try {
             mapper.writeValue(new File("users.json"), personList);
+            LOGGER.info("------User saved correctly------");
         } catch (IOException e) {
+            LOGGER.info("------User not saved error------");
             e.printStackTrace();
         }
     }

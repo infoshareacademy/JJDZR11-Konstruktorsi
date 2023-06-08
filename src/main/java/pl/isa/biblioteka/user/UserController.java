@@ -37,19 +37,19 @@ public class UserController {
     }
 
 
-/*    @PostMapping("/register")
+    @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         Person newPerson = new Person(login, password, firstName, secondName, email);
-        .addUser(newPerson);
+        personService.registerUser(newPerson);
         List<Person> persons = PersonService.readUsers();
         model.addAttribute("persons", persons);
         return "register";
 
-*//*        Tool newTool = new Tool(name, new Tool.ToolSize(size, unit), actions, Path.of("/img/noImg.png"));
-        toolService.add(newTool);
-        List<Tool> tools = toolService.getTools();
-        model.addAttribute("tools", tools);*//*
+//        Tool newTool = new Tool(name, new Tool.ToolSize(size, unit), actions, Path.of("/img/noImg.png"));
+//        toolService.add(newTool);
+//        List<Tool> tools = toolService.getTools();
+//        model.addAttribute("tools", tools);
 
-    }*/
+    }
 
 }
