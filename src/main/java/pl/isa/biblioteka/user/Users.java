@@ -1,5 +1,7 @@
+/*
 package pl.isa.biblioteka.user;
 
+import org.springframework.stereotype.Component;
 import pl.isa.biblioteka.book.Book;
 
 import java.util.ArrayList;
@@ -7,22 +9,22 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
+@Component
 public class Users {
-    public static Person person;
+//    public static Person person;
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
-    Scanner scanner = new Scanner(System.in);
+    */
+/*Scanner scanner = new Scanner(System.in);
 
-    public void addUser() {
+    public void addUser(Person person) {
         List<Person> persons = Users.getUsers();
-        Scanner input = new Scanner(System.in);
-        System.out.println("Podaj imię nowego użytkownika: ");
-        String firstName = input.nextLine().trim();
-        System.out.println("Podaj nazwisko nowego użytkownika: ");
-        String lastName = input.nextLine().trim();
-        System.out.println("Podaj login nowego użytkownika: ");
-        String login = input.nextLine().trim();
-        System.out.println("Podaj hasło nowego użytkownika: ");
-        String password = input.nextLine().trim();
+        int nextId = users.size() + 1;
+
+        System.out.println("nextId = " + nextId);
+        System.out.println("persons = " + persons);
+
+        
+        
         boolean found = false;
         for (Person person1 : persons) {
             if (person1.getLogin().equalsIgnoreCase(login)) {
@@ -39,8 +41,8 @@ public class Users {
             }
             Person addPerson = new Person(firstName, lastName, id, login, password);
             users.add(addPerson);
-            System.out.printf("Dodano nowego użytkownika: %d%n %s %s ", id, firstName, lastName);
         }
+
     }
 
     public boolean deleteUser() {
@@ -72,9 +74,13 @@ public class Users {
             }
             System.out.println("---------------------------------");
         }
-    }
+    }*//*
 
+*/
+/*
     public static List<Person> getUsers() {
         return users;
-    }
+    }*//*
+
 }
+*/

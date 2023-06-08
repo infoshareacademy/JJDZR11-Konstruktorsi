@@ -1,25 +1,32 @@
 package pl.isa.biblioteka.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.nio.file.Path;
 import java.util.List;
 
 @Controller
 public class UserController {
 
 
-    private final Users users;
+    private final PersonService personService;
 
-    private final Person person;
+    @Autowired
+    public UserController(PersonService personService) {
+        this.personService = personService;
+    }
 
-    public UserController(Users users, Person person) {
-        this.users = users;
-        this.person = person;
+
+    @GetMapping("/users")
+    public String getUsers(Model model) {
+        List<Person> users = PersonService.readUsers();
+        model.addAttribute("users", users);
+        PersonService.saveUsers();
+        return "users";
     }
 
 
@@ -30,19 +37,19 @@ public class UserController {
     }
 
 
-    @PostMapping("/register")
-    public String add(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
+/*    @PostMapping("/register")
+    public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         Person newPerson = new Person(login, password, firstName, secondName, email);
-        users.addUser(newPerson);
+        .addUser(newPerson);
         List<Person> persons = PersonService.readUsers();
         model.addAttribute("persons", persons);
         return "register";
 
-/*        Tool newTool = new Tool(name, new Tool.ToolSize(size, unit), actions, Path.of("/img/noImg.png"));
+*//*        Tool newTool = new Tool(name, new Tool.ToolSize(size, unit), actions, Path.of("/img/noImg.png"));
         toolService.add(newTool);
         List<Tool> tools = toolService.getTools();
-        model.addAttribute("tools", tools);*/
+        model.addAttribute("tools", tools);*//*
 
-    }
+    }*/
 
 }
