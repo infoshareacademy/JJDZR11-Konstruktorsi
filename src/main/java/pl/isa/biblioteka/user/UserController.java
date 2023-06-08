@@ -25,7 +25,8 @@ public class UserController {
     public String getUsers(Model model) {
         List<Person> users = PersonService.readUsers();
         model.addAttribute("users", users);
-        PersonService.saveUsers();
+        personService.readUsers();
+        personService.saveUsers();
         return "users";
     }
 
@@ -39,17 +40,13 @@ public class UserController {
 
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
+        personService.readUsers();
         Person newPerson = new Person(login, password, firstName, secondName, email);
         personService.registerUser(newPerson);
         List<Person> persons = PersonService.readUsers();
         model.addAttribute("persons", persons);
+        personService.saveUsers();
         return "register";
-
-//        Tool newTool = new Tool(name, new Tool.ToolSize(size, unit), actions, Path.of("/img/noImg.png"));
-//        toolService.add(newTool);
-//        List<Tool> tools = toolService.getTools();
-//        model.addAttribute("tools", tools);
-
     }
 
 }

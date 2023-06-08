@@ -42,9 +42,11 @@ public class PersonService {
         try {
             byte[] jsonData = Files.readAllBytes(Paths.get("users.json"));
             ObjectMapper folderPerson = new ObjectMapper();
+            LOGGER.info("------User read correctly------");
             return Arrays.asList(folderPerson.readValue(jsonData, Person[].class));
         } catch (IOException e) {
             e.printStackTrace();
+            LOGGER.info("------User not read error------");
             return Collections.emptyList();
         }
     }
