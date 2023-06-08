@@ -1,6 +1,7 @@
 package pl.isa.biblioteka.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Service;
 import pl.isa.biblioteka.book.Book;
 
@@ -39,6 +40,7 @@ public class PersonService {
 
     public static void saveUsers() {
         ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
         List<Person> personList = users;
         try {
             mapper.writeValue(new File("users.json"), personList);
