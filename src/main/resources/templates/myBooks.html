@@ -5,7 +5,7 @@
     <title>User List</title>
 </head>
 <body>
-<h1>User List</h1>
+<h1>User List<span class="navbar-brand" th:text="${user}"></span></h1>
 <table>
     <thead>
     <tr>
@@ -18,15 +18,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.login}"></td>
-        <td th:text="${user.password}"></td>
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.secondName}"></td>
-        <td th:text="${user.email}"></td>
+    <tr th:each="currentUser : ${users}" th:if="${currentUser.login} == ${user}">
+        <td th:text="${currentUser.login}"></td>
+        <td th:text="${currentUser.password}"></td>
+        <td th:text="${currentUser.firstName}"></td>
+        <td th:text="${currentUser.secondName}"></td>
+        <td th:text="${currentUser.email}"></td>
         <td>
             <ul>
-                <li th:each="book : ${user.personBooks}">
+                <li th:each="book : ${currentUser.personBooks}">
                     <span th:text="${book.title}"></span> -
                     <span th:text="${book.author}"></span> -
                     <span th:text="${book.category}"></span> -
