@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,6 +29,17 @@ public class PersonService {
 
     public PersonService(List<Person> personList) {
         this.personList = personList;
+    }
+
+
+    public Person currentLogUser(){
+        Principal principal = null;
+        for (Person user : users) {
+            if(user.getLogin().equals(principal.getName())){
+                return user;
+            }
+        }
+        return null;
     }
 
     public void registerUser(Person person) {

@@ -101,14 +101,6 @@
   "email" : "kamil@kamil.pl",
   "personBooks" : [ ]
 }, {
-  "id" : 9,
-  "login" : "karol",
-  "password" : "pass",
-  "firstName" : "karol",
-  "secondName" : "wojtyła",
-  "email" : "kamil@kamil.pl",
-  "personBooks" : [ ]
-}, {
   "id" : 10,
   "login" : "adams",
   "password" : "pass",

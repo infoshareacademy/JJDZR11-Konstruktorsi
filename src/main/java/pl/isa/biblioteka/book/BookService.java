@@ -53,13 +53,6 @@ public class BookService {
         return searchText;
     }
 
-    private static Predicate<Book> foundBookByTitle(String title) {
-        return book -> book.getTitle().equalsIgnoreCase(title);
-    }
-
-    public List<Book> showAllAvailableBooks() {
-        return booksList.stream().filter(Book::isState).toList();
-    }
 
     public void showAllBorrowedBooks() {
         booksList.stream().filter(book -> !book.isState())
@@ -168,6 +161,26 @@ public class BookService {
                     .collect(Collectors.toList());
             model.addAttribute("pageNumbers", pageNumbers);
         }
+    }
+
+
+    private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
+        return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
+    }
+
+    public static boolean returnBook(String bookTitleToReturn) {
+        for (Book personBook : LogUser.logPerson.getPersonBooks()) {
+            if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
+                for (Book book : booksList) {
+                    if (book.getTitle().equalsIgnoreCase(bookTitleToReturn)) {
+                        book.setState(true);
+                    }
+                }
+                LogUser.logPerson.getPersonBooks().removeIf(foundBookByTitle(bookTitleToReturn));
+                return true;
+            }
+        }
+        return false;
     }
 
 

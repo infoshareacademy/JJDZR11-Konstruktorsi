@@ -53,6 +53,11 @@ public class UserController {
         } else return "myBooks";
     }
 
+    @GetMapping("/myBooksReturn")
+    public String returnMyBook(Principal principal, Model model){
+
+        return null;
+    }
 
     @GetMapping("/register")
     public String register() {
