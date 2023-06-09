@@ -22,13 +22,24 @@ public class UserController {
     }
 
 
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") Integer id) {
+        personService.delete(id);
+        return "redirect:/usersList";
+    }
+
+
     @GetMapping("/usersList")
-    public String getUsers(Model model) {
+    public String getUsers(Principal principal, Model model) {
         List<Person> users = PersonService.readUsers();
         model.addAttribute("users", users);
         personService.readUsers();
         personService.saveUsers();
-        return "usersList";
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "usersList";
+        } else return "usersList";
     }
 
     @GetMapping("/myBooks")
@@ -41,7 +52,6 @@ public class UserController {
             return "myBooks";
         } else return "myBooks";
     }
-
 
 
     @GetMapping("/register")
