@@ -22,13 +22,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/users")
+    @GetMapping("/usersList")
     public String getUsers(Model model) {
         List<Person> users = PersonService.readUsers();
         model.addAttribute("users", users);
         personService.readUsers();
         personService.saveUsers();
-        return "users";
+        return "usersList";
     }
 
     @GetMapping("/myBooks")
