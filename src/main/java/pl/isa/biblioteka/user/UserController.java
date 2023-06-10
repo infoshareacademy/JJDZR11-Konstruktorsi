@@ -1,11 +1,11 @@
 package pl.isa.biblioteka.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.isa.biblioteka.book.BookService;
 
 import java.security.Principal;
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.List;
 @Controller
 public class UserController {
 
-
+    private final BookService bookService;
     private final PersonService personService;
 
-    @Autowired
-    public UserController(PersonService personService) {
+    public UserController(BookService bookService, PersonService personService) {
+        this.bookService = bookService;
         this.personService = personService;
     }
 
@@ -27,7 +27,24 @@ public class UserController {
         personService.delete(id);
         return "redirect:/usersList";
     }
+//    myBooksReturnByName
 
+    @GetMapping("/myBooksReturnByName")
+    public String delete(@RequestParam("name") String name) {
+        bookService.returnBook(name);
+        return "redirect:/returnBook";
+    }
+
+    @GetMapping("/myBooksReturn")
+    public String returnMyBook(Principal principal,Model model){
+        List<Person> users = PersonService.readUsers();
+        model.addAttribute("users", users);
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "returnBook";
+        } else return "returnBook";
+    }
 
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
@@ -51,12 +68,6 @@ public class UserController {
             model.addAttribute("user", user);
             return "myBooks";
         } else return "myBooks";
-    }
-
-    @GetMapping("/myBooksReturn")
-    public String returnMyBook(Principal principal, Model model){
-
-        return null;
     }
 
     @GetMapping("/register")

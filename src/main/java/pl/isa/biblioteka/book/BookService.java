@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.isa.biblioteka.file.FolderBooks;
+import pl.isa.biblioteka.user.PersonService;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -168,15 +169,15 @@ public class BookService {
         return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
     }
 
-    public static boolean returnBook(String bookTitleToReturn) {
-        for (Book personBook : LogUser.logPerson.getPersonBooks()) {
+    public boolean returnBook(String bookTitleToReturn) {
+        for (Book personBook :  PersonService.currentLogUser().getPersonBooks()) {
             if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
                 for (Book book : booksList) {
                     if (book.getTitle().equalsIgnoreCase(bookTitleToReturn)) {
                         book.setState(true);
                     }
                 }
-                LogUser.logPerson.getPersonBooks().removeIf(foundBookByTitle(bookTitleToReturn));
+                PersonService.currentLogUser().getPersonBooks().removeIf(foundBookByTitle(bookTitleToReturn));
                 return true;
             }
         }

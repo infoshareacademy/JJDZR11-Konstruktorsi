@@ -32,7 +32,7 @@ public class PersonService {
     }
 
 
-    public Person currentLogUser(){
+    public static Person currentLogUser(){
         Principal principal = null;
         for (Person user : users) {
             if(user.getLogin().equals(principal.getName())){
