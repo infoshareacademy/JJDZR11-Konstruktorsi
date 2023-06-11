@@ -166,7 +166,7 @@
   "email" : "kamil@kamil.pl",
   "personBooks" : [ ]
 }, {
-  "id" : null,
+  "id" : 14,
   "login" : "a",
   "password" : "a",
   "firstName" : "a",
@@ -174,11 +174,19 @@
   "email" : "a@a",
   "personBooks" : [ ]
 }, {
-  "id" : null,
+  "id" : 15,
   "login" : "b",
   "password" : "b",
   "firstName" : "b",
   "secondName" : "b",
   "email" : "a@a",
+  "personBooks" : [ ]
+}, {
+  "id" : 16,
+  "login" : "kamil",
+  "password" : "kamil",
+  "firstName" : "kamil",
+  "secondName" : "kamil",
+  "email" : "kamil@kamil",
   "personBooks" : [ ]
 } ]
