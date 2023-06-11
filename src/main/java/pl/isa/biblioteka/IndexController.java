@@ -35,6 +35,7 @@ public class IndexController {
 
     }
 
+/*
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         Authentication authentication = SecurityContextHolder
@@ -45,6 +46,12 @@ public class IndexController {
                     .logout(request, response, authentication);
         }
         return "redirect:/";
+    }
+*/
+
+    @GetMapping("/logout")
+    public String logout2() {
+        return "redirect:/index";
     }
 
     @GetMapping("/error")
