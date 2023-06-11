@@ -45,7 +45,7 @@
                                     </ul>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-info btn-sm">Edytuj</a>
+                                    <a  th:href="@{/edit/{id}(id=*{id})}" class="btn btn-info btn-sm">Edytuj</a>
                                     <a th:href="@{/delete(id=${user.id})}" class="btn btn-danger btn-sm ms-2"
                                        onclick="if (!(confirm('Czy na pewno chcesz skasoważ tego użytkownika ?'))) return false">Skasuj</a>
                                 </td>
