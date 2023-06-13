@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
+import static pl.isa.biblioteka.user.PersonService.editUserId;
 import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 @Controller
@@ -72,9 +73,8 @@ public class UserController {
     @PostMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
         personService.delete(id);
-//        List<Person> persons = PersonService.readUsers();
         Person person = new Person(personDTO.getLogin(),personDTO.getPassword(),personDTO.getFirstName(),personDTO.getSecondName(),personDTO.getEmail());
-        registerUserId(person);
+        editUserId(person, id);
         personService.saveUsers();
         return "redirect:/usersList";
     }
