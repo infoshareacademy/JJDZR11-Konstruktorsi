@@ -182,14 +182,6 @@
   "email" : "c@c",
   "personBooks" : [ ]
 }, {
-  "id" : 99,
-  "login" : "aa",
-  "password" : "aa",
-  "firstName" : "aa",
-  "secondName" : "aa",
-  "email" : "aa@aa",
-  "personBooks" : [ ]
-}, {
   "id" : 18,
   "login" : "d",
   "password" : "d",

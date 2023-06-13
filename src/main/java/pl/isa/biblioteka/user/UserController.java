@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static pl.isa.biblioteka.user.PersonService.editUserId;
@@ -30,6 +32,7 @@ public class UserController {
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
         List<Person> users = PersonService.readUsers();
+        Collections.sort(users, Comparator.comparing(Person::getId));
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();
