@@ -3,10 +3,7 @@ package pl.isa.biblioteka.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -67,18 +64,17 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
-        Person id1 = personService.findId(id);
-        model.addAttribute("editUser", id1 );
+        Person personDTO = personService.findId(id);
+        model.addAttribute("personDTO", personDTO );
         return "edit";
     }
 
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, @RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
+    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
         personService.delete(id);
-        List<Person> persons = PersonService.readUsers();
-        model.addAttribute("persons", persons);
-        Person newPerson = new Person(login, password, firstName, secondName, email);
-        registerUserId(newPerson);
+//        List<Person> persons = PersonService.readUsers();
+        Person person = new Person(personDTO.getLogin(),personDTO.getPassword(),personDTO.getFirstName(),personDTO.getSecondName(),personDTO.getEmail());
+        registerUserId(person);
         personService.saveUsers();
         return "redirect:/usersList";
     }
