@@ -51,16 +51,6 @@ public class PersonService {
         return "Dodano użytkownika, możesz się zalogować";
     }
 
-    public PersonDTO findId(Integer id) {
-        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
-        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
-    }
-
-    public void delete(Integer id) {
-        users.removeIf(s -> s.getId().equals(id));
-        saveUsers();
-    }
-
     public static List<Person> readUsers() {
         try {
             byte[] jsonData = Files.readAllBytes(Paths.get("users.json"));
@@ -85,5 +75,15 @@ public class PersonService {
             LOGGER.info("------User not saved error------");
             e.printStackTrace();
         }
+    }
+
+    public PersonDTO findId(Integer id) {
+        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
+        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
+    }
+
+    public void delete(Integer id) {
+        users.removeIf(s -> s.getId().equals(id));
+        saveUsers();
     }
 }

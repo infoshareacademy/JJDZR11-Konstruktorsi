@@ -62,23 +62,23 @@ public class UserController {
         Person newPerson = new Person(login, password, firstName, secondName, email);
         String result = registerUserId(newPerson);
         model.addAttribute("mesage", result);
-        personService.saveUsers();
+        PersonService.saveUsers();
         return "register";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         PersonDTO personDTO = personService.findId(id);
-        model.addAttribute("personDTO", personDTO );
+        model.addAttribute("personDTO", personDTO);
         return "edit";
     }
 
     @PostMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
         personService.delete(id);
-        Person person = new Person(personDTO.getLogin(),personDTO.getPassword(),personDTO.getFirstName(),personDTO.getSecondName(),personDTO.getEmail());
+        Person person = new Person(personDTO.getLogin(), personDTO.getPassword(), personDTO.getFirstName(), personDTO.getSecondName(), personDTO.getEmail());
         editUserId(person, id);
-        personService.saveUsers();
+        PersonService.saveUsers();
         return "redirect:/usersList";
     }
 }
