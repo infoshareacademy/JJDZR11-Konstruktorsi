@@ -70,36 +70,41 @@
 <section th:fragment="product" id="product" class="tile2 my-5">
     <div class="container">
         <div class="section-title">
-            <h2>Jakiś content</h2>
-            <p>Opis contentu</p>
+            <h2>AKTUALNOŚCI</h2>
         </div>
-        <div class="row pb-5 mb-5">
-            <div class="col-lg-6 pb-5 mb-5">
-                <div class="d-inline-block"><img class="d-inline-block img-fluid pe-5" src="/images/tree.jpg"
-                                                 width="700"></div>
+
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="col-lg-6">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore
-                </p>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+
+                    <img src="/images/wydarzenieCzytelnicze.png" class="d-block w-100" alt="wydarzenie czytelnicze">
+                    <a title="Wiecej informacji" class="blue-btn" href="https://wbpg.org.pl/wielki-maraton-czytelniczy/">
+                        <span>Wiecej informacji</span>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/dzienBibliotekarza.png" class="d-block w-100" alt="dzien bibliotekarza">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/Zapowiedzi.webp" class="d-block w-100" alt="zapowiedzi wydawnicze">
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+
         </div>
     </div>
 </section>
