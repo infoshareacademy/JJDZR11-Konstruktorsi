@@ -7,27 +7,63 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.isa.biblioteka.file.FolderBooks;
+import pl.isa.biblioteka.user.PersonService;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
 public class BookService {
+
+
+    private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
+
     public static Scanner sc = new Scanner(System.in);
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 
-    public void addBook() {
-        System.out.println("Podaj tytuł:");
-        String title = sc.nextLine();
-        System.out.println("Podaj autora:");
-        String author = sc.nextLine();
-        System.out.println("Podaj kategorię:");
-        String category = sc.nextLine();
-        Book book = new Book(title, author, category, true);
-        booksList.add(book);
-        System.out.println("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
+    private static Predicate<Book> foundBookByTitle(String title) {
+        return book -> book.getTitle().equalsIgnoreCase(title);
+    }
+
+
+    public static Page<Book> findPaginated(Pageable pageable, List<Book> bookList) {
+        int pageSize = pageable.getPageSize();
+        int currentPage = pageable.getPageNumber();
+        int startItem = currentPage * pageSize;
+        List<Book> list;
+        if (bookList.size() < startItem) {
+            list = Collections.emptyList();
+        } else {
+            int toIndex = Math.min(startItem + pageSize, bookList.size());
+            list = bookList.subList(startItem, toIndex);
+        }
+        Page<Book> bookPage = new PageImpl<>(list, PageRequest.of(currentPage, pageSize), bookList.size());
+        return bookPage;
+    }
+
+    public static void extracted(Model model, int currentPage, int pageSize, List<Book> bookListCheck) {
+        Page<Book> bookPage = findPaginated(PageRequest.of(currentPage - 1, pageSize), bookListCheck);
+        model.addAttribute("books", bookPage);
+
+        int totalPages = bookPage.getTotalPages();
+        if (totalPages > 0) {
+            int maxVisiblePages = 5; // Maksymalna liczba widocznych numerów stron
+            int startPage = Math.max(1, currentPage - maxVisiblePages);
+            int endPage = Math.min(totalPages, currentPage + maxVisiblePages);
+
+            if (currentPage > 6) {
+                model.addAttribute("firstPage", 1);
+            }
+
+            if (currentPage < totalPages - 5) {
+                model.addAttribute("lastPage", totalPages);
+            }
+            List<Integer> pageNumbers = IntStream.rangeClosed(startPage, endPage).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
     }
 
     public void deleteBookByTitle() {
@@ -50,10 +86,6 @@ public class BookService {
         List<Book> searchText = booksList.stream().filter(book -> book.getTitle().contains(text) || book.getAuthor().contains(text)).collect(Collectors.toList());
 
         return searchText;
-    }
-
-    private static Predicate<Book> foundBookByTitle(String title) {
-        return book -> book.getTitle().equalsIgnoreCase(title);
     }
 
     public List<Book> showAllAvailableBooks() {
@@ -111,40 +143,9 @@ public class BookService {
         return availableCategory;
     }
 
-    public static Page<Book> findPaginated(Pageable pageable, List<Book> bookList) {
-        int pageSize = pageable.getPageSize();
-        int currentPage = pageable.getPageNumber();
-        int startItem = currentPage * pageSize;
-        List<Book> list;
-        if (bookList.size() < startItem) {
-            list = Collections.emptyList();
-        } else {
-            int toIndex = Math.min(startItem + pageSize, bookList.size());
-            list = bookList.subList(startItem, toIndex);
-        }
-        Page<Book> bookPage = new PageImpl<>(list, PageRequest.of(currentPage, pageSize), bookList.size());
-        return bookPage;
+    public static void addBook(Book book) {
+        booksList.add(book);
+        LOGGER.info("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
     }
 
-    public static void extracted(Model model, int currentPage, int pageSize, List<Book> bookListCheck) {
-        Page<Book> bookPage = findPaginated(PageRequest.of(currentPage - 1, pageSize), bookListCheck);
-        model.addAttribute("books", bookPage);
-
-        int totalPages = bookPage.getTotalPages();
-        if (totalPages > 0) {
-            int maxVisiblePages = 5; // Maksymalna liczba widocznych numerów stron
-            int startPage = Math.max(1, currentPage - maxVisiblePages);
-            int endPage = Math.min(totalPages, currentPage + maxVisiblePages);
-
-            if (currentPage > 6) {
-                model.addAttribute("firstPage", 1);
-            }
-
-            if (currentPage < totalPages - 5) {
-                model.addAttribute("lastPage", totalPages);
-            }
-            List<Integer> pageNumbers = IntStream.rangeClosed(startPage, endPage).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-    }
 }
