@@ -10,7 +10,7 @@ services:
     volumes:
       - ./mysql:/var/lib/mysql
   JJDZR11-Konstruktorsi:
-    image: library
+    image: library:0.1
     depends_on:
       - mysql
     ports:
