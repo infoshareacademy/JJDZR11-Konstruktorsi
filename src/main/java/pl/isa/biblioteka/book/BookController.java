@@ -130,8 +130,8 @@ public class BookController {
     }
 
     @PostMapping("/addBook")
-    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, @RequestParam boolean state, Model model) {
-        Book book = new Book(title, author, category, state);
+    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
+        Book book = new Book(title, author, category);
         BookService.addBook(book);
         model.addAttribute("result", book);
         BookRepository.saveBooks();
