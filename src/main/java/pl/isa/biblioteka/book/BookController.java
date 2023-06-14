@@ -121,8 +121,12 @@ public class BookController {
 //        model.addAttribute("books", searchBook);
         return "redirect:searchText";
     }
-}
 
+@GetMapping("/librarianDay")
+public String librarianDay(Model model) {
+    return "librarianDay";
+    }
+}
 
 //    @GetMapping("/bookByTitle")
 //    String bookTitle(Model model) {
