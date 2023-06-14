@@ -18,14 +18,14 @@ public class BookService {
     public static Scanner sc = new Scanner(System.in);
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 
-    public void addBook() {
-        System.out.println("Podaj tytuł:");
-        String title = sc.nextLine();
-        System.out.println("Podaj autora:");
-        String author = sc.nextLine();
-        System.out.println("Podaj kategorię:");
-        String category = sc.nextLine();
-        Book book = new Book(title, author, category, true);
+    public static void addBook(Book book) {
+//        System.out.println("Podaj tytuł:");
+//        String title = sc.nextLine();
+//        System.out.println("Podaj autora:");
+//        String author = sc.nextLine();
+//        System.out.println("Podaj kategorię:");
+//        String category = sc.nextLine();
+//        Book book = new Book(title, author, category, true);
         booksList.add(book);
         System.out.println("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
     }

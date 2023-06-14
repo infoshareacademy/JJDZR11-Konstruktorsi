@@ -3,6 +3,8 @@ package pl.isa.biblioteka.book;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.user.PersonService;
 
 import java.security.Principal;
 import java.util.List;
@@ -121,6 +123,22 @@ public class BookController {
 //        model.addAttribute("books", searchBook);
         return "redirect:searchText";
     }
+
+    @GetMapping("/addBook")
+    public String addBook() {
+        return "addBook";
+    }
+
+    @PostMapping("/addBook")
+    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, @RequestParam boolean state, Model model) {
+        Book book = new Book(title, author, category, state);
+        BookService.addBook(book);
+        model.addAttribute("result", book);
+        BookRepository.saveBooks();
+        return "addBook";
+    }
+
+
 }
 
 
