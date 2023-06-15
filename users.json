@@ -36,16 +36,6 @@
     "author" : "Stanisław Jachowicz",
     "state" : false,
     "kind" : "Epika"
-  }, {
-    "title" : "Życie",
-    "author" : "Karol Bołoz Antoniewicz",
-    "state" : false,
-    "kind" : "Liryka"
-  }, {
-    "title" : "Życie",
-    "author" : "Kazimierz Przerwa-Tetmajer",
-    "state" : false,
-    "kind" : "Liryka"
   } ]
 }, {
   "id" : 3,
@@ -139,15 +129,40 @@
   "secondName" : "test",
   "email" : "kamil@kamil.pl",
   "personBooks" : [ {
-    "title" : "Wiatr halny",
+    "title" : "A co wam śpiewać",
+    "author" : "Maria Konopnicka",
+    "state" : false,
+    "kind" : "Liryka"
+  }, {
+    "title" : "Adaś",
+    "author" : "Stanisław Jachowicz",
+    "state" : false,
+    "kind" : "Epika"
+  }, {
+    "title" : "Akordy jesienne",
     "author" : "Jan Kasprowicz",
     "state" : false,
     "kind" : "Liryka"
   }, {
-    "title" : "Na szczycie",
-    "author" : "Kazimierz Przerwa-Tetmajer",
+    "title" : "Akslop",
+    "author" : "Miłosz Biedrzycki",
     "state" : false,
     "kind" : "Liryka"
+  }, {
+    "title" : "A cóż z tą Dzieciną...",
+    "author" : "Autor nieznany",
+    "state" : false,
+    "kind" : "Liryka"
+  }, {
+    "title" : "Adam Asnyk. Sylwetka literacka",
+    "author" : "Jan Sten",
+    "state" : false,
+    "kind" : "Epika"
+  }, {
+    "title" : "20 000 mil podmorskiej żeglugi",
+    "author" : "Jules Gabriel Verne",
+    "state" : false,
+    "kind" : "Epika"
   } ]
 }, {
   "id" : 13,

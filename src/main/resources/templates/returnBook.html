@@ -30,8 +30,7 @@
                                 <td th:text="*{author}"></td>
                                 <td th:text="*{category}"></td>
                                 <td>
-                                    <a th:href="@{/myBooksReturnByName(name=${book.title})}" class="btn btn-danger btn-sm ms-2"
-                                       onclick="if (!(confirm('Czy na pewno chcesz skasoważ tego użytkownika ?'))) return false">Skasuj</a>
+                                    <a th:href="@{/myBooksReturnByName(name=${book.title})}" class="btn btn-danger btn-sm ms-2">Skasuj</a>
                                 </td>
                             </tr>
                             </tbody>

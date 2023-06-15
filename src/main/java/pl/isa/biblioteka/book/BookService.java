@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.isa.biblioteka.file.FolderBooks;
+import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.util.*;
@@ -18,7 +19,6 @@ import java.util.stream.IntStream;
 public class BookService {
     public static Scanner sc = new Scanner(System.in);
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
-
     public void addBook() {
         System.out.println("Podaj tytuł:");
         String title = sc.nextLine();
@@ -164,6 +164,19 @@ public class BookService {
         }
     }
 
+    public boolean addBookToPerson(String bookTitle) {
+        Person person = PersonService.currentLogUser();
+        for (Book book : booksList) {
+            if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
+                book.setState(false);
+                person.getPersonBooks().add(book);
+//                PersonService.personBooks.add(book);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
         return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
@@ -175,9 +188,10 @@ public class BookService {
                 for (Book book : booksList) {
                     if (book.getTitle().equalsIgnoreCase(bookTitleToReturn)) {
                         book.setState(true);
+//                        return true;
                     }
                 }
-                PersonService.currentLogUser().getPersonBooks().removeIf(foundBookByTitle(bookTitleToReturn));
+                PersonService.personBooks.removeIf(foundBookByTitle(bookTitleToReturn));
                 return true;
             }
         }
