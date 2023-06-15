@@ -45,6 +45,7 @@ public class IndexController {
     }
 }
 
+
 /*           Metoda do KONFIGURACJA BEZ ZABEZPIECZENIA authorizeHttpRequests
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {

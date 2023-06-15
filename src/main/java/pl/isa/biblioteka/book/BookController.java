@@ -124,6 +124,11 @@ public class BookController {
         return "redirect:searchText";
     }
 
+@GetMapping("/librarianDay")
+public String librarianDay(Model model) {
+    return "librarianDay";
+    }
+
     @GetMapping("/addBook")
     public String addBook() {
         return "addBook";
@@ -140,7 +145,6 @@ public class BookController {
 
 
 }
-
 
 //    @GetMapping("/bookByTitle")
 //    String bookTitle(Model model) {
