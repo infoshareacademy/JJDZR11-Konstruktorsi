@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import pl.isa.biblioteka.file.FolderBooks;
 import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonService;
-import pl.isa.biblioteka.user.Person;
-import pl.isa.biblioteka.user.PersonService;
 
 import java.security.Principal;
 import java.util.List;
@@ -205,8 +203,6 @@ public String librarianDay(Model model) {
     }
 
 
-}
-
     @PostMapping("/addBook")
     public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
         Book book = new Book(title, author, category);
@@ -216,18 +212,4 @@ public String librarianDay(Model model) {
         return "addBook";
     }
 
-
 }
-
-//    @GetMapping("/bookByTitle")
-//    String bookTitle(Model model) {
-//        model.addAttribute("books", searchBook);
-//        return "list";
-//    }
-
-/*    @GetMapping("/searchText")
-    public String searchByText(Model model) {
-                model.addAttribute("books", localSearchBook);
-
-        return "list";
-    }*/
