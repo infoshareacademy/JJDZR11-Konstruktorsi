@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.isa.biblioteka.file.FolderBooks;
 import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonService;
+import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.user.PersonService;
 
 import java.security.Principal;
 import java.util.List;
@@ -86,6 +88,12 @@ public class BookController {
         return "redirect:bookByTitle";
     }
 
+//    @GetMapping("/bookByTitle")
+//    String bookTitle(Model model) {
+//        model.addAttribute("books", searchBook);
+//        return "list";
+//    }
+
     @RequestMapping(value = "/bookByTitle", method = RequestMethod.GET)
     public String listBooksTitle(Principal principal,
             Model model,
@@ -144,6 +152,15 @@ public class BookController {
         return "redirect:searchText";
     }
 
+@GetMapping("/librarianDay")
+public String librarianDay(Model model) {
+    return "librarianDay";
+    }
+
+    @GetMapping("/addBook")
+    public String addBook() {
+        return "addBook";
+    }
     @GetMapping("/myBooksReturnByName")
     public String deleteBook(@RequestParam("name") String name) {
         bookService.returnBook(name);
@@ -189,3 +206,28 @@ public class BookController {
 
 
 }
+
+    @PostMapping("/addBook")
+    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
+        Book book = new Book(title, author, category);
+        BookService.addBook(book);
+        model.addAttribute("result", book);
+        BookRepository.saveBooks();
+        return "addBook";
+    }
+
+
+}
+
+//    @GetMapping("/bookByTitle")
+//    String bookTitle(Model model) {
+//        model.addAttribute("books", searchBook);
+//        return "list";
+//    }
+
+/*    @GetMapping("/searchText")
+    public String searchByText(Model model) {
+                model.addAttribute("books", localSearchBook);
+
+        return "list";
+    }*/

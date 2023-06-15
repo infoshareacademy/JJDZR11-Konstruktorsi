@@ -7,9 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.isa.biblioteka.book.BookService;
 import pl.isa.biblioteka.file.FolderBooks;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import static pl.isa.biblioteka.user.PersonService.editUserId;
+import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 @Controller
 public class UserController {
@@ -22,7 +28,6 @@ public class UserController {
         this.personService = personService;
     }
 
-
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
         personService.delete(id);
@@ -32,6 +37,7 @@ public class UserController {
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
         List<Person> users = PersonService.readUsers();
+        Collections.sort(users, Comparator.comparing(Person::getId));
         model.addAttribute("users", users);
         personService.readUsers();
         if (principal != null) {
@@ -57,16 +63,28 @@ public class UserController {
         return "register";
     }
 
-
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
-        personService.readUsers();
         Person newPerson = new Person(login, password, firstName, secondName, email);
-        personService.registerUser(newPerson);
-        List<Person> persons = PersonService.readUsers();
-        model.addAttribute("persons", persons);
-        personService.saveUsers();
+        String result = registerUserId(newPerson);
+        model.addAttribute("mesage", result);
+        PersonService.saveUsers();
         return "register";
     }
 
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        PersonDTO personDTO = personService.findId(id);
+        model.addAttribute("personDTO", personDTO);
+        return "edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
+        personService.delete(id);
+        Person person = new Person(personDTO.getLogin(), personDTO.getPassword(), personDTO.getFirstName(), personDTO.getSecondName(), personDTO.getEmail());
+        editUserId(person, id);
+        PersonService.saveUsers();
+        return "redirect:/usersList";
+    }
 }

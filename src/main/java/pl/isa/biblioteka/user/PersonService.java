@@ -28,6 +28,8 @@ public class PersonService {
     public final  List<Person> personList;
 
     public static List<Book> personBooks = new ArrayList<>();
+    public final List<Person> personList;
+    public List<Book> personBooks = new ArrayList<>();
 
     public PersonService(List<Person> personList) {
         this.personList = personList;
@@ -63,13 +65,25 @@ public class PersonService {
     public void registerUser(Person person) {
 /*        int nextId = users.size() + 1;
         person.setId(nextId);*/
+    public static String registerUserId(Person person) {
+        boolean userExist = users.stream().anyMatch(user -> user.getLogin().equalsIgnoreCase(person.getLogin()));
+        if (userExist) {
+            return "Login jest już zajęty, wybierz inny login";
+        }
+        int nextId = users.size() + 1;
+        person.setId(nextId);
         users.add(person);
-        saveUsers();
+        return "Dodano użytkownika, możesz się zalogować";
     }
 
-    public void delete(Integer id) {
-        users.removeIf(s -> s.getId().equals(id));
-        saveUsers();
+    public static String editUserId(Person person, Integer id) {
+        boolean userExist = users.stream().anyMatch(user -> user.getLogin().equalsIgnoreCase(person.getLogin()));
+        if (userExist) {
+            return "Login jest już zajęty, wybierz inny login";
+        }
+        person.setId(id);
+        users.add(person);
+        return "Dodano użytkownika, możesz się zalogować";
     }
 
 
@@ -97,5 +111,15 @@ public class PersonService {
             LOGGER.info("------User not saved error------");
             e.printStackTrace();
         }
+    }
+
+    public PersonDTO findId(Integer id) {
+        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
+        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
+    }
+
+    public void delete(Integer id) {
+        users.removeIf(s -> s.getId().equals(id));
+        saveUsers();
     }
 }

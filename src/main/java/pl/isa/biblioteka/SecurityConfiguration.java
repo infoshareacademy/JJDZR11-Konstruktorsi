@@ -25,20 +25,29 @@ public class SecurityConfiguration {
 
         List<Person> personList = PersonService.readUsers();
 
-        List<UserDetails> admin = personList.stream()
-                .map(person -> User.withUsername(person.getLogin())
-                        .password(passwordEncoder.encode(person.getPassword()))
-                        .roles(person.getLogin().equalsIgnoreCase("admin") || person.getLogin().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER")
-                        .build())
-                .collect(Collectors.toList());
+        List<UserDetails> admin = personList.stream().map(person -> User.withUsername(person.getLogin()).password(passwordEncoder.encode(person.getPassword())).roles(person.getLogin().equalsIgnoreCase("admin") || person.getLogin().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER").build()).collect(Collectors.toList());
 
         return new InMemoryUserDetailsManager(admin.stream().toArray(UserDetails[]::new));
     }
 
+
+    @Bean      //KONFIGURACJA BEZ ZABEZPIECZENIA authorizeHttpRequests
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeHttpRequests(authorize -> authorize.requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**", "/searchText", "/searchByText", "/list", "/bookList/**", "/register").permitAll().anyRequest().authenticated()).formLogin(login -> login.loginPage("/").defaultSuccessUrl("/", true).usernameParameter("user").passwordParameter("password")).logout(logout -> logout.logoutSuccessUrl("/").permitAll());
+        return http.build();
+    }
+
     @Bean
+    public PasswordEncoder passwordEncoder() {
+        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return encoder;
+    }
+}
+
+/*    @Bean      KONFIGURACJA Z ZABEZPIECZENIEM
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/**", "/images/**", "/css/**", "/static/font/**", "/font/**",
+                        .requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**",
                                 "/searchText", "/searchByText", "/list", "/bookList/**", "/register")
                         .permitAll()
                         .anyRequest()
@@ -48,16 +57,7 @@ public class SecurityConfiguration {
                         .usernameParameter("user").passwordParameter("password"))
                 .logout(logout -> logout.logoutSuccessUrl("/logout").permitAll());
         return http.build();
-    }
-
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        return encoder;
-    }
-
-}
+    }*/
 
 
 //todo skasować przed wgraniem na main
