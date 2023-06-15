@@ -126,6 +126,22 @@ public class BookController {
 public String librarianDay(Model model) {
     return "librarianDay";
     }
+
+    @GetMapping("/addBook")
+    public String addBook() {
+        return "addBook";
+    }
+
+    @PostMapping("/addBook")
+    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
+        Book book = new Book(title, author, category);
+        BookService.addBook(book);
+        model.addAttribute("result", book);
+        BookRepository.saveBooks();
+        return "addBook";
+    }
+
+
 }
 
 //    @GetMapping("/bookByTitle")

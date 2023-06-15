@@ -14,6 +14,13 @@ public class Book {
     public Book() {
     }
 
+    public Book(String title, String author, String category) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.state = true;
+    }
+
     public Book(String title, String author, String category, boolean state) {
         this.title = title;
         this.author = author;
