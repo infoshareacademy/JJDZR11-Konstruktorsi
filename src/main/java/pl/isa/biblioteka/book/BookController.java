@@ -161,10 +161,9 @@ public String librarianDay(Model model) {
     @GetMapping("/borrowedBooks")
     public String borrowedBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         borrowedBooks = bookService.showAllBorrowedBooks();
-
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(20);
-        extracted(model, currentPage, pageSize, availableBooks);
+        extracted(model, currentPage, pageSize, borrowedBooks);
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
