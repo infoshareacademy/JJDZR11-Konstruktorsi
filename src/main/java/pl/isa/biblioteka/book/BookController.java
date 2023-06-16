@@ -23,6 +23,7 @@ public class BookController {
     List<Book> searchBook;
     List<Book> localSearchBook;
     List<Book> availableBooks;
+    List<Book> borrowedBooks;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -155,6 +156,20 @@ public String librarianDay(Model model) {
             model.addAttribute("user", user);
             return "availableBooks";
         } else return "availableBooks";
+
+    }
+    @GetMapping("/borrowedBooks")
+    public String borrowedBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        borrowedBooks = bookService.showAllBorrowedBooks();
+
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(20);
+        extracted(model, currentPage, pageSize, availableBooks);
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "borrowedBooks";
+        } else return "borrowedBooks";
 
     }
 }
