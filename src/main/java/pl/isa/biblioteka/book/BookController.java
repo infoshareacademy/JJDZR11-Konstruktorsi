@@ -22,6 +22,7 @@ public class BookController {
     List<Book> searchCategoryBook;
     List<Book> searchBook;
     List<Book> localSearchBook;
+    List<Book> availableBooks;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -142,8 +143,25 @@ public String librarianDay(Model model) {
         BookRepository.saveBooks();
         return "addBook";
     }
+    @GetMapping("/availableBooks")
+    public String availableBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        availableBooks = bookService.showAllAvailableBooks();
 
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(20);
+        extracted(model, currentPage, pageSize, availableBooks);
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "availableBooks";
+        } else return "availableBooks";
 
+    }
+    @PostMapping("/availableBooksAdmin")
+    public String availableBooks(Model model) {
+        availableBooks = bookService.showAllAvailableBooks();
+        return "redirect:availableBooks";
+    }
 }
 
 //    @GetMapping("/bookByTitle")
