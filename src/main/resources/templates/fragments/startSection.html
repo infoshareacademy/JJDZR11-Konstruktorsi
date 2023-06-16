@@ -214,10 +214,12 @@
 
 <section th:fragment="addBook" id="start" class="d-flex align-items-center">
     <div class="container position-relative">
-        <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-9 text-center">
-                <h1 class="library">BIBLIOTEKA</h1>
-                <h3 class="library" style="font-weight: bold">Utwórz książkę</h3>
+        <div class="row">
+            <div class="cntentTemplate">
+                <div style="display: flex; justify-content: center; margin-top: -50px">
+                    <img class="d-flex" src="/images/add.png">
+                </div>
+                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Dodaj książkę</h3><br>
                 <div th:if="${mesage}" class="alert alert-secondary" role="alert">
                     <span th:text="${mesage}"></span>
                 </div>
@@ -241,7 +243,58 @@
                     <input type="text" class="form-control form-control-primary" id="category"
                            placeholder="Kategoria" name="category" required>
                 </div>
-                <button type="submit" class="btn btn-primary mb-1">Utwórz książkę</button>
+                <button type="submit" class="btn btn-primary mb-1">Dodaj książkę</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!--
+* start addUser
+-->
+
+<section th:fragment="addUser" id="start" class="d-flex align-items-center">
+    <div class="container position-relative">
+        <div class="row">
+            <div class="cntentTemplate">
+                <div style="display: flex; justify-content: center; margin-top: -50px">
+                    <img class="d-flex" src="/images/adduser.png">
+                </div>
+                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Dodaj użytkownika</h3><br>
+                <div th:if="${mesage}" class="alert alert-secondary" role="alert">
+                    <span th:text="${mesage}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row tiles mt-2 ">
+            <form action="/register" method="post" style="width: fit-content"
+                  class="border border-primary rounded-4 bg-light p-4 shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="mb-3">
+                    <label for="login" class="form-label text-primary">Login</label>
+                    <input type="text" class="form-control form-control-primary" id="login" placeholder="login"
+                           name="login" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label text-primary">Hasło</label>
+                    <input type="password" class="form-control" id="password" placeholder="hasło" name="password"
+                           required>
+                </div>
+                <div class="mb-3">
+                    <label for="firstName" class="form-label text-primary">Imię</label>
+                    <input type="text" class="form-control form-control-primary" id="firstName"
+                           placeholder="imię" name="firstName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="secondName" class="form-label text-primary">Nazwisko</label>
+                    <input type="text" class="form-control form-control-primary" id="secondName"
+                           placeholder="nazwisko" name="secondName" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label text-primary">Addres email</label>
+                    <input type="email" class="form-control form-control-primary" id="email"
+                           placeholder="email" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-primary mb-1">Dodaj użytkownika</button>
             </form>
         </div>
     </div>
