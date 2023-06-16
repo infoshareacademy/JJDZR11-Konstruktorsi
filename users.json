@@ -146,6 +146,11 @@
     "author" : "Tristan Derème",
     "state" : false,
     "kind" : "Romans"
+  }, {
+    "title" : "Abuzei i Tair",
+    "author" : "Ignacy Krasicki",
+    "state" : false,
+    "kind" : "Klasyka"
   } ]
 }, {
   "id" : 14,
