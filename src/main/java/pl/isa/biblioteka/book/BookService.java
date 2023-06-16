@@ -61,9 +61,10 @@ public class BookService {
         return booksList.stream().filter(Book::isState).toList();
     }
 
-    public void showAllBorrowedBooks() {
-        booksList.stream().filter(book -> !book.isState()).forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s  %n", el.getTitle(), el.getAuthor(), el.getCategory()));
+    public List<Book> showAllBorrowedBooks() {
+        return booksList.stream().filter(book -> !book.isState()).toList();
     }
+
 
     public List<Book> showAllBooks() {
         return booksList;
@@ -112,9 +113,10 @@ public class BookService {
         return availableCategory;
     }
 
-    public static void addBook(Book book) {
+    public static String addBook(Book book) {
         booksList.add(book);
         LOGGER.info("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
+        return "Dodano nową książkę " + book.getTitle() + " autora: " + book.getAuthor();
     }
 
 

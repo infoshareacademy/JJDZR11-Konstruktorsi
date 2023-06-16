@@ -24,6 +24,8 @@ public class BookController {
     List<Book> searchCategoryBook;
     List<Book> searchBook;
     List<Book> localSearchBook;
+    List<Book> availableBooks;
+    List<Book> borrowedBooks;
 
     public BookController(BookService bookService, PersonService personService) {
         this.bookService = bookService;
@@ -85,12 +87,6 @@ public class BookController {
         searchBook = bookService.findBookByTitle(book.getTitle());
         return "redirect:bookByTitle";
     }
-
-//    @GetMapping("/bookByTitle")
-//    String bookTitle(Model model) {
-//        model.addAttribute("books", searchBook);
-//        return "list";
-//    }
 
     @RequestMapping(value = "/bookByTitle", method = RequestMethod.GET)
     public String listBooksTitle(Principal principal,
@@ -156,8 +152,12 @@ public String librarianDay(Model model) {
     }
 
     @GetMapping("/addBook")
-    public String addBook() {
-        return "addBook";
+    public String addBook(Principal principal, Model model) {
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "addBook";
+        } else return "addBook";
     }
     @GetMapping("/myBooksReturnByName")
     public String deleteBook(@RequestParam("name") String name) {
@@ -204,12 +204,44 @@ public String librarianDay(Model model) {
 
 
     @PostMapping("/addBook")
-    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
+    public String addBook(Principal principal, @RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
         Book book = new Book(title, author, category);
-        BookService.addBook(book);
+        String str = BookService.addBook(book);
         model.addAttribute("result", book);
+        model.addAttribute("mesage", str);
         BookRepository.saveBooks();
-        return "addBook";
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "addBook";
+        } else return "addBook";
     }
+    @GetMapping("/availableBooks")
+    public String availableBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        availableBooks = bookService.showAllAvailableBooks();
 
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(20);
+        extracted(model, currentPage, pageSize, availableBooks);
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "availableBooks";
+        } else return "availableBooks";
+
+    }
+    @GetMapping("/borrowedBooks")
+    public String borrowedBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+        borrowedBooks = bookService.showAllBorrowedBooks();
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(20);
+        extracted(model, currentPage, pageSize, borrowedBooks);
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "borrowedBooks";
+        } else return "borrowedBooks";
+
+    }
 }
+

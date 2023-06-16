@@ -10,7 +10,9 @@
 
 <header th:replace="~{/fragments/header::logout}" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"></header>
 
-<section th:replace="~{fragments/startSection::register}"></section>
+<section th:replace="~{fragments/startSection::addUser}" sec:authorize="hasRole('ROLE_ADMIN')"></section>
+
+<section th:replace="~{fragments/startSection::register}" sec:authorize="!hasRole('ROLE_ADMIN')"></section>
 
 <footer th:replace="~{/fragments/footer::footer}"></footer>
 

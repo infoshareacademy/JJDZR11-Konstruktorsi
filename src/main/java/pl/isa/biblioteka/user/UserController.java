@@ -73,10 +73,14 @@ public class UserController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Integer id, Model model) {
+    public String edit(Principal principal, @PathVariable("id") Integer id, Model model) {
         PersonDTO personDTO = personService.findId(id);
         model.addAttribute("personDTO", personDTO);
-        return "edit";
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "edit";
+        } else return "edit";
     }
 
     @PostMapping("/edit/{id}")
