@@ -38,7 +38,8 @@ public class PersonService {
         int nextId = users.size() + 1;
         person.setId(nextId);
         users.add(person);
-        return "Dodano użytkownika, możesz się zalogować";
+        LOGGER.info("Dodano użytkownika: " + person.getLogin());
+        return "Dodano użytkownika: " + person.getLogin() + ", możesz się zalogować";
     }
 
     public static String editUserId(Person person, Integer id) {

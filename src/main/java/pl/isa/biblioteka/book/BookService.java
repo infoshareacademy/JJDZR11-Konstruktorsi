@@ -143,9 +143,10 @@ public class BookService {
         return availableCategory;
     }
 
-    public static void addBook(Book book) {
+    public static String addBook(Book book) {
         booksList.add(book);
         LOGGER.info("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
+        return "Dodano nową książkę " + book.getTitle() + " autora: " + book.getAuthor();
     }
 
 }
