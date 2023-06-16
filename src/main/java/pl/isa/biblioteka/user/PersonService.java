@@ -61,16 +61,6 @@ public class PersonService {
         return null;
     }
 
-        public static String registerUserId (Person person){
-            boolean userExist = users.stream().anyMatch(user -> user.getLogin().equalsIgnoreCase(person.getLogin()));
-            if (userExist) {
-                return "Login jest już zajęty, wybierz inny login";
-            }
-            int nextId = users.size() + 1;
-            person.setId(nextId);
-            users.add(person);
-            return "Dodano użytkownika, możesz się zalogować";
-        }
     public static String registerUserId(Person person) {
         boolean userExist = users.stream().anyMatch(user -> user.getLogin().equalsIgnoreCase(person.getLogin()));
         if (userExist) {

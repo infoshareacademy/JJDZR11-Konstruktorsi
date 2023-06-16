@@ -65,7 +65,12 @@
   "firstName" : "Admin",
   "secondName" : "Root",
   "email" : "kamil@kamil.pl",
-  "personBooks" : [ ]
+  "personBooks" : [ {
+    "title" : "A co wam śpiewać",
+    "author" : "Maria Konopnicka",
+    "state" : false,
+    "kind" : "Romans"
+  } ]
 }, {
   "id" : 7,
   "login" : "login",
