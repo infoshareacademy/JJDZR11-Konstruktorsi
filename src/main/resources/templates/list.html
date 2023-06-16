@@ -14,9 +14,6 @@
                         <img class="d-flex" src="/images/baseBooks.png">
                     </div>
                     <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Lista książek w bibliotece</h3><br>
-
-                    <a class="btn btn-info me-2 mb-2" th:href="@{/search}">WYSZUKAJ</a>
-                    <a class="btn btn-info me-2 mb-2" th:href="@{/}">POWRÓT</a>
                     <section class="" th:if="${books.isEmpty()}">
                         <h3> Brak wyszukiwanego elementu</h3>
                     </section>

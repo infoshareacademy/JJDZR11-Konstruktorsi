@@ -183,12 +183,4 @@
   "secondName" : "a",
   "email" : "a@a",
   "personBooks" : [ ]
-}, {
-  "id" : 16,
-  "login" : "qq",
-  "password" : "qq",
-  "firstName" : "qq",
-  "secondName" : "qq",
-  "email" : "q@q",
-  "personBooks" : [ ]
 } ]
