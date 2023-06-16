@@ -36,16 +36,6 @@
     "author" : "Stanisław Jachowicz",
     "state" : false,
     "kind" : "Epika"
-  }, {
-    "title" : "Życie",
-    "author" : "Karol Bołoz Antoniewicz",
-    "state" : false,
-    "kind" : "Liryka"
-  }, {
-    "title" : "Życie",
-    "author" : "Kazimierz Przerwa-Tetmajer",
-    "state" : false,
-    "kind" : "Liryka"
   } ]
 }, {
   "id" : 4,
@@ -75,7 +65,12 @@
   "firstName" : "Admin",
   "secondName" : "Root",
   "email" : "kamil@kamil.pl",
-  "personBooks" : [ ]
+  "personBooks" : [ {
+    "title" : "A co wam śpiewać",
+    "author" : "Maria Konopnicka",
+    "state" : false,
+    "kind" : "Romans"
+  } ]
 }, {
   "id" : 7,
   "login" : "login",
@@ -147,15 +142,20 @@
   "secondName" : "test",
   "email" : "kamil@kamil.pl",
   "personBooks" : [ {
-    "title" : "Wiatr halny",
-    "author" : "Jan Kasprowicz",
+    "title" : "20 000 mil podmorskiej żeglugi",
+    "author" : "Jules Gabriel Verne",
     "state" : false,
-    "kind" : "Liryka"
+    "kind" : "Klasyka"
   }, {
-    "title" : "Na szczycie",
-    "author" : "Kazimierz Przerwa-Tetmajer",
+    "title" : "(Ach! rzucić sieci zdarte...)",
+    "author" : "Tristan Derème",
     "state" : false,
-    "kind" : "Liryka"
+    "kind" : "Romans"
+  }, {
+    "title" : "Abuzei i Tair",
+    "author" : "Ignacy Krasicki",
+    "state" : false,
+    "kind" : "Klasyka"
   } ]
 }, {
   "id" : 14,

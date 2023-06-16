@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.isa.biblioteka.file.FolderBooks;
+import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.util.*;
@@ -17,16 +18,8 @@ import java.util.stream.IntStream;
 
 @Service
 public class BookService {
-
-
     private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
-
-    public static Scanner sc = new Scanner(System.in);
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
-
-    private static Predicate<Book> foundBookByTitle(String title) {
-        return book -> book.getTitle().equalsIgnoreCase(title);
-    }
 
 
     public static Page<Book> findPaginated(Pageable pageable, List<Book> bookList) {
@@ -44,31 +37,7 @@ public class BookService {
         return bookPage;
     }
 
-    public static void extracted(Model model, int currentPage, int pageSize, List<Book> bookListCheck) {
-        Page<Book> bookPage = findPaginated(PageRequest.of(currentPage - 1, pageSize), bookListCheck);
-        model.addAttribute("books", bookPage);
-
-        int totalPages = bookPage.getTotalPages();
-        if (totalPages > 0) {
-            int maxVisiblePages = 5; // Maksymalna liczba widocznych numerów stron
-            int startPage = Math.max(1, currentPage - maxVisiblePages);
-            int endPage = Math.min(totalPages, currentPage + maxVisiblePages);
-
-            if (currentPage > 6) {
-                model.addAttribute("firstPage", 1);
-            }
-
-            if (currentPage < totalPages - 5) {
-                model.addAttribute("lastPage", totalPages);
-            }
-            List<Integer> pageNumbers = IntStream.rangeClosed(startPage, endPage).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-    }
-
-    public void deleteBookByTitle() {
-        System.out.println("wpisz tytul ksiazki do usuniecia");
-        String title = sc.nextLine();
+    public void deleteBookByTitle(String title) {
         boolean findBook = false;
         for (Book book : booksList) {
             if (foundBookByTitle(title).test(book)) {
@@ -149,5 +118,65 @@ public class BookService {
         LOGGER.info("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
         return "Dodano nową książkę " + book.getTitle() + " autora: " + book.getAuthor();
     }
+
+
+    public static void extracted(Model model, int currentPage, int pageSize, List<Book> bookListCheck) {
+        Page<Book> bookPage = findPaginated(PageRequest.of(currentPage - 1, pageSize),bookListCheck);
+        model.addAttribute("books", bookPage);
+
+        int totalPages = bookPage.getTotalPages();
+        if (totalPages > 0) {
+            int maxVisiblePages = 5; // Maksymalna liczba widocznych numerów stron
+            int startPage = Math.max(1, currentPage - maxVisiblePages);
+            int endPage = Math.min(totalPages, currentPage + maxVisiblePages);
+
+            if (currentPage > 6) {
+                model.addAttribute("firstPage", 1);
+            }
+
+            if (currentPage < totalPages - 5) {
+                model.addAttribute("lastPage", totalPages);
+            }
+            List<Integer> pageNumbers = IntStream.rangeClosed(startPage, endPage)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+    }
+
+    public boolean addBookToPerson(String bookTitle) {
+        Person person = PersonService.currentLogUser();
+        for (Book book : booksList) {
+            if (book.getTitle().equalsIgnoreCase(bookTitle) && book.isState()) {
+                book.setState(false);
+                person.getPersonBooks().add(book);
+//                PersonService.personBooks.add(book);
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    private static Predicate<Book> foundBookByTitle(String bookReturnTitle) {
+        return book -> book.getTitle().equalsIgnoreCase(bookReturnTitle);
+    }
+
+    public boolean returnBook(String bookTitleToReturn) {
+        for (Book personBook :  PersonService.currentLogUser().getPersonBooks()) {
+            if (personBook.getTitle().equalsIgnoreCase(bookTitleToReturn) && !personBook.isState()) {
+                for (Book book : booksList) {
+                    if (book.getTitle().equalsIgnoreCase(bookTitleToReturn)) {
+                        book.setState(true);
+//                        return true;
+                    }
+                }
+                PersonService.personBooks.removeIf(foundBookByTitle(bookTitleToReturn));
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
