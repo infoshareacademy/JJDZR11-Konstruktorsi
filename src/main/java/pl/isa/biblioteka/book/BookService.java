@@ -92,9 +92,15 @@ public class BookService {
         return booksList.stream().filter(Book::isState).toList();
     }
 
-    public void showAllBorrowedBooks() {
-        booksList.stream().filter(book -> !book.isState()).forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s  %n", el.getTitle(), el.getAuthor(), el.getCategory()));
+    public List<Book> showAllBorrowedBooks() {
+       List<Book> borrowedBooks = booksList.stream()
+               .filter(book -> !book.isState()).toList();
+//               .forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s  %n", el.getTitle(), el.getAuthor(), el.getCategory()));
+        return borrowedBooks;
     }
+//    public void showAllBorrowedBooks() {
+//        booksList.stream().filter(book -> !book.isState()).forEach(el -> System.out.printf("Tytuł: %s, Autor: %s, Kategoria: %s  %n", el.getTitle(), el.getAuthor(), el.getCategory()));
+//    }
 
     public List<Book> showAllBooks() {
         return booksList;
