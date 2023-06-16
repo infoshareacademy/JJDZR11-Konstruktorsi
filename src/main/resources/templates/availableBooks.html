@@ -40,16 +40,16 @@
           <div class="text-center">
             <ul>
               <li th:if="${firstPage}" class="pagination">
-                <a th:href="@{/bookList?size=15&amp;page=1}" th:text="${1}">First</a>
+                <a th:href="@{/availableBooks?size=15&amp;page=1}" th:text="${1}">First</a>
               </li>
               <li th:if="${books.totalPages > 0}" class="pagination"
                   th:each="pageNumber : ${pageNumbers}">
-                <a th:href="@{/bookList(size=${books.size}, page=${pageNumber})}"
+                <a th:href="@{/availableBooks(size=${books.size}, page=${pageNumber})}"
                    th:text=${pageNumber}
                    th:class="${pageNumber==books.number + 1} ? active"></a>
               </li>
               <li th:if="${lastPage}" class="pagination">
-                <a th:href="@{/bookList?size=15&amp;page={page}(page=${books.totalPages})}"
+                <a th:href="@{/availableBooks?size=15&amp;page={page}(page=${books.totalPages})}"
                    th:text="${books.totalPages}">Last</a>
               </li>
             </ul>
