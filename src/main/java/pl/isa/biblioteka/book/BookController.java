@@ -157,11 +157,6 @@ public String librarianDay(Model model) {
         } else return "availableBooks";
 
     }
-    @PostMapping("/availableBooksAdmin")
-    public String availableBooks(Model model) {
-        availableBooks = bookService.showAllAvailableBooks();
-        return "redirect:availableBooks";
-    }
 }
 
 //    @GetMapping("/bookByTitle")

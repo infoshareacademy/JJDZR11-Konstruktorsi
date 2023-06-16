@@ -27,7 +27,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr th:each="book,status:${books}" th:object="${book}" method="post">
+              <tr th:each="book,status:${books}" th:object="${book}">
                 <td th:text="${status.count}"></td>
                 <td th:text="*{title}"></td>
                 <td th:text="|*{author}|"></td>
