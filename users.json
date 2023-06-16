@@ -23,6 +23,16 @@
     "author" : "Panke",
     "state" : false,
     "kind" : "Horror"
+  }, {
+    "title" : "A kiedy będziesz...",
+    "author" : "Kazimierz Przerwa-Tetmajer",
+    "state" : false,
+    "kind" : "Romans"
+  }, {
+    "title" : "Pieśń I, 30 (O Venus regina Cnidi Paphique...)",
+    "author" : "Horacy",
+    "state" : false,
+    "kind" : "Romans"
   } ]
 }, {
   "id" : 3,
