@@ -139,13 +139,17 @@ public String librarianDay(Model model) {
     }
 
     @PostMapping("/addBook")
-    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
+    public String addBook(Principal principal, @RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
         Book book = new Book(title, author, category);
         String str = BookService.addBook(book);
         model.addAttribute("result", book);
         model.addAttribute("mesage", str);
         BookRepository.saveBooks();
-        return "addBook";
+        if (principal != null) {
+            String user = principal.getName();
+            model.addAttribute("user", user);
+            return "addBook";
+        } else return "addBook";
     }
 
 
