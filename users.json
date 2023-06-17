@@ -19,11 +19,6 @@
     "state" : false,
     "kind" : "Dramat"
   }, {
-    "title" : "Nowa",
-    "author" : "Panke",
-    "state" : false,
-    "kind" : "Horror"
-  }, {
     "title" : "A kiedy będziesz...",
     "author" : "Kazimierz Przerwa-Tetmajer",
     "state" : false,
