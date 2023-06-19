@@ -3,6 +3,8 @@ package pl.isa.biblioteka;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import pl.isa.biblioteka.book.Book;
+import pl.isa.biblioteka.book.BookDAO;
 import pl.isa.biblioteka.user.Person;
 import pl.isa.biblioteka.user.PersonDAO;
 
@@ -11,6 +13,9 @@ class LibraryAppTests {
 
 	@Autowired
 	PersonDAO personDAO;
+
+	@Autowired
+	BookDAO bookDAO;
 
 	@Test
 	void savePerson() {
@@ -21,6 +26,15 @@ class LibraryAppTests {
 				"Koz",
 				"k@k.pl");
 		personDAO.savePerson(person);
+	}
+
+	@Test
+	void saveBook() {
+		Book book = new Book(
+				"ISA-Junit",
+				"TomaszD",
+				"Nauka" );
+		bookDAO.saveBook(book);
 	}
 
 	@Test
