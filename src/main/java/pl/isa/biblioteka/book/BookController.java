@@ -78,8 +78,8 @@ public class BookController {
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
-            return "list";
-        } else return "list";
+            return "listToBorrow";
+        } else return "listToBorrow";
     }
 
     @PostMapping("/filterTitle")
@@ -99,8 +99,8 @@ public class BookController {
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
-            return "list";
-        } else return "list";
+            return "listToBorrow";
+        } else return "listToBorrow";
     }
 
     @PostMapping("/filterCategory")
@@ -121,8 +121,8 @@ public class BookController {
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
-            return "list";
-        } else return "list";
+            return "listToBorrow";
+        } else return "listToBorrow";
     }
 
     @GetMapping("/searchText")

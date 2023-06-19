@@ -11,6 +11,9 @@ public class Book {
     private String category;
     private boolean state = true;
 
+    //mennyToOne
+    //Person person
+
     public Book() {
     }
 
