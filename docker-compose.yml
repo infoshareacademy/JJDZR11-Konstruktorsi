@@ -6,7 +6,8 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: kamil
+      MYSQL_ROOT_PASSWORD: book
+      MYSQL_DATABASE: library
     volumes:
       - ./mysql:/var/lib/mysql
   JJDZR11-Konstruktorsi:
