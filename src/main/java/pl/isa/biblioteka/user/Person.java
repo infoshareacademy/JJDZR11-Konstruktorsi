@@ -1,5 +1,6 @@
 package pl.isa.biblioteka.user;
 
+import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 import pl.isa.biblioteka.book.Book;
 
@@ -7,14 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Entity
 public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "login", unique = true, nullable = false)
     private String login;
+
+    @Column(name = "password", unique = true, nullable = false)
     private String password;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "second_name")
     private String secondName;
+
+    @Column(name = "email", nullable = false)
     private String email;
+
     //OneToMeny
+    @Transient
     public List<Book> personBooks = new ArrayList<>();
 
     public Person(String login, String password, String firstName, String secondName, String email) {
