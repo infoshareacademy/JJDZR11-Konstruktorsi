@@ -8,8 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: book
       MYSQL_DATABASE: library
-    volumes:
-      - ./mysql:/var/lib/mysql
   JJDZR11-Konstruktorsi:
     image: library:0.1
     depends_on:
