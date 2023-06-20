@@ -13,7 +13,7 @@ public class BookDAO {
 
     @Transactional
     public Book saveBook(Book book) {
-        entityManager.persist(book);
+        entityManager.merge(book);
         return book;
     }
 }

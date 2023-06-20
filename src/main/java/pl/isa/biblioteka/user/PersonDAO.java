@@ -13,7 +13,7 @@ public class PersonDAO {
 
     @Transactional
     public Person savePerson(Person person) {
-        entityManager.persist(person);
+        entityManager.merge(person);
         return person;
     }
 
