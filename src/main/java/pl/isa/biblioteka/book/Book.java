@@ -40,7 +40,7 @@ public class Book {
 
 
     @ManyToOne
-    Person person;
+    private Person person;
 
     //mennyToOne
     //Person person
@@ -99,11 +99,11 @@ public class Book {
         return "Book{" + "title='" + title + '\'' + ", author='" + author + '\'' + ", category='" + category + '\'' + ", state=" + state + '}';
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
