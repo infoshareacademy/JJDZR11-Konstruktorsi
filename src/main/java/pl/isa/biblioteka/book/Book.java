@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
+import pl.isa.biblioteka.user.Person;
 
 import java.time.LocalDateTime;
 
@@ -38,6 +39,8 @@ public class Book {
     private LocalDateTime returnDate;
 
 
+    @ManyToOne
+    Person person;
 
     //mennyToOne
     //Person person

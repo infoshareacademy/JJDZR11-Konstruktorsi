@@ -27,10 +27,11 @@ public class Person {
     @Column(name = "second_name")
     private String secondName;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     //OneToMeny
+    @OneToMany
     @Transient
     public List<Book> personBooks = new ArrayList<>();
 
