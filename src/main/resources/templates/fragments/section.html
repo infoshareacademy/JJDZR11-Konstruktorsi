@@ -1,0 +1,188 @@
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<!--
+* service
+-->
+
+<section th:fragment="service" id="service" class="services section-bg pb-5">
+    <div class="container pb-5 mb-5">
+        <div class="section-title">
+            <h2>Książki na topie</h2>
+            <p>Najczęściej wypożyczane książki</p>
+        </div>
+        <div class="row pb-5">
+            <div class="col-lg-4 col-md-6 d-flex ">
+                <div class="tile">
+                    <h4><a href="#">Dramat</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/drama.png"></span>
+                    <p>Voluptatum deleniti atque corrupti quos dolores et molestias excepturi</p>
+                    <p> deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 d-flex mt-4 mt-md-0">
+                <div class="tile">
+                    <h4><a href="#">Romans</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/romance.png"></span>
+                    <p>Voluptatum atque corrupti quos dolores et quas molestias excepturi</p>
+                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 d-flex mt-4 mt-lg-0">
+                <div class="tile">
+                    <h4><a href="#">Epika</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/epic.png"></span>
+                    <p>Voluptatum deleniti atque quos dolores et quas molestias excepturi</p>
+                    <p>Voluptatum atque corrupti quos dolores et quas molestias excepturi</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 d-flex mt-4">
+                <div class="tile">
+                    <h4><a href="#">Tragedia</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/tragedy.png"></span>
+                    <p>Voluptatum deleniti atque corrupti quos dolores et quas excepturi</p>
+                    <p> deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 d-flex mt-4">
+                <div class="tile">
+                    <h4><a href="#">Liryka</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/lyrics.png"></span>
+                    <p>Voluptatum deleniti corrupti quos dolores et quas molestias excepturi</p>
+                    <p>Voluptatum deleniti atque quos dolores et quas molestias excepturi</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 d-flex mt-4">
+                <div class="tile">
+                    <h4><a href="#">Klasyka</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/clasic.png"></span>
+                    <p>Voluptatum atque corrupti quos dolores et quas molestias excepturi</p>
+                    <p>Voluptatum deleniti atque corrupti quos dolores et quas excepturi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--
+* product
+-->
+
+<section th:fragment="product" id="product" class="tile2 my-5">
+    <div class="container">
+        <div class="section-title">
+            <h2>AKTUALNOŚCI</h2>
+            <p>Nowości z świata książek</p>
+
+        </div>
+
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="https://wbpg.org.pl/wielki-maraton-czytelniczy/"><img
+                            src="/images/wydarzenieCzytelnicze.png"
+                            class="d-block w-100" width="700" height="550"
+                            alt="Wydarzenie czytelnicze"></a>
+                </div>
+                <div class="carousel-item">
+                    <a th:href="@{/librarianDay}"><img src="/images/dzienBibliotekarza2.jpg"
+                                                       class="d-block w-100" width="500" height="550"
+                                                       alt="Dzien bibliotekarza"></a>
+                </div>
+                <div class="carousel-item">
+                    <a href="https://www.empik.com/zapowiedzi/ksiazki"><img src="/images/ksiazkoweNowosci.jpg"
+                                                                            class="d-block w-100" width="500"
+                                                                            height="550"
+                                                                            alt="Zapowiedzi wydawnicze"></a>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<!--
+* team
+-->
+
+<section th:fragment="team" id="team"
+         style="background-image: url('/images/bcg.png'); background-size: cover; background-position: center;">
+    <div class="container pb-5 mb-5">
+        <div style="margin-top: 98px" class="section-title">
+            <h2>Konstruktorsi</h2>
+            <p>Twórcy serwisu</p>
+        </div>
+        <div class="row pb-5 mb-5">
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="member">
+                    <div class="member-img">
+                        <a href="https://www.linkedin.com" target="_blank"><img src="/images/kinga.png"
+                                                                                class="img-fluid"
+                                                                                alt="Kinga"></a>
+                    </div>
+                    <div class="member-name">
+                        <h4>Kinga</h4>
+                        <span>junior java dev.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="member">
+                    <div class="member-img">
+                        <a href="https://www.linkedin.com" target="_blank"><img src="/images/mikolaj.jpeg"
+                                                                                class="img-fluid"
+                                                                                alt="Mikołaj"></a>
+                    </div>
+                    <div class="member-name">
+                        <h4>Mikołaj</h4>
+                        <span>junior java dev.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="member">
+                    <div class="member-img">
+                        <a href="https://www.linkedin.com" target="_blank"><img src="/images/przemek.jpeg"
+                                                                                class="img-fluid"
+                                                                                alt="Przemek"></a>
+                    </div>
+                    <div class="member-name">
+                        <h4>Przemek</h4>
+                        <span>senior java dev.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 d-flex">
+                <div class="member">
+                    <div class="member-img">
+                        <a href="https://www.linkedin.com" target="_blank"><img src="/images/kamil.png"
+                                                                                class="img-fluid"
+                                                                                alt="Kamil"></a>
+                    </div>
+                    <div class="member-name">
+                        <h4>Kamil</h4>
+                        <span>junior java dev.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
