@@ -5,6 +5,7 @@ The Library project is a web application for managing a book collection and user
 ## Table of Contents
 - [Requirements](#requirements)
 - [Installation Instructions](#installation-instructions)
+- [Docker Setup](#docker-setup)
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [Author](#author)
@@ -32,6 +33,23 @@ mvn spring-boot:run
 
 4. The application will be accessible at: `http://localhost:8080`
 
+## Docker Setup
+
+To run the application using Docker, follow these steps:
+1. Pull the latest MySQL Docker image:
+```
+   docker pull mysql:latest
+   ```
+   2. Run the MySQL container with the following command:
+
+   ```
+docker run -d -p 3308:3306 --restart always --name mysql-container -e MYSQL_ROOT_PASSWORD=book -e MYSQL_DATABASE=library mysql:latest
+
+   ```
+   Note: The host URL is still `localhost` because the container is mapped to the host's port `3308`.
+
+
+
 ## Usage
 
 
@@ -58,4 +76,12 @@ spring.datasource.password=book
 If you have different database credentials or configuration, you can modify the application.properties file accordingly.
 ```
 ## Author
-The Library project was created by [KozlowskiKamil].
+The Library project was created by [JJDZR11-Konstruktorsi](#requirements)
+- [Requirements](#requirements)
+- [Installation Instructions](#installation-instructions)
+- [Usage](#usage)
+- [KozlowskiKamil](#[KozlowskiKamil](github.com/KozlowskiKamil)https://github.com/KozlowskiKamil)
+
+
+
+
