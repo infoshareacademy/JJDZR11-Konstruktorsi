@@ -76,12 +76,11 @@ spring.datasource.password=book
 If you have different database credentials or configuration, you can modify the application.properties file accordingly.
 ```
 ## Author
-The Library project was created by [JJDZR11-Konstruktorsi](#requirements)
-- [Requirements](#requirements)
-- [Installation Instructions](#installation-instructions)
-- [Usage](#usage)
-- [KozlowskiKamil](#[KozlowskiKamil](github.com/KozlowskiKamil)https://github.com/KozlowskiKamil)
+The Library project was created by [JJDZR11-Konstruktorsi](https://github.com/infoshareacademy/JJDZR11-Konstruktorsi)
 
-
+- [kingabiereg](https://github.com/kingabiereg)
+- [MMalinowski19](https://github.com/MMalinowski19)
+- [Wenderholm](https://github.com/Wenderholm)
+- [KozlowskiKamil](https://github.com/KozlowskiKamil)
 
 
