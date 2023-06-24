@@ -1,4 +1,5 @@
 # Library
+![Logo](https://github.com/infoshareacademy/JJDZR11-Konstruktorsi/blob/KozlowskiKamil-patch-1/src/main/resources/static/images/13.png)
 
 The Library project is a web application for managing a book collection and users in a library. It allows for adding, editing, and deleting books, as well as registering and managing users.
 
@@ -78,9 +79,9 @@ If you have different database credentials or configuration, you can modify the 
 ## Author
 The Library project was created by [JJDZR11-Konstruktorsi](https://github.com/infoshareacademy/JJDZR11-Konstruktorsi)
 
-- [kingabiereg](https://github.com/kingabiereg)
-- [MMalinowski19](https://github.com/MMalinowski19)
-- [Wenderholm](https://github.com/Wenderholm)
-- [KozlowskiKamil](https://github.com/KozlowskiKamil)
+- [@kingabiereg](https://github.com/kingabiereg)
+- [@MMalinowski19](https://github.com/MMalinowski19)
+- [@Wenderholm](https://github.com/Wenderholm)
+- [@KozlowskiKamil](https://github.com/KozlowskiKamil)
 
 
