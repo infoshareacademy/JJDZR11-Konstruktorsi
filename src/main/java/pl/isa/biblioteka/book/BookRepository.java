@@ -1,6 +1,7 @@
 package pl.isa.biblioteka.book;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.io.File;
@@ -12,9 +13,9 @@ import java.util.Collections;
 import java.util.List;
 
 @Repository
-public class BookRepository {
+public interface BookRepository extends JpaRepository<Book, Long> {
 
-    public static void saveBooks() {
+    static void saveBooks() {
         ObjectMapper mapper = new ObjectMapper();
         List<Book> booksList = BookService.booksList;
         try {
@@ -24,7 +25,7 @@ public class BookRepository {
         }
     }
 
-    public static List<Book> readBooks() {
+    static List<Book> readBooks() {
         try {
             byte[] jsonData = Files.readAllBytes(Paths.get("booksFile.json"));
             ObjectMapper folderBooks = new ObjectMapper();

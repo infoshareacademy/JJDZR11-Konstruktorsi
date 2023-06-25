@@ -21,6 +21,15 @@ public class BookService {
     private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
     public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
 
+    private final BookRepository bookRepository;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
+
+    public List<Book> getBooks(){
+        return bookRepository.findAll();
+    }
 
     public static Page<Book> findPaginated(Pageable pageable, List<Book> bookList) {
         int pageSize = pageable.getPageSize();

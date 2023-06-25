@@ -40,7 +40,7 @@ public class BookController {
             @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
-        extracted(model, currentPage, pageSize, booksList);
+        extracted(model, currentPage, pageSize, bookService.getBooks());
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
