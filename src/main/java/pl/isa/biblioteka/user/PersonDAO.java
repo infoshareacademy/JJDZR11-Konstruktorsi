@@ -5,11 +5,21 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class PersonDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    public Person findById(Integer id) {
+        return entityManager.find(Person.class, id);
+    }
+
+    public List<Person> findAll() {
+        return entityManager.createQuery("FROM Person", Person.class).getResultList();
+    }
 
     @Transactional
     public Person savePerson(Person person) {
@@ -22,9 +32,9 @@ public class PersonDAO {
         }
     }
 
-    public boolean isLoginTaken(String login){
-        // TODO: 28.06.2023  dodać jak zrobi sie metode pobrania wszystkich userow 
-        return false;
+    public boolean isLoginTaken(String login) {
+        return findAll().stream().anyMatch(person -> person.getLogin().equalsIgnoreCase(login));
+
     }
 
 }
