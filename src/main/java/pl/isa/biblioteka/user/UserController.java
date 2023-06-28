@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static pl.isa.biblioteka.user.PersonService.editUserId;
-import static pl.isa.biblioteka.user.PersonService.registerUserId;
+//import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 
 @Controller
@@ -22,21 +22,23 @@ public class UserController {
 
     private final BookService bookService;
     private final PersonService personService;
+    private final PersonDAO personDAO;
 
-    public UserController(BookService bookService, PersonService personService) {
+    public UserController(BookService bookService, PersonService personService, PersonDAO personDAO) {
         this.bookService = bookService;
         this.personService = personService;
+        this.personDAO = personDAO;
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
-        personService.delete(id);
+        personDAO.delate(id);
         return "redirect:/usersList";
     }
 
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
-        List<Person> users = PersonService.readUsers();
+        List<Person> users = personDAO.findAll();
         Collections.sort(users, Comparator.comparing(Person::getId));
         model.addAttribute("users", users);
         personService.readUsers();
@@ -66,7 +68,7 @@ public class UserController {
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         Person newPerson = new Person(login, password, firstName, secondName, email);
-        String result = registerUserId(newPerson);
+        String result = personService.registerUserId(newPerson);
         model.addAttribute("mesage", result);
         PersonService.saveUsers();
         return "register";
