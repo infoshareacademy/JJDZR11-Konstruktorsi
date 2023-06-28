@@ -22,17 +22,26 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class PersonService {
+
+    private final PersonDAO personDAO;
+
+    public PersonService(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }
+
+
     private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
 
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
 
 
     public static List<Book> personBooks = new ArrayList<>();
-    public final List<Person> personList;
 
+
+/*    public final List<Person> personList;
     public PersonService(List<Person> personList) {
         this.personList = personList;
-    }
+    }*/
 
     public void setPersonBooks(List<Book> personBooks) {
         this.personBooks = personBooks;
@@ -61,16 +70,18 @@ public class PersonService {
         return null;
     }
 
-    public static String registerUserId(Person person) {
-        boolean userExist = users.stream().anyMatch(user -> user.getLogin().equalsIgnoreCase(person.getLogin()));
+    public String registerUserId(Person person) {
+        boolean userExist = personDAO.isLoginTaken(person.getLogin());
         if (userExist) {
             return "Login jest już zajęty, wybierz inny login";
         }
-        int nextId = users.size() + 1;
-        person.setId(nextId);
-        users.add(person);
-        LOGGER.info("Dodano użytkownika: " + person.getLogin());
-        return "Dodano użytkownika: " + person.getLogin() + ", możesz się zalogować";
+
+        Person savedPerson = personDAO.savePerson(person);
+        if (savedPerson != null) {
+            return "Dodano użytkownika: " + savedPerson.getLogin() + ", możesz się zalogować";
+        } else {
+            return "Wystąpił problem podczas rejestracji użytkownika";
+        }
     }
 
     public static String editUserId(Person person, Integer id) {

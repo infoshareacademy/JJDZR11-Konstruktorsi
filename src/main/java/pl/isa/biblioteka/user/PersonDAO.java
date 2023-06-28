@@ -13,10 +13,18 @@ public class PersonDAO {
 
     @Transactional
     public Person savePerson(Person person) {
-        entityManager.merge(person);
-        return person;
+        if (person.getId() == null) {
+            entityManager.persist(person);
+            return person;
+        } else {
+            entityManager.merge(person);
+            return person;
+        }
     }
 
-
+    public boolean isLoginTaken(String login){
+        // TODO: 28.06.2023  dodać jak zrobi sie metode pobrania wszystkich userow 
+        return false;
+    }
 
 }

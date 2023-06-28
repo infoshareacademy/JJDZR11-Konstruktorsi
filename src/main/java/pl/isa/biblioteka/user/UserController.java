@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import static pl.isa.biblioteka.user.PersonService.editUserId;
-import static pl.isa.biblioteka.user.PersonService.registerUserId;
+//import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 
 @Controller
@@ -66,7 +66,7 @@ public class UserController {
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         Person newPerson = new Person(login, password, firstName, secondName, email);
-        String result = registerUserId(newPerson);
+        String result = personService.registerUserId(newPerson);
         model.addAttribute("mesage", result);
         PersonService.saveUsers();
         return "register";

@@ -1,18 +1,12 @@
 [ {
+  "personBooks" : [ ],
   "id" : 1,
   "login" : "Bibliotekarz",
   "password" : "0000",
   "firstName" : "root",
   "secondName" : "admin",
-  "email" : "kamil1@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil1@kamil.pl"
 }, {
-  "id" : 2,
-  "login" : "Kamil",
-  "password" : "kamil",
-  "firstName" : "Jan",
-  "secondName" : "Kowalski",
-  "email" : "kamil2@kamil.pl",
   "personBooks" : [ {
     "id" : null,
     "title" : "Życie snem",
@@ -37,104 +31,104 @@
     "author" : "Stanisław Jachowicz",
     "state" : false,
     "kind" : "Klasyka"
-  } ]
+  } ],
+  "id" : 2,
+  "login" : "Kamil",
+  "password" : "kamil",
+  "firstName" : "Jan",
+  "secondName" : "Kowalski",
+  "email" : "kamil2@kamil.pl"
 }, {
-  "id" : 3,
-  "login" : "Mikolas",
-  "password" : "mikolaj",
-  "firstName" : "Mikołas",
-  "secondName" : "Nowak",
-  "email" : "kamil3@kamil.pl",
   "personBooks" : [ {
     "id" : null,
     "title" : "Żydek",
     "author" : "Stanisław Jachowicz",
     "state" : false,
     "kind" : "Epika"
-  } ]
+  } ],
+  "id" : 3,
+  "login" : "Mikolas",
+  "password" : "mikolaj",
+  "firstName" : "Mikołas",
+  "secondName" : "Nowak",
+  "email" : "kamil3@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 4,
   "login" : "Kinga",
   "password" : "kinga",
   "firstName" : "Kinga",
   "secondName" : "Mila",
-  "email" : "kamil4@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil4@kamil.pl"
 }, {
-  "id" : 5,
-  "login" : "Przemek",
-  "password" : "przemek",
-  "firstName" : "Przemek",
-  "secondName" : "Adamski",
-  "email" : "kamil5@kamil.pl",
   "personBooks" : [ {
     "id" : null,
     "title" : "Ostatni list",
     "author" : "Szmul Zygielbojm",
     "state" : false,
     "kind" : "Epika"
-  } ]
+  } ],
+  "id" : 5,
+  "login" : "Przemek",
+  "password" : "przemek",
+  "firstName" : "Przemek",
+  "secondName" : "Adamski",
+  "email" : "kamil5@kamil.pl"
 }, {
-  "id" : 6,
-  "login" : "Admin",
-  "password" : "admin",
-  "firstName" : "Admin",
-  "secondName" : "Root",
-  "email" : "kamil6@kamil.pl",
   "personBooks" : [ {
     "id" : null,
     "title" : "A co wam śpiewać",
     "author" : "Maria Konopnicka",
     "state" : false,
     "kind" : "Romans"
-  } ]
+  } ],
+  "id" : 6,
+  "login" : "Admin",
+  "password" : "admin",
+  "firstName" : "Admin",
+  "secondName" : "Root",
+  "email" : "kamil6@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 7,
   "login" : "login",
   "password" : "pass",
   "firstName" : "first",
   "secondName" : "second",
-  "email" : "kamil7@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil7@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 8,
   "login" : "testowy",
   "password" : "pass",
   "firstName" : "Kamil",
   "secondName" : "K",
-  "email" : "kamil8@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil8@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 9,
   "login" : "Kuba",
   "password" : "pass",
   "firstName" : "Kuba",
   "secondName" : "Knapik",
-  "email" : "kamil9@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil9@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 10,
   "login" : "karol",
   "password" : "pass",
   "firstName" : "karol",
   "secondName" : "wojtyła",
-  "email" : "kamil10@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil10@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 11,
   "login" : "adams",
   "password" : "pass",
   "firstName" : "adam",
   "secondName" : "słodowy",
-  "email" : "kamil11@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil11@kamil.pl"
 }, {
-  "id" : 12,
-  "login" : "kamil2k3",
-  "password" : "1234",
-  "firstName" : "kamil",
-  "secondName" : "kozlowski",
-  "email" : "kamil12@kamil.pl",
   "personBooks" : [ {
     "id" : null,
     "title" : "Zwierzenia Janki",
@@ -153,14 +147,14 @@
     "author" : "Stefan Żeromski",
     "state" : false,
     "kind" : "Epika"
-  } ]
+  } ],
+  "id" : 12,
+  "login" : "kamil2k3",
+  "password" : "1234",
+  "firstName" : "kamil",
+  "secondName" : "kozlowski",
+  "email" : "kamil12@kamil.pl"
 }, {
-  "id" : 13,
-  "login" : "test",
-  "password" : "test",
-  "firstName" : "test",
-  "secondName" : "test",
-  "email" : "kamil13@kamil.pl",
   "personBooks" : [ {
     "id" : null,
     "title" : "20 000 mil podmorskiej żeglugi",
@@ -179,21 +173,27 @@
     "author" : "Ignacy Krasicki",
     "state" : false,
     "kind" : "Klasyka"
-  } ]
+  } ],
+  "id" : 13,
+  "login" : "test",
+  "password" : "test",
+  "firstName" : "test",
+  "secondName" : "test",
+  "email" : "kamil13@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 14,
   "login" : "kamil2k",
   "password" : "1234",
   "firstName" : "Kamil",
   "secondName" : "Kozłowski",
-  "email" : "kamil14@kamil.pl",
-  "personBooks" : [ ]
+  "email" : "kamil14@kamil.pl"
 }, {
+  "personBooks" : [ ],
   "id" : 15,
   "login" : "a",
   "password" : "a",
   "firstName" : "a",
   "secondName" : "a",
-  "email" : "a@a",
-  "personBooks" : [ ]
+  "email" : "a@a"
 } ]
