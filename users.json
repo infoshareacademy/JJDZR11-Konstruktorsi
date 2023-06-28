@@ -89,7 +89,25 @@
   "secondName" : "Root",
   "email" : "kamil6@kamil.pl"
 }, {
-  "personBooks" : [ ],
+  "personBooks" : [ {
+    "id" : null,
+    "title" : "(Lecz próżna nadzieja, i martwe życzenia...)",
+    "author" : "Karol Bołoz Antoniewicz",
+    "state" : false,
+    "kind" : "Liryka"
+  }, {
+    "id" : null,
+    "title" : "To ona",
+    "author" : "Karol Bołoz Antoniewicz",
+    "state" : false,
+    "kind" : "Liryka"
+  }, {
+    "id" : null,
+    "title" : "Adamowi Pługowi",
+    "author" : "Adam Asnyk",
+    "state" : false,
+    "kind" : "Liryka"
+  } ],
   "id" : 7,
   "login" : "login",
   "password" : "pass",

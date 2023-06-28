@@ -26,10 +26,21 @@ public class Person {
     @Column(name = "second_name")
     private String secondName;
 
+    @Column(name = "role")
+    private String role;
     //OneToMeny
 //    @Transient
     @Column(name = "email", unique = false, nullable = false)
     private String email;
+
+    public Person(String login, String password, String firstName, String secondName, String email, String role) {
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+        this.role = role;
+    }
 
     public Person(String login, String password, String firstName, String secondName, String email) {
         this.login = login;
@@ -37,6 +48,14 @@ public class Person {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Person() {

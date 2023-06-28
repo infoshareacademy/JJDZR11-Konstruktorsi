@@ -2,53 +2,45 @@ package pl.isa.biblioteka.user;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.isa.biblioteka.book.Book;
+import pl.isa.biblioteka.file.PersonRepository;
+import pl.isa.biblioteka.file.UserMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+@Service(value = "userDetailsService")
+public class PersonService implements UserDetailsService {
 
-@Service
-public class PersonService {
-
+    private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
+    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
+    public static List<Book> personBooks = new ArrayList<>();
     private final PersonDAO personDAO;
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    PersonRepository personRepository;
 
     public PersonService(PersonDAO personDAO) {
         this.personDAO = personDAO;
-    }
-
-    private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
-
-    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
-
-    public static List<Book> personBooks = new ArrayList<>();
-
-    public void setPersonBooks(List<Book> personBooks) {
-        this.personBooks = personBooks;
-    }
-
-    public List<Book> getPersonBooks() {
-        return personBooks;
     }
 
     public static Person currentLogUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                UserDetails userDetails = (UserDetails) principal;
+            if (principal instanceof UserDetails userDetails) {
                 String username = userDetails.getUsername();
                 for (Person user : users) {
                     if (user.getLogin().equalsIgnoreCase(username)) {
@@ -59,30 +51,6 @@ public class PersonService {
             }
         }
         return null;
-    }
-
-    public String registerUserId(Person person) {
-        boolean userExist = personDAO.isLoginTaken(person.getLogin());
-        if (userExist) {
-            return "Login jest już zajęty, wybierz inny login";
-        }
-
-        Person savedPerson = personDAO.savePerson(person);
-        if (savedPerson != null) {
-            return "Dodano użytkownika: " + savedPerson.getLogin() + ", możesz się zalogować";
-        } else {
-            return "Wystąpił problem podczas rejestracji użytkownika";
-        }
-    }
-
-    public String editUserId(Person person, Integer id) {
-        boolean userExist = personDAO.isLoginTaken(person.getLogin());
-        if (userExist) {
-            return "Użytkownik edytowany";
-        }
-        person.setId(id);
-        personDAO.savePerson(person);
-        return "Nie ma takiego użytkownika";
     }
 
     public static List<Person> readUsers() {
@@ -111,13 +79,50 @@ public class PersonService {
         }
     }
 
-    public PersonDTO findId(Integer id) {
-        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
-        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
+    public List<Book> getPersonBooks() {
+        return personBooks;
+    }
+//    public String editUserId(Person person, Integer id) {
+//        boolean userExist = personDAO.isLoginTaken(person.getLogin());
+//        if (userExist) {
+//            return "Użytkownik edytowany";
+//        }
+//        person.setId(id);
+//        personDAO.savePerson(person);
+//        return "Nie ma takiego użytkownika";
+//    }
+
+    public void setPersonBooks(List<Book> personBooks) {
+        PersonService.personBooks = personBooks;
     }
 
-    public void delete(Integer id) {
-        users.removeIf(s -> s.getId().equals(id));
-        saveUsers();
+    public String registerUserId(Person person) {
+        boolean userExist = personDAO.isLoginTaken(person.getLogin());
+        if (userExist) {
+            return "Login jest już zajęty, wybierz inny login";
+        }
+
+        Person savedPerson = personDAO.savePerson(person);
+        if (savedPerson != null) {
+            return "Dodano użytkownika: " + savedPerson.getLogin() + ", możesz się zalogować";
+        } else {
+            return "Wystąpił problem podczas rejestracji użytkownika";
+        }
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        Optional<Person> person = personRepository.findByUsername(login);
+        return new CustomPersonDetails(person.map(userMapper::toDto).orElse(null));
+    }
+
+//    public PersonDTO findId(Integer id) {
+//        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
+//        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
+//    }
+
+//    public void delete(Integer id) {
+//        users.removeIf(s -> s.getId().equals(id));
+//        saveUsers();
+//    }
 }

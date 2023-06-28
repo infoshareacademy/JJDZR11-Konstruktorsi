@@ -7,6 +7,7 @@ public class PersonDTO {
     private String firstName;
     private String secondName;
     private String email;
+    private String role;
 
     public PersonDTO(Integer id, String login, String password, String firstName, String secondName, String email) {
         this.id = id;
@@ -15,6 +16,19 @@ public class PersonDTO {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
+    }
+
+    public PersonDTO() {
+    }
+
+    public PersonDTO(Integer id, String login, String password, String firstName, String secondName, String email, String role) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.email = email;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -47,6 +61,14 @@ public class PersonDTO {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getSecondName() {
