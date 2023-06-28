@@ -13,12 +13,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static pl.isa.biblioteka.user.PersonService.editUserId;
+//import static pl.isa.biblioteka.user.PersonService.editUserId;
 //import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 
 @Controller
 public class UserController {
+
 
     private final BookService bookService;
     private final PersonService personService;
@@ -41,7 +42,6 @@ public class UserController {
         List<Person> users = personDAO.findAll();
         Collections.sort(users, Comparator.comparing(Person::getId));
         model.addAttribute("users", users);
-        personService.readUsers();
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
@@ -76,7 +76,7 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     public String edit(Principal principal, @PathVariable("id") Integer id, Model model) {
-        PersonDTO personDTO = personService.findId(id);
+        Person personDTO = personDAO.findById(id);
         model.addAttribute("personDTO", personDTO);
         if (principal != null) {
             String user = principal.getName();
@@ -87,10 +87,15 @@ public class UserController {
 
     @PostMapping("/edit/{id}")
     public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
-        personService.delete(id);
-        Person person = new Person(personDTO.getLogin(), personDTO.getPassword(), personDTO.getFirstName(), personDTO.getSecondName(), personDTO.getEmail());
-        editUserId(person, id);
-        PersonService.saveUsers();
+        Person existPerson = personDAO.findById(id);
+        if (existPerson != null) {
+            existPerson.setLogin(personDTO.getLogin());
+            existPerson.setPassword(personDTO.getPassword());
+            existPerson.setFirstName(personDTO.getFirstName());
+            existPerson.setSecondName(personDTO.getSecondName());
+            existPerson.setEmail(personDTO.getEmail());
+            personDAO.editUserId(existPerson);
+        }
         return "redirect:/usersList";
     }
 }

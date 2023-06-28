@@ -29,19 +29,11 @@ public class PersonService {
         this.personDAO = personDAO;
     }
 
-
     private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
 
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
 
-
     public static List<Book> personBooks = new ArrayList<>();
-
-
-/*    public final List<Person> personList;
-    public PersonService(List<Person> personList) {
-        this.personList = personList;
-    }*/
 
     public void setPersonBooks(List<Book> personBooks) {
         this.personBooks = personBooks;
@@ -50,7 +42,6 @@ public class PersonService {
     public List<Book> getPersonBooks() {
         return personBooks;
     }
-
 
     public static Person currentLogUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -84,14 +75,14 @@ public class PersonService {
         }
     }
 
-    public static String editUserId(Person person, Integer id) {
-        boolean userExist = users.stream().anyMatch(user -> user.getLogin().equalsIgnoreCase(person.getLogin()));
+    public String editUserId(Person person, Integer id) {
+        boolean userExist = personDAO.isLoginTaken(person.getLogin());
         if (userExist) {
-            return "Login jest już zajęty, wybierz inny login";
+            return "Użytkownik edytowany";
         }
         person.setId(id);
-        users.add(person);
-        return "Dodano użytkownika, możesz się zalogować";
+        personDAO.savePerson(person);
+        return "Nie ma takiego użytkownika";
     }
 
     public static List<Person> readUsers() {

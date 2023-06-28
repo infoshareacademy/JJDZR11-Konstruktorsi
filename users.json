@@ -113,22 +113,6 @@
   "secondName" : "Knapik",
   "email" : "kamil9@kamil.pl"
 }, {
-  "personBooks" : [ ],
-  "id" : 10,
-  "login" : "karol",
-  "password" : "pass",
-  "firstName" : "karol",
-  "secondName" : "wojtyła",
-  "email" : "kamil10@kamil.pl"
-}, {
-  "personBooks" : [ ],
-  "id" : 11,
-  "login" : "adams",
-  "password" : "pass",
-  "firstName" : "adam",
-  "secondName" : "słodowy",
-  "email" : "kamil11@kamil.pl"
-}, {
   "personBooks" : [ {
     "id" : null,
     "title" : "Zwierzenia Janki",
@@ -154,40 +138,6 @@
   "firstName" : "kamil",
   "secondName" : "kozlowski",
   "email" : "kamil12@kamil.pl"
-}, {
-  "personBooks" : [ {
-    "id" : null,
-    "title" : "20 000 mil podmorskiej żeglugi",
-    "author" : "Jules Gabriel Verne",
-    "state" : false,
-    "kind" : "Klasyka"
-  }, {
-    "id" : null,
-    "title" : "(Ach! rzucić sieci zdarte...)",
-    "author" : "Tristan Derème",
-    "state" : false,
-    "kind" : "Romans"
-  }, {
-    "id" : null,
-    "title" : "Abuzei i Tair",
-    "author" : "Ignacy Krasicki",
-    "state" : false,
-    "kind" : "Klasyka"
-  } ],
-  "id" : 13,
-  "login" : "test",
-  "password" : "test",
-  "firstName" : "test",
-  "secondName" : "test",
-  "email" : "kamil13@kamil.pl"
-}, {
-  "personBooks" : [ ],
-  "id" : 14,
-  "login" : "kamil2k",
-  "password" : "1234",
-  "firstName" : "Kamil",
-  "secondName" : "Kozłowski",
-  "email" : "kamil14@kamil.pl"
 }, {
   "personBooks" : [ ],
   "id" : 15,

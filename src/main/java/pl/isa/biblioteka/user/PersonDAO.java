@@ -35,6 +35,12 @@ public class PersonDAO {
 
 
     @Transactional
+    public Person editUserId(Person person) {
+            entityManager.merge(person);
+            return person;
+    }
+
+    @Transactional
     public void delate(Integer id) {
         entityManager.remove(findById(id));
     }
