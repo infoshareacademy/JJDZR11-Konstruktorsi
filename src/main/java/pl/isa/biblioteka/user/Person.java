@@ -28,7 +28,7 @@ public class Person {
 
     //OneToMeny
 //    @Transient
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", unique = false, nullable = false)
     private String email;
 
     public Person(String login, String password, String firstName, String secondName, String email) {

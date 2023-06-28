@@ -22,21 +22,23 @@ public class UserController {
 
     private final BookService bookService;
     private final PersonService personService;
+    private final PersonDAO personDAO;
 
-    public UserController(BookService bookService, PersonService personService) {
+    public UserController(BookService bookService, PersonService personService, PersonDAO personDAO) {
         this.bookService = bookService;
         this.personService = personService;
+        this.personDAO = personDAO;
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
-        personService.delete(id);
+        personDAO.delate(id);
         return "redirect:/usersList";
     }
 
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
-        List<Person> users = PersonService.readUsers();
+        List<Person> users = personDAO.findAll();
         Collections.sort(users, Comparator.comparing(Person::getId));
         model.addAttribute("users", users);
         personService.readUsers();

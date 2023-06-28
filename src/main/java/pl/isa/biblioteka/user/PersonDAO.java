@@ -21,6 +21,7 @@ public class PersonDAO {
         return entityManager.createQuery("FROM Person", Person.class).getResultList();
     }
 
+
     @Transactional
     public Person savePerson(Person person) {
         if (person.getId() == null) {
@@ -32,9 +33,14 @@ public class PersonDAO {
         }
     }
 
+
+    @Transactional
+    public void delate(Integer id) {
+        entityManager.remove(findById(id));
+    }
+
     public boolean isLoginTaken(String login) {
         return findAll().stream().anyMatch(person -> person.getLogin().equalsIgnoreCase(login));
-
     }
 
 }
