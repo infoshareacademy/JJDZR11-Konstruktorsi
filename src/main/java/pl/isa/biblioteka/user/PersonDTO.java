@@ -1,5 +1,8 @@
 package pl.isa.biblioteka.user;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class PersonDTO {
     private Integer id;
     private String login;

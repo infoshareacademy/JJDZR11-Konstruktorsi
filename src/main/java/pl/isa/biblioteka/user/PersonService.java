@@ -24,13 +24,13 @@ public class PersonService implements UserDetailsService {
 
     private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
 //    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
-    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
     public static List<Book> personBooks = new ArrayList<>();
     private final PersonDAO personDAO;
     @Autowired
     UserMapper userMapper;
     @Autowired
     PersonRepository personRepository;
+    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
 
     public PersonService(PersonDAO personDAO) {
         this.personDAO = personDAO;
@@ -55,6 +55,7 @@ public class PersonService implements UserDetailsService {
 
     public static List<Person> readUsers() {
         try {
+
             byte[] jsonData = Files.readAllBytes(Paths.get("users.json"));
             ObjectMapper folderPerson = new ObjectMapper();
             LOGGER.info("------User read correctly------");
