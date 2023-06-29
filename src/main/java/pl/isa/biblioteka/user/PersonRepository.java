@@ -1,17 +1,16 @@
-package pl.isa.biblioteka.file;
+package pl.isa.biblioteka.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.isa.biblioteka.user.Person;
 
 import java.util.Optional;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
-    Optional<Person> findByUsername(String login);
+    Optional<Person> findByLogin(String login);
 
-    boolean existsByUsername(String userName);
+    boolean existsByLogin(String login);
 
     boolean existsByEmail(String email);
 }

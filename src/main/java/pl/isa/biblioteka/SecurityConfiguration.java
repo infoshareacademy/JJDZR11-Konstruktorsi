@@ -4,29 +4,19 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import pl.isa.biblioteka.user.Person;
-import pl.isa.biblioteka.user.PersonService;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
 
-/*    @Bean
-    public PasswordEncoder passwordEncoder(){
+    @Bean
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }*/
-
+    }
 
 
     @Bean
@@ -42,8 +32,9 @@ public class SecurityConfiguration {
                         .logoutSuccessUrl("/?logout=true"));
         return http.build();
     }
+}
 
-    @Bean
+/*    @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
 
         List<Person> personList = PersonService.readUsers();
@@ -51,7 +42,7 @@ public class SecurityConfiguration {
         List<UserDetails> admin = personList.stream().map(person -> User.withUsername(person.getLogin()).password(passwordEncoder.encode(person.getPassword())).roles(person.getLogin().equalsIgnoreCase("admin") || person.getLogin().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER").build()).collect(Collectors.toList());
 
         return new InMemoryUserDetailsManager(admin.stream().toArray(UserDetails[]::new));
-    }
+    }*/
 
 
 /*    @Bean      //KONFIGURACJA BEZ ZABEZPIECZENIA authorizeHttpRequests
@@ -66,12 +57,7 @@ public class SecurityConfiguration {
 //        return http.build();
 //    }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        return encoder;
-    }
-}
+
 
 /*    @Bean      KONFIGURACJA Z ZABEZPIECZENIEM
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

@@ -21,7 +21,7 @@ public class PersonDAO {
         return entityManager.createQuery("FROM Person", Person.class).getResultList();
     }
 
-    public Person findByUsername(String login) {
+    public Person findByLogin(String login) {
         return entityManager.find(Person.class, login);
     }
 

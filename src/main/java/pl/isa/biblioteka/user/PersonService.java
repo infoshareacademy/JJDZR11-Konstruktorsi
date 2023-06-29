@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.isa.biblioteka.book.Book;
-import pl.isa.biblioteka.file.PersonRepository;
 import pl.isa.biblioteka.file.UserMapper;
 
 import java.io.File;
@@ -82,15 +81,7 @@ public class PersonService implements UserDetailsService {
     public List<Book> getPersonBooks() {
         return personBooks;
     }
-//    public String editUserId(Person person, Integer id) {
-//        boolean userExist = personDAO.isLoginTaken(person.getLogin());
-//        if (userExist) {
-//            return "Użytkownik edytowany";
-//        }
-//        person.setId(id);
-//        personDAO.savePerson(person);
-//        return "Nie ma takiego użytkownika";
-//    }
+
 
     public void setPersonBooks(List<Book> personBooks) {
         PersonService.personBooks = personBooks;
@@ -112,17 +103,8 @@ public class PersonService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        Optional<Person> person = personRepository.findByUsername(login);
+        Optional<Person> person = personRepository.findByLogin(login);
         return new CustomPersonDetails(person.map(userMapper::toDto).orElse(null));
     }
 
-//    public PersonDTO findId(Integer id) {
-//        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
-//        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
-//    }
-
-//    public void delete(Integer id) {
-//        users.removeIf(s -> s.getId().equals(id));
-//        saveUsers();
-//    }
 }
