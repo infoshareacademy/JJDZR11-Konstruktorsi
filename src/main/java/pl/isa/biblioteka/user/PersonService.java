@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 public class PersonService implements UserDetailsService {
 
     private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
+//    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
     public static List<Book> personBooks = new ArrayList<>();
     private final PersonDAO personDAO;

@@ -1,10 +1,12 @@
 package pl.isa.biblioteka;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -13,9 +15,15 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
 
-    @Bean
+/*    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }*/
+
+    @Bean
+    @ConditionalOnMissingBean
+    public PasswordEncoder passwordEncoder() {
+        return NoOpPasswordEncoder.getInstance();
     }
 
 
@@ -24,12 +32,12 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(request -> request
                         .requestMatchers("/", "/images/**", "/css/**", "/static/font/**", "/font/**", "/searchText", "/searchByText", "/list", "/bookList/**", "/register").permitAll())
                 .formLogin(form -> form
-                        .loginPage("/").permitAll()
+                        .permitAll()
                         .failureUrl("/")
                         .defaultSuccessUrl("/"))
                 .logout(logout -> logout
                         .logoutUrl("/")
-                        .logoutSuccessUrl("/?logout=true"));
+                        .logoutSuccessUrl("/"));
         return http.build();
     }
 }
