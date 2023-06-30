@@ -1,7 +1,7 @@
 [ {
   "personBooks" : [ ],
   "id" : 1,
-  "login" : "Bibliotekarz",
+  "username" : "Bibliotekarz",
   "password" : "0000",
   "firstName" : "root",
   "secondName" : "admin",
@@ -31,9 +31,15 @@
     "author" : "Stanisław Jachowicz",
     "state" : false,
     "kind" : "Klasyka"
+  }, {
+    "id" : null,
+    "title" : "Prometeusz skowany",
+    "author" : "Ajschylos",
+    "state" : false,
+    "kind" : "Tragedia"
   } ],
   "id" : 2,
-  "login" : "Kamil",
+  "username" : "Kamil",
   "password" : "kamil",
   "firstName" : "Jan",
   "secondName" : "Kowalski",
@@ -47,7 +53,7 @@
     "kind" : "Epika"
   } ],
   "id" : 3,
-  "login" : "Mikolas",
+  "username" : "Mikolas",
   "password" : "mikolaj",
   "firstName" : "Mikołas",
   "secondName" : "Nowak",
@@ -55,7 +61,7 @@
 }, {
   "personBooks" : [ ],
   "id" : 4,
-  "login" : "Kinga",
+  "username" : "Kinga",
   "password" : "kinga",
   "firstName" : "Kinga",
   "secondName" : "Mila",
@@ -69,7 +75,7 @@
     "kind" : "Epika"
   } ],
   "id" : 5,
-  "login" : "Przemek",
+  "username" : "Przemek",
   "password" : "przemek",
   "firstName" : "Przemek",
   "secondName" : "Adamski",
@@ -83,7 +89,7 @@
     "kind" : "Romans"
   } ],
   "id" : 6,
-  "login" : "Admin",
+  "username" : "Admin",
   "password" : "admin",
   "firstName" : "Admin",
   "secondName" : "Root",
@@ -91,7 +97,7 @@
 }, {
   "personBooks" : [ ],
   "id" : 7,
-  "login" : "login",
+  "username" : "username",
   "password" : "pass",
   "firstName" : "first",
   "secondName" : "second",
@@ -99,7 +105,7 @@
 }, {
   "personBooks" : [ ],
   "id" : 8,
-  "login" : "testowy",
+  "username" : "testowy",
   "password" : "pass",
   "firstName" : "Kamil",
   "secondName" : "K",
@@ -107,7 +113,7 @@
 }, {
   "personBooks" : [ ],
   "id" : 9,
-  "login" : "Kuba",
+  "username" : "Kuba",
   "password" : "pass",
   "firstName" : "Kuba",
   "secondName" : "Knapik",
@@ -133,7 +139,7 @@
     "kind" : "Epika"
   } ],
   "id" : 12,
-  "login" : "kamil2k3",
+  "username" : "kamil2k3",
   "password" : "1234",
   "firstName" : "kamil",
   "secondName" : "kozlowski",
@@ -141,7 +147,7 @@
 }, {
   "personBooks" : [ ],
   "id" : 15,
-  "login" : "a",
+  "username" : "a",
   "password" : "a",
   "firstName" : "a",
   "secondName" : "a",

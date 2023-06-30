@@ -45,8 +45,8 @@ public class PersonDAO {
         entityManager.remove(findById(id));
     }
 
-    public boolean isLoginTaken(String login) {
-        return findAll().stream().anyMatch(person -> person.getLogin().equalsIgnoreCase(login));
+    public boolean isLoginTaken(String username) {
+        return findAll().stream().anyMatch(person -> person.getUsername().equalsIgnoreCase(username));
     }
 
 }

@@ -17,8 +17,8 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "login", unique = true, nullable = false)
-    private String login;
+    @Column(name = "username", unique = true, nullable = false)
+    private String username;
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "first_name")
@@ -31,8 +31,8 @@ public class Person {
     @Column(name = "email", unique = false, nullable = false)
     private String email;
 
-    public Person(String login, String password, String firstName, String secondName, String email) {
-        this.login = login;
+    public Person(String username, String password, String firstName, String secondName, String email) {
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -42,18 +42,18 @@ public class Person {
     public Person() {
     }
 
-    public Person(String firstName, String secondName, Integer id, String login, String password, String email) {
+    public Person(String firstName, String secondName, Integer id, String username, String password, String email) {
         this.id = id;
-        this.login = login;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
     }
 
-    public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String login, String password, String email) {
+    public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String username, String password, String email) {
         this.id = id;
-        this.login = login;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -69,12 +69,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String login) {
+        this.username = login;
     }
 
     public String getPassword() {
@@ -124,6 +124,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", login='" + login + '\'' + ", password='" + password + '\'' + ", firstName='" + firstName + '\'' + ", secondName='" + secondName + '\'' + ", personBooks=" + personBooks + '}';
+        return "Person{" + "id=" + id + ", login='" + username + '\'' + ", password='" + password + '\'' + ", firstName='" + firstName + '\'' + ", secondName='" + secondName + '\'' + ", personBooks=" + personBooks + '}';
     }
 }

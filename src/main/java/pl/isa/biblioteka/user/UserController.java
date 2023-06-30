@@ -89,7 +89,7 @@ public class UserController {
     public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
         Person existPerson = personDAO.findById(id);
         if (existPerson != null) {
-            existPerson.setLogin(personDTO.getLogin());
+            existPerson.setUsername(personDTO.getUsername());
             existPerson.setPassword(personDTO.getPassword());
             existPerson.setFirstName(personDTO.getFirstName());
             existPerson.setSecondName(personDTO.getSecondName());

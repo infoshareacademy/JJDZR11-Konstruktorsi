@@ -25,7 +25,7 @@ public class SecurityConfiguration {
 
         List<Person> personList = PersonService.readUsers();
 
-        List<UserDetails> admin = personList.stream().map(person -> User.withUsername(person.getLogin()).password(passwordEncoder.encode(person.getPassword())).roles(person.getLogin().equalsIgnoreCase("admin") || person.getLogin().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER").build()).collect(Collectors.toList());
+        List<UserDetails> admin = personList.stream().map(person -> User.withUsername(person.getUsername()).password(passwordEncoder.encode(person.getPassword())).roles(person.getUsername().equalsIgnoreCase("admin") || person.getUsername().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER").build()).collect(Collectors.toList());
 
         return new InMemoryUserDetailsManager(admin.stream().toArray(UserDetails[]::new));
     }

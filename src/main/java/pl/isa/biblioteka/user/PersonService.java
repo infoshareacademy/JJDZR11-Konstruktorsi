@@ -18,8 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @Service
 public class PersonService {
 
@@ -51,7 +49,7 @@ public class PersonService {
                 UserDetails userDetails = (UserDetails) principal;
                 String username = userDetails.getUsername();
                 for (Person user : users) {
-                    if (user.getLogin().equalsIgnoreCase(username)) {
+                    if (user.getUsername().equalsIgnoreCase(username)) {
                         personBooks = user.getPersonBooks();
                         return user;
                     }
@@ -62,21 +60,21 @@ public class PersonService {
     }
 
     public String registerUserId(Person person) {
-        boolean userExist = personDAO.isLoginTaken(person.getLogin());
+        boolean userExist = personDAO.isLoginTaken(person.getUsername());
         if (userExist) {
             return "Login jest już zajęty, wybierz inny login";
         }
 
         Person savedPerson = personDAO.savePerson(person);
         if (savedPerson != null) {
-            return "Dodano użytkownika: " + savedPerson.getLogin() + ", możesz się zalogować";
+            return "Dodano użytkownika: " + savedPerson.getUsername() + ", możesz się zalogować";
         } else {
             return "Wystąpił problem podczas rejestracji użytkownika";
         }
     }
 
     public String editUserId(Person person, Integer id) {
-        boolean userExist = personDAO.isLoginTaken(person.getLogin());
+        boolean userExist = personDAO.isLoginTaken(person.getUsername());
         if (userExist) {
             return "Użytkownik edytowany";
         }
@@ -113,7 +111,7 @@ public class PersonService {
 
     public PersonDTO findId(Integer id) {
         Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
-        return new PersonDTO(person.getId(), person.getLogin(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
+        return new PersonDTO(person.getId(), person.getUsername(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
     }
 
     public void delete(Integer id) {
