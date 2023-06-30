@@ -40,6 +40,7 @@ public class User {
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
+        this.role = "ROLE_USER";
     }
 
     public User() {
