@@ -4,13 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.user.User;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.util.List;
@@ -23,9 +22,9 @@ public class SecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder passwordEncoder) {
 
-        List<Person> personList = PersonService.readUsers();
+        List<User> userList = PersonService.readUsers();
 
-        List<UserDetails> admin = personList.stream().map(person -> User.withUsername(person.getUsername()).password(passwordEncoder.encode(person.getPassword())).roles(person.getUsername().equalsIgnoreCase("admin") || person.getUsername().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER").build()).collect(Collectors.toList());
+        List<UserDetails> admin = userList.stream().map(person -> org.springframework.security.core.userdetails.User.withUsername(person.getUsername()).password(passwordEncoder.encode(person.getPassword())).roles(person.getUsername().equalsIgnoreCase("admin") || person.getUsername().equalsIgnoreCase("bibliotekarz") ? "ADMIN" : "USER").build()).collect(Collectors.toList());
 
         return new InMemoryUserDetailsManager(admin.stream().toArray(UserDetails[]::new));
     }

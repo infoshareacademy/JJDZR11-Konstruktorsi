@@ -13,31 +13,31 @@ public class PersonDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Person findById(Integer id) {
-        return entityManager.find(Person.class, id);
+    public User findById(Integer id) {
+        return entityManager.find(User.class, id);
     }
 
-    public List<Person> findAll() {
-        return entityManager.createQuery("FROM Person", Person.class).getResultList();
+    public List<User> findAll() {
+        return entityManager.createQuery("FROM User", User.class).getResultList();
     }
 
 
     @Transactional
-    public Person savePerson(Person person) {
-        if (person.getId() == null) {
-            entityManager.persist(person);
-            return person;
+    public User savePerson(User user) {
+        if (user.getId() == null) {
+            entityManager.persist(user);
+            return user;
         } else {
-            entityManager.merge(person);
-            return person;
+            entityManager.merge(user);
+            return user;
         }
     }
 
 
     @Transactional
-    public Person editUserId(Person person) {
-            entityManager.merge(person);
-            return person;
+    public User editUserId(User user) {
+            entityManager.merge(user);
+            return user;
     }
 
     @Transactional

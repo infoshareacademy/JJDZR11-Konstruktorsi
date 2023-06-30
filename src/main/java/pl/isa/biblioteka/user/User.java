@@ -9,10 +9,10 @@ import java.util.List;
 
 @Component
 @Entity
-public class Person {
+public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "user_id")
     public List<Book> personBooks = new ArrayList<>();
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Person {
     @Column(name = "email", unique = false, nullable = false)
     private String email;
 
-    public Person(String username, String password, String firstName, String secondName, String email) {
+    public User(String username, String password, String firstName, String secondName, String email) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -39,10 +39,10 @@ public class Person {
         this.email = email;
     }
 
-    public Person() {
+    public User() {
     }
 
-    public Person(String firstName, String secondName, Integer id, String username, String password, String email) {
+    public User(String firstName, String secondName, Integer id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -51,7 +51,7 @@ public class Person {
         this.email = email;
     }
 
-    public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String username, String password, String email) {
+    public User(String firstName, String secondName, List<Book> personBooks, Integer id, String username, String password, String email) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -124,6 +124,6 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" + "id=" + id + ", login='" + username + '\'' + ", password='" + password + '\'' + ", firstName='" + firstName + '\'' + ", secondName='" + secondName + '\'' + ", personBooks=" + personBooks + '}';
+        return "User{" + "id=" + id + ", login='" + username + '\'' + ", password='" + password + '\'' + ", firstName='" + firstName + '\'' + ", secondName='" + secondName + '\'' + ", personBooks=" + personBooks + '}';
     }
 }

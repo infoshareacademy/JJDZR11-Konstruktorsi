@@ -29,7 +29,7 @@ public class PersonService {
 
     private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
 
-    public static List<Person> users = new ArrayList<>(PersonService.readUsers());
+    public static List<User> users = new ArrayList<>(PersonService.readUsers());
 
     public static List<Book> personBooks = new ArrayList<>();
 
@@ -41,14 +41,14 @@ public class PersonService {
         return personBooks;
     }
 
-    public static Person currentLogUser() {
+    public static User currentLogUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof UserDetails) {
                 UserDetails userDetails = (UserDetails) principal;
                 String username = userDetails.getUsername();
-                for (Person user : users) {
+                for (User user : users) {
                     if (user.getUsername().equalsIgnoreCase(username)) {
                         personBooks = user.getPersonBooks();
                         return user;
@@ -59,36 +59,36 @@ public class PersonService {
         return null;
     }
 
-    public String registerUserId(Person person) {
-        boolean userExist = personDAO.isLoginTaken(person.getUsername());
+    public String registerUserId(User user) {
+        boolean userExist = personDAO.isLoginTaken(user.getUsername());
         if (userExist) {
             return "Login jest już zajęty, wybierz inny login";
         }
 
-        Person savedPerson = personDAO.savePerson(person);
-        if (savedPerson != null) {
-            return "Dodano użytkownika: " + savedPerson.getUsername() + ", możesz się zalogować";
+        User savedUser = personDAO.savePerson(user);
+        if (savedUser != null) {
+            return "Dodano użytkownika: " + savedUser.getUsername() + ", możesz się zalogować";
         } else {
             return "Wystąpił problem podczas rejestracji użytkownika";
         }
     }
 
-    public String editUserId(Person person, Integer id) {
-        boolean userExist = personDAO.isLoginTaken(person.getUsername());
+    public String editUserId(User user, Integer id) {
+        boolean userExist = personDAO.isLoginTaken(user.getUsername());
         if (userExist) {
             return "Użytkownik edytowany";
         }
-        person.setId(id);
-        personDAO.savePerson(person);
+        user.setId(id);
+        personDAO.savePerson(user);
         return "Nie ma takiego użytkownika";
     }
 
-    public static List<Person> readUsers() {
+    public static List<User> readUsers() {
         try {
             byte[] jsonData = Files.readAllBytes(Paths.get("users.json"));
             ObjectMapper folderPerson = new ObjectMapper();
             LOGGER.info("------User read correctly------");
-            return Arrays.asList(folderPerson.readValue(jsonData, Person[].class));
+            return Arrays.asList(folderPerson.readValue(jsonData, User[].class));
         } catch (IOException e) {
             e.printStackTrace();
             LOGGER.info("------User not read error------");
@@ -99,9 +99,9 @@ public class PersonService {
     public static void saveUsers() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        List<Person> personList = users;
+        List<User> userList = users;
         try {
-            mapper.writeValue(new File("users.json"), personList);
+            mapper.writeValue(new File("users.json"), userList);
             LOGGER.info("------User saved correctly------");
         } catch (IOException e) {
             LOGGER.info("------User not saved error------");
@@ -110,8 +110,8 @@ public class PersonService {
     }
 
     public PersonDTO findId(Integer id) {
-        Person person = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
-        return new PersonDTO(person.getId(), person.getUsername(), person.getPassword(), person.getFirstName(), person.getSecondName(), person.getEmail());
+        User user = users.stream().filter(user1 -> user1.getId().equals(id)).findFirst().orElseThrow(() -> new RuntimeException("Nie ma takiego użytkownika"));
+        return new PersonDTO(user.getId(), user.getUsername(), user.getPassword(), user.getFirstName(), user.getSecondName(), user.getEmail());
     }
 
     public void delete(Integer id) {
