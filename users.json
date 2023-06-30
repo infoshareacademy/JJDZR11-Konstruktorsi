@@ -5,6 +5,7 @@
   "password" : "0000",
   "firstName" : "root",
   "secondName" : "admin",
+  "role" : null,
   "email" : "kamil1@kamil.pl"
 }, {
   "personBooks" : [ {
@@ -43,6 +44,7 @@
   "password" : "kamil",
   "firstName" : "Jan",
   "secondName" : "Kowalski",
+  "role" : null,
   "email" : "kamil2@kamil.pl"
 }, {
   "personBooks" : [ {
@@ -57,6 +59,7 @@
   "password" : "mikolaj",
   "firstName" : "Mikołas",
   "secondName" : "Nowak",
+  "role" : null,
   "email" : "kamil3@kamil.pl"
 }, {
   "personBooks" : [ ],
@@ -65,6 +68,7 @@
   "password" : "kinga",
   "firstName" : "Kinga",
   "secondName" : "Mila",
+  "role" : null,
   "email" : "kamil4@kamil.pl"
 }, {
   "personBooks" : [ {
@@ -79,6 +83,7 @@
   "password" : "przemek",
   "firstName" : "Przemek",
   "secondName" : "Adamski",
+  "role" : null,
   "email" : "kamil5@kamil.pl"
 }, {
   "personBooks" : [ {
@@ -93,6 +98,7 @@
   "password" : "admin",
   "firstName" : "Admin",
   "secondName" : "Root",
+  "role" : null,
   "email" : "kamil6@kamil.pl"
 }, {
   "personBooks" : [ ],
@@ -101,6 +107,7 @@
   "password" : "pass",
   "firstName" : "first",
   "secondName" : "second",
+  "role" : null,
   "email" : "kamil7@kamil.pl"
 }, {
   "personBooks" : [ ],
@@ -109,6 +116,7 @@
   "password" : "pass",
   "firstName" : "Kamil",
   "secondName" : "K",
+  "role" : null,
   "email" : "kamil8@kamil.pl"
 }, {
   "personBooks" : [ ],
@@ -117,6 +125,7 @@
   "password" : "pass",
   "firstName" : "Kuba",
   "secondName" : "Knapik",
+  "role" : null,
   "email" : "kamil9@kamil.pl"
 }, {
   "personBooks" : [ {
@@ -143,6 +152,7 @@
   "password" : "1234",
   "firstName" : "kamil",
   "secondName" : "kozlowski",
+  "role" : null,
   "email" : "kamil12@kamil.pl"
 }, {
   "personBooks" : [ ],
@@ -151,5 +161,6 @@
   "password" : "a",
   "firstName" : "a",
   "secondName" : "a",
+  "role" : null,
   "email" : "a@a"
 } ]

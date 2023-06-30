@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
-import pl.isa.biblioteka.user.User;
+import pl.isa.biblioteka.model.User;
 
 import java.time.LocalDateTime;
 

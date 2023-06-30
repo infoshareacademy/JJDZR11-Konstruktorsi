@@ -7,7 +7,7 @@ import pl.isa.biblioteka.book.Book;
 import pl.isa.biblioteka.book.BookDAO;
 import pl.isa.biblioteka.book.BookRepository;
 import pl.isa.biblioteka.book.BookService;
-import pl.isa.biblioteka.user.User;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonDAO;
 import pl.isa.biblioteka.user.PersonService;
 

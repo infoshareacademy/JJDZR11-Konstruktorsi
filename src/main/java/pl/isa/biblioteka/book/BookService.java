@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.isa.biblioteka.file.FolderBooks;
-import pl.isa.biblioteka.user.User;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.util.*;

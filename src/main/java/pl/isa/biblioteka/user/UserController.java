@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.isa.biblioteka.book.BookService;
 import org.springframework.web.bind.annotation.*;
+import pl.isa.biblioteka.model.User;
 
 import java.security.Principal;
 import java.util.Collections;

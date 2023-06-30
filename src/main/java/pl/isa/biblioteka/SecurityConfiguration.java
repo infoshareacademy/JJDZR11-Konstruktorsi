@@ -10,7 +10,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import pl.isa.biblioteka.user.User;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.util.List;

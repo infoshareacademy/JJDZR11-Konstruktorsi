@@ -1,4 +1,4 @@
-package pl.isa.biblioteka.user;
+package pl.isa.biblioteka.model;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Component
 @Entity
+@Table(name = "users")
 public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -17,7 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "username", unique = true, nullable = false)
+    @Column(name = "user_name", unique = true, nullable = false)
     private String username;
     @Column(name = "password", nullable = false)
     private String password;
@@ -25,6 +26,8 @@ public class User {
     private String firstName;
     @Column(name = "second_name")
     private String secondName;
+    @Column(name = "role", nullable = true)
+    private String role;
 
     //OneToMeny
 //    @Transient
@@ -59,6 +62,15 @@ public class User {
         this.secondName = secondName;
         this.personBooks = personBooks;
         this.email = email;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Integer getId() {
