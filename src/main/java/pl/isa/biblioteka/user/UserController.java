@@ -49,7 +49,7 @@ public class UserController {
 
     @GetMapping("/myBooks")
     public String myBooks(Principal principal, Model model) {
-        List<Person> users = PersonService.readUsers();
+        List<Person> users = personService.getAllPerson();
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();

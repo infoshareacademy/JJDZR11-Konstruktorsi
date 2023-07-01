@@ -18,21 +18,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @Service
 public class PersonService {
     private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
 
     public static List<Person> users = new ArrayList<>(PersonService.readUsers());
 
-
+    private final PersonRepository personRepository;
     public static List<Book> personBooks = new ArrayList<>();
     public final List<Person> personList;
 
-    public PersonService(List<Person> personList) {
+    public PersonService(PersonRepository personRepository, List<Person> personList) {
+        this.personRepository = personRepository;
         this.personList = personList;
     }
+
 
     public void setPersonBooks(List<Book> personBooks) {
         this.personBooks = personBooks;
@@ -42,20 +42,22 @@ public class PersonService {
         return personBooks;
     }
 
+    public List<Person> getAllPerson(){
+        return personRepository.findAll();
+    }
 
-    public static Person currentLogUser() {
+    public Person logPerson(String name) {
+        return personRepository.findByLogin(name);
+    }
+
+    public Person currentLogUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof UserDetails) {
                 UserDetails userDetails = (UserDetails) principal;
                 String username = userDetails.getUsername();
-                for (Person user : users) {
-                    if (user.getLogin().equalsIgnoreCase(username)) {
-                        personBooks = user.getPersonBooks();
-                        return user;
-                    }
-                }
+                return logPerson(username);
             }
         }
         return null;
@@ -82,6 +84,7 @@ public class PersonService {
         users.add(person);
         return "Dodano użytkownika, możesz się zalogować";
     }
+
 
     public static List<Person> readUsers() {
         try {

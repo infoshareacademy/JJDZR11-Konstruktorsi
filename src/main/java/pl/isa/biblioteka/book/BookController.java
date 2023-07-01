@@ -3,15 +3,14 @@ package pl.isa.biblioteka.book;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.isa.biblioteka.file.FolderBooks;
 import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.user.PersonRepository;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
-import static pl.isa.biblioteka.book.BookService.booksList;
 import static pl.isa.biblioteka.book.BookService.extracted;
 
 @Controller
@@ -19,6 +18,8 @@ public class BookController {
 
     private final BookService bookService;
     private final PersonService personService;
+    private final PersonRepository personRepository;
+    private final BookRepository bookRepository;
 
     List<Book> bookListByAuthor;
     List<Book> searchCategoryBook;
@@ -27,17 +28,19 @@ public class BookController {
     List<Book> availableBooks;
     List<Book> borrowedBooks;
 
-    public BookController(BookService bookService, PersonService personService) {
+    public BookController(BookService bookService, PersonService personService, PersonRepository personRepository, BookRepository bookRepository) {
         this.bookService = bookService;
         this.personService = personService;
+        this.personRepository = personRepository;
+        this.bookRepository = bookRepository;
     }
 
 
     @GetMapping("/bookList")
     public String listBooks(Principal principal,
-            Model model,
-            @RequestParam("page") Optional<Integer> page,
-            @RequestParam("size") Optional<Integer> size) {
+                            Model model,
+                            @RequestParam("page") Optional<Integer> page,
+                            @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, bookService.getBooks());
@@ -69,7 +72,7 @@ public class BookController {
 
     @RequestMapping(value = "/bookAuthorList", method = RequestMethod.GET)
     public String listBooksAuthor(Principal principal,
-            Model model,
+                                  Model model,
                                   @RequestParam("page") Optional<Integer> page,
                                   @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -90,9 +93,9 @@ public class BookController {
 
     @RequestMapping(value = "/bookByTitle", method = RequestMethod.GET)
     public String listBooksTitle(Principal principal,
-            Model model,
-            @RequestParam("page") Optional<Integer> page,
-            @RequestParam("size") Optional<Integer> size) {
+                                 Model model,
+                                 @RequestParam("page") Optional<Integer> page,
+                                 @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, searchBook);
@@ -112,9 +115,9 @@ public class BookController {
 
     @RequestMapping(value = "/bookByCategory", method = RequestMethod.GET)
     public String listBooksCategory(Principal principal,
-            Model model,
-            @RequestParam("page") Optional<Integer> page,
-            @RequestParam("size") Optional<Integer> size) {
+                                    Model model,
+                                    @RequestParam("page") Optional<Integer> page,
+                                    @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, searchCategoryBook);
@@ -127,9 +130,9 @@ public class BookController {
 
     @GetMapping("/searchText")
     public String searchByText(Principal principal,
-            Model model,
-            @RequestParam("page") Optional<Integer> page,
-            @RequestParam("size") Optional<Integer> size) {
+                               Model model,
+                               @RequestParam("page") Optional<Integer> page,
+                               @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(20);
         extracted(model, currentPage, pageSize, localSearchBook);
@@ -146,9 +149,9 @@ public class BookController {
         return "redirect:searchText";
     }
 
-@GetMapping("/librarianDay")
-public String librarianDay(Model model) {
-    return "librarianDay";
+    @GetMapping("/librarianDay")
+    public String librarianDay(Model model) {
+        return "librarianDay";
     }
 
     @GetMapping("/addBook")
@@ -159,16 +162,21 @@ public String librarianDay(Model model) {
             return "addBook";
         } else return "addBook";
     }
+
     @GetMapping("/myBooksReturnByName")
-    public String deleteBook(@RequestParam("name") String name) {
-        bookService.returnBook(name);
-        personService.saveUsers();
+    public String deleteBook(@RequestParam("id") Long id,Principal principal) {
+        Person person = personRepository.findByLogin(principal.getName());
+        Book book = bookRepository.getById(id);
+        bookService.returnBook(person,book);
+        personRepository.save(person);
+        bookRepository.save(book);
         return "redirect:/myBooksReturn";
     }
 
     @GetMapping("/myBooksReturn")
-    public String returnMyBook(Principal principal,Model model){
-        List<Person> users = PersonService.readUsers();
+    public String returnMyBook(Principal principal, Model model) {
+//        List<Person> users = PersonService.readUsers();
+        List<Person> users = personService.getAllPerson();
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();
@@ -178,16 +186,15 @@ public String librarianDay(Model model) {
     }
 
 
-
     @RequestMapping(value = "/borrowBooksList", method = RequestMethod.GET)
     public String listBooksToBorrow(Principal principal,
-                                  Model model,
-                                  @RequestParam("page") Optional<Integer> page,
-                                  @RequestParam("size") Optional<Integer> size) {
+                                    Model model,
+                                    @RequestParam("page") Optional<Integer> page,
+                                    @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
-        extracted(model, currentPage, pageSize, booksList);
-        FolderBooks.saveBooks();
+        extracted(model, currentPage, pageSize, bookService.getBooks());
+//        FolderBooks.saveBooks();
         PersonService.saveUsers();
         if (principal != null) {
             String user = principal.getName();
@@ -197,8 +204,12 @@ public String librarianDay(Model model) {
     }
 
     @GetMapping("/myBookBorrowByName")
-    public String borrowBook(@RequestParam("name") String name) {
-        bookService.addBookToPerson(name);
+    public String borrowBook(@RequestParam("id") Long id,Principal principal) {
+        Person person = personRepository.findByLogin(principal.getName());
+        Book book = bookRepository.getById(id);
+        bookService.addBookToPerson(person,book);
+        personRepository.save(person);
+        bookRepository.save(book);
         return "redirect:/borrowBooksList";
     }
 
@@ -209,15 +220,16 @@ public String librarianDay(Model model) {
         String str = BookService.addBook(book);
         model.addAttribute("result", book);
         model.addAttribute("mesage", str);
-        BookRepository.saveBooks();
+//        BookRepository.saveBooks();
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
             return "addBook";
         } else return "addBook";
     }
+
     @GetMapping("/availableBooks")
-    public String availableBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    public String availableBooks(Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         availableBooks = bookService.showAllAvailableBooks();
 
         int currentPage = page.orElse(1);
@@ -230,8 +242,9 @@ public String librarianDay(Model model) {
         } else return "availableBooks";
 
     }
+
     @GetMapping("/borrowedBooks")
-    public String borrowedBooks (Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    public String borrowedBooks(Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         borrowedBooks = bookService.showAllBorrowedBooks();
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(20);

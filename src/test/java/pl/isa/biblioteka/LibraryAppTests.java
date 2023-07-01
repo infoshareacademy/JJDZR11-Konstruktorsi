@@ -44,13 +44,13 @@ class LibraryAppTests {
 	}
 
 
-	@Test
-	void readAndSavePerson() {
-		List<Person> people = PersonService.readUsers();
-		for (Person person : people) {
-			personDAO.savePerson(person);
-		}
-	}
+//	@Test
+//	void readAndSavePerson() {
+//		List<Person> people = PersonService.readUsers();
+//		for (Person person : people) {
+//			personDAO.savePerson(person);
+//		}
+//	}
 
 	@Test
 	void saveBook() {
