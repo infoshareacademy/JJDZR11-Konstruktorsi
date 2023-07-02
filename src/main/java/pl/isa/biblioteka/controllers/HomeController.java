@@ -40,9 +40,9 @@ class HomeController {
   return "o-nas";
  }*/
 
-/* @GetMapping("pre-auth")
+ @GetMapping("pre-auth")
  @PreAuthorize("hasAuthority('ADMIN')")
  public String preAuth() {
   return "/";
- }*/
+ }
 }
