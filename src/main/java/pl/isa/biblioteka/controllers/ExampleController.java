@@ -1,3 +1,4 @@
+/*
 package pl.isa.biblioteka.controllers;
 
 import pl.isa.biblioteka.dto.UserDto;
@@ -56,3 +57,4 @@ class ExampleController {
     return "redirect:/";
   }
 }
+*/

@@ -43,22 +43,17 @@ public class UserController {
         List<User> users = personDAO.findAll();
         Collections.sort(users, Comparator.comparing(User::getId));
         model.addAttribute("users", users);
-        if (principal != null) {
-            String user = principal.getName();
-            model.addAttribute("user", user);
+
             return "usersList";
-        } else return "usersList";
     }
 
     @GetMapping("/myBooks")
     public String myBooks(Principal principal, Model model) {
         List<User> users = PersonService.readUsers();
         model.addAttribute("users", users);
-        if (principal != null) {
-            String user = principal.getName();
-            model.addAttribute("user", user);
+
             return "myBooks";
-        } else return "myBooks";
+
     }
 
     @GetMapping("/register")
@@ -79,11 +74,9 @@ public class UserController {
     public String edit(Principal principal, @PathVariable("id") Integer id, Model model) {
         User userDTO = personDAO.findById(id);
         model.addAttribute("personDTO", userDTO);
-        if (principal != null) {
-            String user = principal.getName();
-            model.addAttribute("user", user);
+
             return "edit";
-        } else return "edit";
+
     }
 
     @PostMapping("/edit/{id}")
