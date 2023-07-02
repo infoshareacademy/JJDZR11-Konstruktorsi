@@ -1,24 +1,27 @@
-package pl.isa.biblioteka.book;
+package pl.isa.biblioteka.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.isa.biblioteka.file.FolderBooks;
+import pl.isa.biblioteka.repositories.BookRepository;
+import pl.isa.biblioteka.repositories.UserRepository;
+import pl.isa.biblioteka.servises.BookService;
+import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
-import pl.isa.biblioteka.user.PersonService;
+import pl.isa.biblioteka.servises.UserService;
 
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
-import static pl.isa.biblioteka.book.BookService.extracted;
+import static pl.isa.biblioteka.servises.BookService.extracted;
 
 @Controller
 public class BookController {
 
     private final BookService bookService;
-    private final PersonService personService;
-    private final PersonRepository personRepository;
+    private final UserService userService;
+    private final UserRepository userRepository;
     private final BookRepository bookRepository;
 
     List<Book> bookListByAuthor;
@@ -28,10 +31,10 @@ public class BookController {
     List<Book> availableBooks;
     List<Book> borrowedBooks;
 
-    public BookController(BookService bookService, PersonService personService, PersonRepository personRepository, BookRepository bookRepository) {
+    public BookController(BookService bookService, UserService userService, UserRepository userRepository, BookRepository bookRepository) {
         this.bookService = bookService;
-        this.personService = personService;
-        this.personRepository = personRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
         this.bookRepository = bookRepository;
     }
 
@@ -165,17 +168,17 @@ public class BookController {
 
     @GetMapping("/myBooksReturnByName")
     public String deleteBook(@RequestParam("id") Long id,Principal principal) {
-        Person person = personRepository.findByLogin(principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
         Book book = bookRepository.getById(id);
-        bookService.returnBook(person,book);
-        personRepository.save(person);
+        bookService.returnBook(user,book);
+        userRepository.save(user);
         bookRepository.save(book);
         return "redirect:/myBooksReturn";
     }
 
     @GetMapping("/myBooksReturn")
     public String returnMyBook(Principal principal, Model model) {
-        List<User> users = personService.getAllPerson();
+        List<User> users = userService.getAllPerson();
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();
@@ -193,8 +196,6 @@ public class BookController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, bookService.getBooks());
-//        FolderBooks.saveBooks();
-        PersonService.saveUsers();
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
@@ -204,10 +205,10 @@ public class BookController {
 
     @GetMapping("/myBookBorrowByName")
     public String borrowBook(@RequestParam("id") Long id,Principal principal) {
-        Person person = personRepository.findByLogin(principal.getName());
+        User user = userRepository.findByUsername(principal.getName());
         Book book = bookRepository.getById(id);
-        bookService.addBookToPerson(person,book);
-        personRepository.save(person);
+        bookService.addBookToPerson(user,book);
+        userRepository.save(user);
         bookRepository.save(book);
         return "redirect:/borrowBooksList";
     }

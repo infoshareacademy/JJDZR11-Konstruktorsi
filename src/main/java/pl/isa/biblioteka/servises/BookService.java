@@ -1,4 +1,4 @@
-package pl.isa.biblioteka.book;
+package pl.isa.biblioteka.servises;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -6,8 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import pl.isa.biblioteka.user.Person;
-import pl.isa.biblioteka.user.PersonService;
+import pl.isa.biblioteka.model.Book;
+import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.repositories.BookRepository;
 
 import java.util.*;
 import java.util.logging.Logger;
@@ -17,15 +18,14 @@ import java.util.stream.IntStream;
 @Service
 public class BookService {
     private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
-//    public static List<Book> booksList = new ArrayList<>(FolderBooks.readBooks());
     public static List<Book> booksList2;
 
     private final BookRepository bookRepository;
-    private final PersonService personService;
+    private final UserService userService;
 
-    public BookService(BookRepository bookRepository, PersonService personService) {
+    public BookService(BookRepository bookRepository, UserService userService) {
         this.bookRepository = bookRepository;
-        this.personService = personService;
+        this.userService = userService;
     }
 
     public List<Book> getBooks(){
@@ -160,7 +160,7 @@ public class BookService {
         }
     }
 
-    public boolean addBookToPerson(Person person, Book book) {
+    public boolean addBookToPerson(User person, Book book) {
         for (Book books : getBooks()) {
             if (books.getId().equals(book.getId()) && book.isState()) {
                 book.setState(false);
@@ -172,7 +172,7 @@ public class BookService {
     }
 
 
-    public boolean returnBook(Person person, Book book) {
+    public boolean returnBook(User person, Book book) {
         for (Book personBook :  person.getPersonBooks()) {
             if (personBook.getTitle().equalsIgnoreCase(book.getTitle()) && !personBook.isState()) {
                 for (Book books : getBooks()) {

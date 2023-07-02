@@ -1,8 +1,9 @@
-package pl.isa.biblioteka.book;
+package pl.isa.biblioteka.repositories;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import pl.isa.biblioteka.model.Book;
 
 import java.io.IOException;
 import java.nio.file.Files;
