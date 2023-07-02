@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.isa.biblioteka.file.FolderBooks;
-import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.security.Principal;
@@ -168,7 +168,7 @@ public String librarianDay(Model model) {
 
     @GetMapping("/myBooksReturn")
     public String returnMyBook(Principal principal,Model model){
-        List<Person> users = PersonService.readUsers();
+        List<User> users = PersonService.readUsers();
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();

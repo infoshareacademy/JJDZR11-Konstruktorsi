@@ -7,7 +7,7 @@ import pl.isa.biblioteka.book.Book;
 import pl.isa.biblioteka.book.BookDAO;
 import pl.isa.biblioteka.book.BookRepository;
 import pl.isa.biblioteka.book.BookService;
-import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonDAO;
 import pl.isa.biblioteka.user.PersonService;
 
@@ -33,22 +33,22 @@ class LibraryAppTests {
 
 	@Test
 	void savePerson() {
-		Person person = new Person(
+		User user = new User(
 
 				"KamilLogin",
 				"KamilPass",
 				"Kamil",
 				"Koz",
 				"k@k.pl");
-		personDAO.savePerson(person);
+		personDAO.savePerson(user);
 	}
 
 
 	@Test
 	void readAndSavePerson() {
-		List<Person> people = PersonService.readUsers();
-		for (Person person : people) {
-			personDAO.savePerson(person);
+		List<User> people = PersonService.readUsers();
+		for (User user : people) {
+			personDAO.savePerson(user);
 		}
 	}
 

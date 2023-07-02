@@ -5,16 +5,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonDTO {
     private Integer id;
-    private String login;
+    private String username;
     private String password;
     private String firstName;
     private String secondName;
     private String email;
     private String role;
 
-    public PersonDTO(Integer id, String login, String password, String firstName, String secondName, String email) {
+    public PersonDTO(Integer id, String username, String password, String firstName, String secondName, String email) {
         this.id = id;
-        this.login = login;
+        this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -42,12 +42,12 @@ public class PersonDTO {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
