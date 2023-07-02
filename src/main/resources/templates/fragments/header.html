@@ -1,4 +1,4 @@
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!--
 * login
@@ -27,8 +27,8 @@
                     <a class="nav-link scrollto me-1" th:href="@{/#team}">Zespół</a>
                 </li>
             </ul>
-            <div style="color: yellow" th:if="${param.error}">Invalid username or password.</div>
-            <div th:if="${param.logout}">You have been logged out.</div>
+            <div style="color: yellow" th:if="${param.error}">Niewłaściwy login lub hasło</div>
+            <div style="color: yellow" th:if="${param.logout}">Zostałeś wylogowany</div>
             <form th:action="@{/}" method="post" class="d-flex ms-3">
                 <input class="form-control me-2" type="text" name="user" placeholder="Login" aria-label="Login">
                 <input class="form-control me-2" type="password" name="password" placeholder="Hasło" aria-label="Hasło">
@@ -48,6 +48,22 @@
         <a class="navbar-brand" th:href="@{/}"><img src="/images/logo.png"
                                                     height="36"
                                                     class="d-inline-block ms-3 me-3 align-bottom">BIBLIOTEKA</a>
+        <main>
+            <div  sec:authorize="isAuthenticated()" th:align="center">
+                Jestem zalogowany
+                <div>
+                    <p>Authenticated username:</p>
+                    <div sec:authentication="name">TO JEST NAME ?</div>
+                </div>
+                <div>
+                    <p>Authenticated user roles:</p>
+                    <div sec:authentication="principal.authorities">TO JEST ROLE ?</div>
+                </div>
+            </div>
+            <div th:align="center" th:object="${username}">
+                <label th:text="'Witaj ' + ${username}"></label>
+            </div>
+        </main>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -66,9 +82,9 @@
                     <a class="nav-link scrollto me-1" th:href="@{/search}">Wyszukiwanie zaawansowane</a>
                 </li>
             </ul>
-            <div style="color: yellow" th:if="${param.error}">Invalid username or password.</div>
-            <div th:if="${param.logout}">You have been logged out.</div>
-            <span class="navbar-brand ms-4">Witaj <span class="navbar-brand" th:text="${user}"></span></span>
+            <div style="color: yellow" th:if="${param.error}">Niewłaściwy login lub hasło</div>
+            <div style="color: yellow" th:if="${param.logout}">Zostałeś wylogowany</div>
+            <span class="navbar-brand ms-4">Witaj <span class="navbar-brand"sec:authentication="name"></span></span>
             <div><a class="btn btn-light me-3" href="/logout">Wyloguj</a></div>
         </div>
     </nav>

@@ -34,15 +34,15 @@ class HomeController {
   return "index";
  }
 
- @GetMapping("info")
+/* @GetMapping("info")
  @PreAuthorize("hasAuthority('USER')")
  public String info() {
   return "o-nas";
- }
+ }*/
 
- @GetMapping("pre-auth")
+/* @GetMapping("pre-auth")
  @PreAuthorize("hasAuthority('ADMIN')")
  public String preAuth() {
   return "/";
- }
+ }*/
 }

@@ -19,16 +19,15 @@
 </div>
 
 <main>
-    <!-- Treść strony głównej -->
     <div  sec:authorize="isAuthenticated()" th:align="center">
         Jestem zalogowany
         <div>
             <p>Authenticated username:</p>
-            <div sec:authentication="name"></div>
+            <div sec:authentication="name">TO JEST NAME ?</div>
         </div>
         <div>
             <p>Authenticated user roles:</p>
-            <div sec:authentication="principal.authorities"></div>
+            <div sec:authentication="principal.authorities">TO JEST ROLE ?</div>
         </div>
     </div>
     <div th:align="center" th:object="${username}">
