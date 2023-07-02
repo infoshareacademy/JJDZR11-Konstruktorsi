@@ -1,5 +1,8 @@
 package pl.isa.biblioteka.user;
 
+import lombok.Builder;
+
+@Builder
 public class PersonDTO {
     private Integer id;
     private String login;

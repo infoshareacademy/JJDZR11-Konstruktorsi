@@ -1,6 +1,10 @@
 package pl.isa.biblioteka.user;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import pl.isa.biblioteka.book.Book;
 
@@ -9,6 +13,8 @@ import java.util.List;
 
 @Component
 @Entity
+@AllArgsConstructor
+@Builder
 public class Person {
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -50,7 +56,7 @@ public class Person {
         this.secondName = secondName;
         this.email = email;
     }
-
+//
     public Person(String firstName, String secondName, List<Book> personBooks, Integer id, String login, String password, String email) {
         this.id = id;
         this.login = login;

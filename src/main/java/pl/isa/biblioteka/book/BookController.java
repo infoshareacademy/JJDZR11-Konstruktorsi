@@ -175,7 +175,6 @@ public class BookController {
 
     @GetMapping("/myBooksReturn")
     public String returnMyBook(Principal principal, Model model) {
-//        List<Person> users = PersonService.readUsers();
         List<Person> users = personService.getAllPerson();
         model.addAttribute("users", users);
         if (principal != null) {
@@ -217,10 +216,10 @@ public class BookController {
     @PostMapping("/addBook")
     public String addBook(Principal principal, @RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
         Book book = new Book(title, author, category);
-        String str = BookService.addBook(book);
+        String str = bookService.addBook(book);
         model.addAttribute("result", book);
         model.addAttribute("mesage", str);
-//        BookRepository.saveBooks();
+//        bookRepository.saveAll(str)
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);

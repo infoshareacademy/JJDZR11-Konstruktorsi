@@ -129,8 +129,8 @@ public class BookService {
         return availableCategory;
     }
 
-    public static String addBook(Book book) {
-//        getBooks().add(book);
+    public String addBook(Book book) {
+        bookRepository.save(book);
         LOGGER.info("Dodano książkę: " + book.getTitle() + " autora: " + book.getAuthor());
         return "Dodano nową książkę " + book.getTitle() + " autora: " + book.getAuthor();
     }

@@ -12,9 +12,9 @@ import java.security.Principal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 import static pl.isa.biblioteka.user.PersonService.editUserId;
-import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 
 @Controller
@@ -30,16 +30,15 @@ public class UserController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
-        personService.delete(id);
+        personService.deleteById(id);
         return "redirect:/usersList";
     }
 
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
-        List<Person> users = PersonService.readUsers();
+        List<Person> users = personService.getAllPerson();
         Collections.sort(users, Comparator.comparing(Person::getId));
         model.addAttribute("users", users);
-        personService.readUsers();
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
@@ -66,7 +65,7 @@ public class UserController {
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         Person newPerson = new Person(login, password, firstName, secondName, email);
-        String result = registerUserId(newPerson);
+        String result = personService.registerUserId(newPerson);
         model.addAttribute("mesage", result);
         PersonService.saveUsers();
         return "register";
@@ -74,7 +73,7 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     public String edit(Principal principal, @PathVariable("id") Integer id, Model model) {
-        PersonDTO personDTO = personService.findId(id);
+        PersonDTO personDTO = personService.findById(id);
         model.addAttribute("personDTO", personDTO);
         if (principal != null) {
             String user = principal.getName();
@@ -83,12 +82,12 @@ public class UserController {
         } else return "edit";
     }
 
-    @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
-        personService.delete(id);
-        Person person = new Person(personDTO.getLogin(), personDTO.getPassword(), personDTO.getFirstName(), personDTO.getSecondName(), personDTO.getEmail());
-        editUserId(person, id);
-        PersonService.saveUsers();
+    @PostMapping("/update")
+    public String editUser(@ModelAttribute PersonDTO personDTO) {
+        personService.updateUser(personDTO);
         return "redirect:/usersList";
     }
+
+
+
 }

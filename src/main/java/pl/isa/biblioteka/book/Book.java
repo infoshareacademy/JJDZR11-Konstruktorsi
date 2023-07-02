@@ -3,6 +3,7 @@ package pl.isa.biblioteka.book;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
 import pl.isa.biblioteka.user.Person;
@@ -70,6 +71,10 @@ public class Book {
         this.title = title;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -106,4 +111,8 @@ public class Book {
     public void setId(Long id) {
         this.id = id;
     }
+
+//    public String getLogin(){
+//        return person.getLogin();
+//    }
 }
