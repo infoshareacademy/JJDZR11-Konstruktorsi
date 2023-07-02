@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
-import pl.isa.biblioteka.user.Person;
+import pl.isa.biblioteka.model.User;
 
 import java.time.LocalDateTime;
 
@@ -41,10 +41,10 @@ public class Book {
 
 
     @ManyToOne
-    private Person person;
+    private User user;
 
     //mennyToOne
-    //Person person
+    //User person
 
     public Book() {
     }

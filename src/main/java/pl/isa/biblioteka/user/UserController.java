@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.isa.biblioteka.book.BookService;
 import org.springframework.web.bind.annotation.*;
+import pl.isa.biblioteka.model.User;
 
 import java.security.Principal;
 import java.util.Collections;
@@ -15,29 +16,34 @@ import java.util.List;
 import java.util.Optional;
 
 import static pl.isa.biblioteka.user.PersonService.editUserId;
+//import static pl.isa.biblioteka.user.PersonService.editUserId;
+//import static pl.isa.biblioteka.user.PersonService.registerUserId;
 
 
 @Controller
 public class UserController {
 
+
     private final BookService bookService;
     private final PersonService personService;
+    private final PersonDAO personDAO;
 
-    public UserController(BookService bookService, PersonService personService) {
+    public UserController(BookService bookService, PersonService personService, PersonDAO personDAO) {
         this.bookService = bookService;
         this.personService = personService;
+        this.personDAO = personDAO;
     }
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") Integer id) {
-        personService.deleteById(id);
+        personDAO.delate(id);
         return "redirect:/usersList";
     }
 
     @GetMapping("/usersList")
     public String getUsers(Principal principal, Model model) {
-        List<Person> users = personService.getAllPerson();
-        Collections.sort(users, Comparator.comparing(Person::getId));
+        List<User> users = personDAO.findAll();
+        Collections.sort(users, Comparator.comparing(User::getId));
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();
@@ -64,8 +70,8 @@ public class UserController {
 
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
-        Person newPerson = new Person(login, password, firstName, secondName, email);
-        String result = personService.registerUserId(newPerson);
+        User newUser = new User(login, password, firstName, secondName, email);
+        String result = personService.registerUserId(newUser);
         model.addAttribute("mesage", result);
         PersonService.saveUsers();
         return "register";
@@ -73,8 +79,8 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     public String edit(Principal principal, @PathVariable("id") Integer id, Model model) {
-        PersonDTO personDTO = personService.findById(id);
-        model.addAttribute("personDTO", personDTO);
+        User userDTO = personDAO.findById(id);
+        model.addAttribute("personDTO", userDTO);
         if (principal != null) {
             String user = principal.getName();
             model.addAttribute("user", user);
@@ -82,12 +88,17 @@ public class UserController {
         } else return "edit";
     }
 
-    @PostMapping("/update")
-    public String editUser(@ModelAttribute PersonDTO personDTO) {
-        personService.updateUser(personDTO);
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
+        User existUser = personDAO.findById(id);
+        if (existUser != null) {
+            existUser.setUsername(personDTO.getUsername());
+            existUser.setPassword(personDTO.getPassword());
+            existUser.setFirstName(personDTO.getFirstName());
+            existUser.setSecondName(personDTO.getSecondName());
+            existUser.setEmail(personDTO.getEmail());
+            personDAO.editUserId(existUser);
+        }
         return "redirect:/usersList";
     }
-
-
-
 }

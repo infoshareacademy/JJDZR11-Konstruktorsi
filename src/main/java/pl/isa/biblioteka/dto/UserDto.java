@@ -1,23 +1,41 @@
-package pl.isa.biblioteka.user;
+package pl.isa.biblioteka.dto;
 
-import lombok.Builder;
+import org.springframework.stereotype.Service;
 
-@Builder
-public class PersonDTO {
+@Service
+public class UserDto {
+
     private Integer id;
+
     private String username;
+
     private String password;
-    private String firstName;
-    private String secondName;
+
     private String email;
 
-    public PersonDTO(Integer id, String username, String password, String firstName, String secondName, String email) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    private String firstName;
+
+    private String secondName;
+
+    private String role;
+
+    public UserDto() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
         this.secondName = secondName;
-        this.email = email;
     }
 
     public Integer getId() {
@@ -44,27 +62,19 @@ public class PersonDTO {
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

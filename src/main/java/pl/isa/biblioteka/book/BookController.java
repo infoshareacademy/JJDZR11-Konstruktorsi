@@ -3,8 +3,8 @@ package pl.isa.biblioteka.book;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.isa.biblioteka.user.Person;
-import pl.isa.biblioteka.user.PersonRepository;
+import pl.isa.biblioteka.file.FolderBooks;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonService;
 
 import java.security.Principal;
@@ -175,7 +175,7 @@ public class BookController {
 
     @GetMapping("/myBooksReturn")
     public String returnMyBook(Principal principal, Model model) {
-        List<Person> users = personService.getAllPerson();
+        List<User> users = personService.getAllPerson();
         model.addAttribute("users", users);
         if (principal != null) {
             String user = principal.getName();
