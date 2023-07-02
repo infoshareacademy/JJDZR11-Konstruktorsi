@@ -1,4 +1,4 @@
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!--
 * login
@@ -68,6 +68,9 @@
             </ul>
             <div style="color: yellow" th:if="${param.error}">Invalid username or password.</div>
             <div th:if="${param.logout}">You have been logged out.</div>
+            <div th:align="center" th:object="${username}">
+                <label th:text="'Witaj ' + ${username}"></label>
+            </div>
             <span class="navbar-brand ms-4">Witaj <span class="navbar-brand" th:text="${user}"></span></span>
             <div><a class="btn btn-light me-3" href="/logout">Wyloguj</a></div>
         </div>
