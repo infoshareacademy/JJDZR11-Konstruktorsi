@@ -9,6 +9,7 @@ import pl.isa.biblioteka.servises.BookService;
 import org.springframework.web.bind.annotation.*;
 import pl.isa.biblioteka.dto.PersonDTO;
 import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.servises.UserService;
 import pl.isa.biblioteka.user.PersonDAO;
 
@@ -23,11 +24,13 @@ public class UserController {
 
     private final BookService bookService;
     private final UserService userService;
+    private final PersonService personService;
     private final PersonDAO personDAO;
 
-    public UserController(BookService bookService, UserService userService, PersonDAO personDAO) {
+    public UserController(BookService bookService, UserService userService, PersonService personService, PersonDAO personDAO) {
         this.bookService = bookService;
         this.userService = userService;
+        this.personService = personService;
         this.personDAO = personDAO;
     }
 
@@ -68,7 +71,7 @@ public class UserController {
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         User newUser = new User(login, password, firstName, secondName, email);
-        String result = userService.registerUserId(newUser);
+        String result = personService.registerUserId(newUser);
         model.addAttribute("mesage", result);
         return "register";
     }
