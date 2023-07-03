@@ -37,6 +37,9 @@ public class PersonDAO {
 
     @Transactional
     public User editUserId(User user) {
+        if (isLoginTaken(user.getUsername())){
+            return new User("Zajęty", "111", "Zajęty", "Zajęty", "Zaj@zaj");
+        }
             entityManager.merge(user);
             return user;
     }
@@ -48,6 +51,13 @@ public class PersonDAO {
 
     public boolean isLoginTaken(String username) {
         return findAll().stream().anyMatch(person -> person.getUsername().equalsIgnoreCase(username));
+    }
+
+
+    public boolean isLoginTakenByOtherUser(int userId, String username) {
+        return findAll().stream()
+                .anyMatch(person -> person.getUsername().equalsIgnoreCase(username)
+                        && person.getId() != userId);
     }
 
 }

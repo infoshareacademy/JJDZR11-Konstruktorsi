@@ -10,13 +10,14 @@
 
 <header th:replace="~{/fragments/header::logout}" sec:authorize="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"></header>
 
-<div th:if="${user == null}">
+<div sec:authorize="isAuthenticated()">
     <section th:replace="~{fragments/startSection::start}"></section>
 </div>
 
-<div th:if="${user == null}">
+<div sec:authorize="!isAuthenticated()">
     <section th:replace="~{fragments/startSection::logoff}"></section>
 </div>
+
 
 <main>
     <div  sec:authorize="isAuthenticated()" th:align="center">
