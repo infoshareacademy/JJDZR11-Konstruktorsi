@@ -2,11 +2,9 @@ package pl.isa.biblioteka.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import pl.isa.biblioteka.book.BookService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.isa.biblioteka.book.BookService;
 import pl.isa.biblioteka.model.User;
 
 import java.security.Principal;
@@ -44,7 +42,7 @@ public class UserController {
         Collections.sort(users, Comparator.comparing(User::getId));
         model.addAttribute("users", users);
 
-            return "usersList";
+        return "usersList";
     }
 
     @GetMapping("/myBooks")
@@ -52,7 +50,7 @@ public class UserController {
         List<User> users = PersonService.readUsers();
         model.addAttribute("users", users);
 
-            return "myBooks";
+        return "myBooks";
 
     }
 
@@ -75,14 +73,19 @@ public class UserController {
         User userDTO = personDAO.findById(id);
         model.addAttribute("personDTO", userDTO);
 
-            return "edit";
+        return "edit";
 
     }
 
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO) {
+    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO, RedirectAttributes redirectAttributes) {
         User existUser = personDAO.findById(id);
         if (existUser != null) {
+            String newUsername = personDTO.getUsername();
+            if (personDAO.isLoginTakenByOtherUser(existUser.getId(), newUsername)) {
+                redirectAttributes.addFlashAttribute("mesage", "Użytkownik o podanym loginie jest już zajęty, wybierz inny login");
+                return "redirect:/edit/" + id;
+            }
             existUser.setUsername(personDTO.getUsername());
             existUser.setPassword(personDTO.getPassword());
             existUser.setFirstName(personDTO.getFirstName());
