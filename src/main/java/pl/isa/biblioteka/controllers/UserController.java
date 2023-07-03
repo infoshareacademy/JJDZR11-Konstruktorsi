@@ -68,8 +68,8 @@ public class UserController {
     @PostMapping("/register")
     public String addUser(@RequestParam String login, @RequestParam String password, @RequestParam String firstName, @RequestParam String secondName, @RequestParam String email, Model model) {
         User newUser = new User(login, password, firstName, secondName, email);
-//        String result = userService.registerUserId(newUser);
-//        model.addAttribute("mesage", result);
+        String result = userService.registerUserId(newUser);
+        model.addAttribute("mesage", result);
         return "register";
     }
 

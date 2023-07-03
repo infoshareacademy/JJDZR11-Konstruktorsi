@@ -8,6 +8,7 @@ import pl.isa.biblioteka.dto.BookDAO;
 import pl.isa.biblioteka.repositories.BookRepository;
 import pl.isa.biblioteka.servises.BookService;
 import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.servises.ReadSaveUser;
 import pl.isa.biblioteka.user.PersonDAO;
 
 import java.util.List;
@@ -22,7 +23,7 @@ class LibraryAppTests {
 	BookDAO bookDAO;
 
 	@Autowired
-	PersonService personService;
+	ReadSaveUser readSaveUser;
 
 	@Autowired
 	BookService bookService;
@@ -45,7 +46,7 @@ class LibraryAppTests {
 
 	@Test
 	void readAndSavePerson() {
-		List<User> people = PersonService.readUsers();
+		List<User> people = ReadSaveUser.readUsers();
 		for (User user : people) {
 			personDAO.savePerson(user);
 		}

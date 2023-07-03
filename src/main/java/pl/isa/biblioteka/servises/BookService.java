@@ -53,19 +53,6 @@ public class BookService {
         return bookPage;
     }
 
-//    public void deleteBookByTitle(String title) {
-//        boolean findBook = false;
-//        for (Book book : getBooks()) {
-//            if (foundBookByTitle(title).test(book)) {
-//                getBooks().removeIf(foundBookByTitle(title));
-//                findBook = true;
-//                break;
-//            }
-//        }
-//        if (!findBook) {
-//            System.out.println("W naszej bazie nie ma takiej książki o tytule: " + title);
-//        }
-//    }
 
     public List<Book> searchByText(String text) {
         List<Book> searchText = getBooks().stream().filter(book -> book.getTitle().contains(text) || book.getAuthor().contains(text)).collect(Collectors.toList());
