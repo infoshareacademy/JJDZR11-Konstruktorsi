@@ -78,7 +78,7 @@ public class UserController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO, RedirectAttributes redirectAttributes) {
+    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO, RedirectAttributes redirectAttributes, @RequestParam(value = "isAdmin", required = false) String isAdmin) {
         User existUser = personDAO.findById(id);
         if (existUser != null) {
             String newUsername = personDTO.getUsername();
@@ -86,8 +86,15 @@ public class UserController {
                 redirectAttributes.addFlashAttribute("mesage", "Użytkownik o podanym loginie jest już zajęty, wybierz inny login");
                 return "redirect:/edit/" + id;
             }
+            if (isAdmin != null) {
+                existUser.setRole("ROLE_ADMIN");
+            } else {
+                existUser.setRole("ROLE_USER");
+            }
+            if (personDTO.getPassword() != "") {
+                existUser.setPassword(personDTO.getPassword());
+            }
             existUser.setUsername(personDTO.getUsername());
-            existUser.setPassword(personDTO.getPassword());
             existUser.setFirstName(personDTO.getFirstName());
             existUser.setSecondName(personDTO.getSecondName());
             existUser.setEmail(personDTO.getEmail());

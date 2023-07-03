@@ -37,9 +37,6 @@ public class PersonDAO {
 
     @Transactional
     public User editUserId(User user) {
-        if (isLoginTaken(user.getUsername())){
-            return new User("Zajęty", "111", "Zajęty", "Zajęty", "Zaj@zaj");
-        }
             entityManager.merge(user);
             return user;
     }
