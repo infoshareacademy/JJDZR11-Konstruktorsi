@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,12 +27,12 @@ public class CustomUserDetails implements UserDetails {
 
  @Override
  public String getPassword() {
-  return userDto.getPassword();
+  return userDto == null ? null : userDto.getPassword();
  }
 
  @Override
  public String getUsername() {
-  return userDto.getUsername();
+  return userDto == null ? null : userDto.getUsername();
  }
 
  @Override

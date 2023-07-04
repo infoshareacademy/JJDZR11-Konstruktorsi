@@ -50,4 +50,11 @@ public class PersonDAO {
         return findAll().stream().anyMatch(person -> person.getUsername().equalsIgnoreCase(username));
     }
 
+
+    public boolean isLoginTakenByOtherUser(int userId, String username) {
+        return findAll().stream()
+                .anyMatch(person -> person.getUsername().equalsIgnoreCase(username)
+                        && person.getId() != userId);
+    }
+
 }
