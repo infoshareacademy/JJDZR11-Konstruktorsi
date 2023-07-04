@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
-import pl.isa.biblioteka.model.User;
 
 import java.time.LocalDateTime;
 
@@ -45,9 +44,6 @@ public class Book {
 
     @ManyToOne
     private User user;
-
-    //mennyToOne
-    //User person
 
     public Book() {
     }
@@ -115,7 +111,4 @@ public class Book {
         this.id = id;
     }
 
-//    public String getLogin(){
-//        return person.getLogin();
-//    }
 }
