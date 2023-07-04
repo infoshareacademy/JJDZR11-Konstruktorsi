@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service(value="userServiceDetails")
@@ -32,7 +33,7 @@ public class UserService implements UserDetailsService {
   this.userRepository = userRepository;
  }
 
- public Optional<User> findByUserName(String username) {
+ public User findByUserName(String username) {
   return userRepository.findByUsername(username);
  }
 
@@ -46,9 +47,11 @@ public class UserService implements UserDetailsService {
 
  @Override
  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-  Optional<User> user = userRepository.findByUsername(username);
-  return new CustomUserDetails(user
-      .map(userMapper::toDto)
-      .orElse(null));
+  User user = userRepository.findByUsername(username);
+  return new CustomUserDetails(userMapper.toDto(user));
+ }
+
+ public List<User> getAllPerson(){
+  return userRepository.findAll();
  }
 }
