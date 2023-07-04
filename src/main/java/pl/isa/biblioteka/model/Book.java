@@ -1,8 +1,10 @@
-package pl.isa.biblioteka.book;
+package pl.isa.biblioteka.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
 import pl.isa.biblioteka.model.User;
@@ -11,6 +13,8 @@ import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
+@AllArgsConstructor
+@Builder
 public class Book {
 
     @Id
@@ -70,6 +74,10 @@ public class Book {
         this.title = title;
     }
 
+    public User getPerson() {
+        return user;
+    }
+
     public String getAuthor() {
         return author;
     }
@@ -106,4 +114,8 @@ public class Book {
     public void setId(Long id) {
         this.id = id;
     }
+
+//    public String getLogin(){
+//        return person.getLogin();
+//    }
 }

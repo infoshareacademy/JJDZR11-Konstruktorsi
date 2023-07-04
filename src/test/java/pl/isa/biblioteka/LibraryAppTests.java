@@ -3,14 +3,13 @@ package pl.isa.biblioteka;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pl.isa.biblioteka.book.Book;
-import pl.isa.biblioteka.book.BookDAO;
-import pl.isa.biblioteka.book.BookRepository;
-import pl.isa.biblioteka.book.BookService;
+import pl.isa.biblioteka.model.Book;
+import pl.isa.biblioteka.dto.BookDAO;
+import pl.isa.biblioteka.repositories.BookRepository;
+import pl.isa.biblioteka.servises.BookService;
 import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.user.PersonDAO;
-import pl.isa.biblioteka.user.PersonService;
 
 import java.util.List;
 
@@ -32,12 +31,6 @@ class LibraryAppTests {
 	@Autowired
 	BookRepository bookRepository;
 
-
-/*
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
-*/
-
 	@Test
 	void savePerson() {
 		User user = new User(
@@ -50,15 +43,6 @@ class LibraryAppTests {
 		personDAO.savePerson(user);
 	}
 
-
-//	@Test   //bCryptPasswordEncoder
-//	void readAndSavePerson() {
-//		List<User> people = PersonService.readUsers();
-//		for (User user : people) {
-//			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//			personDAO.savePerson(user);
-//		}
-//	}
 
 	@Test
 	void readAndSavePerson() {
