@@ -31,9 +31,6 @@ public class User {
     private String secondName;
     @Column(name = "role", nullable = true)
     private String role;
-
-    //OneToMeny
-//    @Transient
     @Column(name = "email", unique = false, nullable = false)
     private String email;
 
@@ -128,7 +125,6 @@ public class User {
     public List<Book> getPersonBooks() {
         return personBooks;
     }
-
 
     public void setPersonBooks(List<Book> personBooks) {
         this.personBooks = personBooks;

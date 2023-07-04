@@ -3,7 +3,6 @@ package pl.isa.biblioteka.servises;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.stereotype.Service;
-import pl.isa.biblioteka.dto.PersonDTO;
 import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.user.PersonDAO;
@@ -21,39 +20,13 @@ import java.util.logging.Logger;
 @Service
 public class PersonService {
 
+    private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
+    public static List<User> users = new ArrayList<>(PersonService.readUsers());
+    public static List<Book> personBooks = new ArrayList<>();
     private final PersonDAO personDAO;
 
     public PersonService(PersonDAO personDAO) {
         this.personDAO = personDAO;
-    }
-
-    private static final Logger LOGGER = Logger.getLogger(PersonService.class.getName());
-
-    public static List<User> users = new ArrayList<>(PersonService.readUsers());
-
-    public static List<Book> personBooks = new ArrayList<>();
-
-    public void setPersonBooks(List<Book> personBooks) {
-        this.personBooks = personBooks;
-    }
-
-    public List<Book> getPersonBooks() {
-        return personBooks;
-    }
-
-
-    public String registerUserId(User user) {
-        boolean userExist = personDAO.isLoginTaken(user.getUsername());
-        if (userExist) {
-            return "Login jest już zajęty, wybierz inny login";
-        }
-
-        User savedUser = personDAO.savePerson(user);
-        if (savedUser != null) {
-            return "Dodano użytkownika: " + savedUser.getUsername() + ", możesz się zalogować";
-        } else {
-            return "Wystąpił problem podczas rejestracji użytkownika";
-        }
     }
 
     public static void saveUsers() {
@@ -80,5 +53,25 @@ public class PersonService {
         }
     }
 
-}
+    public List<Book> getPersonBooks() {
+        return personBooks;
+    }
 
+    public void setPersonBooks(List<Book> personBooks) {
+        PersonService.personBooks = personBooks;
+    }
+
+    public String registerUserId(User user) {
+        boolean userExist = personDAO.isLoginTaken(user.getUsername());
+        if (userExist) {
+            return "Login jest już zajęty, wybierz inny login";
+        }
+
+        User savedUser = personDAO.savePerson(user);
+        if (savedUser != null) {
+            return "Dodano użytkownika: " + savedUser.getUsername() + ", możesz się zalogować";
+        } else {
+            return "Wystąpił problem podczas rejestracji użytkownika";
+        }
+    }
+}
