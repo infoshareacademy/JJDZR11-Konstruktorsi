@@ -1,13 +1,16 @@
 package pl.isa.biblioteka.controllers;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.isa.biblioteka.dto.CustomUserDetails;
+import pl.isa.biblioteka.dto.UserDto;
+import pl.isa.biblioteka.model.Book;
+import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.BookRepository;
 import pl.isa.biblioteka.repositories.UserRepository;
 import pl.isa.biblioteka.servises.BookService;
-import pl.isa.biblioteka.model.Book;
-import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.servises.UserService;
 
 import java.security.Principal;
@@ -23,6 +26,7 @@ public class BookController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
+    UserDto userDto = new UserDto();
 
     List<Book> bookListByAuthor;
     List<Book> searchCategoryBook;
@@ -48,7 +52,7 @@ public class BookController {
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, bookService.getBooks());
 
-            return "list";
+        return "list";
 
     }
 
@@ -57,7 +61,7 @@ public class BookController {
         model.addAttribute("book", book);
         model.addAttribute("category", bookService.availableCategory());
 
-            return "search";
+        return "search";
 
     }
 
@@ -77,7 +81,7 @@ public class BookController {
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, bookListByAuthor);
 
-            return "listToBorrow";
+        return "listToBorrow";
 
     }
 
@@ -96,7 +100,7 @@ public class BookController {
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, searchBook);
 
-            return "listToBorrow";
+        return "listToBorrow";
 
     }
 
@@ -116,7 +120,7 @@ public class BookController {
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, searchCategoryBook);
 
-            return "listToBorrow";
+        return "listToBorrow";
 
     }
 
@@ -129,7 +133,7 @@ public class BookController {
         int pageSize = size.orElse(20);
         extracted(model, currentPage, pageSize, localSearchBook);
 
-            return "list";
+        return "list";
 
     }
 
@@ -147,15 +151,15 @@ public class BookController {
     @GetMapping("/addBook")
     public String addBook(Principal principal, Model model) {
 
-            return "addBook";
+        return "addBook";
 
     }
 
     @GetMapping("/myBooksReturnByName")
-    public String deleteBook(@RequestParam("id") Long id,Principal principal) {
+    public String deleteBook(@RequestParam("id") Long id, Authentication principal) {
         User user = userRepository.findByUsername(principal.getName());
         Book book = bookRepository.getById(id);
-        bookService.returnBook(user,book);
+        bookService.returnBook(user, book);
         userRepository.save(user);
         bookRepository.save(book);
         return "redirect:/myBooksReturn";
@@ -164,9 +168,11 @@ public class BookController {
     @GetMapping("/myBooksReturn")
     public String returnMyBook(Principal principal, Model model) {
         List<User> users = userService.getAllPerson();
+        User user = userRepository.findByUsername(principal.getName());
+        List<Book> personBooks = user.getPersonBooks();
         model.addAttribute("users", users);
-
-            return "returnBook";
+        model.addAttribute("books", personBooks);
+        return "returnBook";
 
     }
 
@@ -179,15 +185,15 @@ public class BookController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(15);
         extracted(model, currentPage, pageSize, bookService.getBooks());
-         return "listToBorrow";
+        return "listToBorrow";
 
     }
 
     @GetMapping("/myBookBorrowByName")
-    public String borrowBook(@RequestParam("id") Long id,Principal principal) {
+    public String borrowBook(@RequestParam("id") Long id, Authentication principal) {
         User user = userRepository.findByUsername(principal.getName());
         Book book = bookRepository.getById(id);
-        bookService.addBookToPerson(user,book);
+        bookService.addBookToPerson(user, book);
         userRepository.save(user);
         bookRepository.save(book);
         return "redirect:/borrowBooksList";
@@ -201,7 +207,7 @@ public class BookController {
         model.addAttribute("result", book);
         model.addAttribute("mesage", str);
 
-            return "addBook";
+        return "addBook";
 
     }
 
@@ -213,7 +219,7 @@ public class BookController {
         int pageSize = size.orElse(20);
         extracted(model, currentPage, pageSize, availableBooks);
 
-            return "availableBooks";
+        return "availableBooks";
 
 
     }
@@ -225,7 +231,7 @@ public class BookController {
         int pageSize = size.orElse(20);
         extracted(model, currentPage, pageSize, borrowedBooks);
 
-            return "borrowedBooks";
+        return "borrowedBooks";
 
 
     }

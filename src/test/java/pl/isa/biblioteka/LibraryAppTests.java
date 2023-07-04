@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.isa.biblioteka.book.Book;
-import pl.isa.biblioteka.book.BookDAO;
-import pl.isa.biblioteka.book.BookRepository;
-import pl.isa.biblioteka.book.BookService;
+import pl.isa.biblioteka.dto.BookDAO;
+import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.repositories.BookRepository;
+import pl.isa.biblioteka.servises.BookService;
+import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.user.PersonDAO;
-import pl.isa.biblioteka.user.PersonService;
 
 import java.util.List;
 

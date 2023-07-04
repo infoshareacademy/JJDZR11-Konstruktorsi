@@ -1,10 +1,13 @@
 package pl.isa.biblioteka.controllers;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.isa.biblioteka.model.Book;
+import pl.isa.biblioteka.repositories.UserRepository;
 import pl.isa.biblioteka.servises.BookService;
 import org.springframework.web.bind.annotation.*;
 import pl.isa.biblioteka.dto.PersonDTO;
@@ -27,12 +30,14 @@ public class UserController {
     private final UserService userService;
     private final PersonService personService;
     private final PersonDAO personDAO;
+    private final UserRepository userRepository;
 
-    public UserController(BookService bookService, UserService userService, PersonService personService, PersonDAO personDAO) {
+    public UserController(BookService bookService, UserService userService, PersonService personService, PersonDAO personDAO, UserRepository userRepository) {
         this.bookService = bookService;
         this.userService = userService;
         this.personService = personService;
         this.personDAO = personDAO;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/delete")
@@ -51,9 +56,12 @@ public class UserController {
     }
 
     @GetMapping("/myBooks")
-    public String myBooks(Principal principal, Model model) {
+    public String myBooks(Authentication principal, Model model) {
         List<User> users = userService.getAllPerson();
+        User user = userRepository.findByUsername(principal.getName());
+        List<Book> personBooks = user.getPersonBooks();
         model.addAttribute("users", users);
+        model.addAttribute("books", personBooks);
 
         return "myBooks";
 
