@@ -95,14 +95,12 @@ public class UserController {
             } else {
                 existUser.setRole("ROLE_USER");
             }
-            if (personDTO.getPassword() != "") {
-                existUser.setPassword(personDTO.getPassword());
-            }
+
             existUser.setUsername(personDTO.getUsername());
             existUser.setFirstName(personDTO.getFirstName());
             existUser.setSecondName(personDTO.getSecondName());
             existUser.setEmail(personDTO.getEmail());
-            personDAO.editUserId(existUser);
+            personDAO.editUserId(existUser, personDTO.getPassword());
         }
         return "redirect:/usersList";
     }
