@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.isa.biblioteka.book.Book;
 import pl.isa.biblioteka.book.BookDAO;
 import pl.isa.biblioteka.book.BookRepository;
@@ -16,6 +17,12 @@ import java.util.List;
 
 @SpringBootTest
 class LibraryAppTests {
+
+
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
+
 
 	@Autowired
 	PersonDAO personDAO;
@@ -64,6 +71,8 @@ class LibraryAppTests {
 	void readAndSavePerson() {
 		List<User> people = PersonService.readUsers();
 		for (User user : people) {
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
+			user.setRole("ROLE_ADMIN");
 			personDAO.savePerson(user);
 		}
 	}
