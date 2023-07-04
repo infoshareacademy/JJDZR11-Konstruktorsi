@@ -46,11 +46,14 @@ public class PersonDAO {
 
 
     @Transactional
-    public User editUserId(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public User editUserId(User user, String newPassword) {
+        if (newPassword != null && !newPassword.isEmpty()) {
+            user.setPassword(passwordEncoder.encode(newPassword));
+        }
         entityManager.merge(user);
         return user;
     }
+
 
     @Transactional
     public void delate(Integer id) {

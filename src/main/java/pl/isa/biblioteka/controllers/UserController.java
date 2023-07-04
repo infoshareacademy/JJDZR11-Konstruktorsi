@@ -10,9 +10,10 @@ import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.repositories.UserRepository;
 import pl.isa.biblioteka.servises.BookService;
 import org.springframework.web.bind.annotation.*;
-import pl.isa.biblioteka.dto.PersonDTO;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.isa.biblioteka.dto.PersonDTO;
 import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.servises.BookService;
 import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.servises.UserService;
 import pl.isa.biblioteka.user.PersonDAO;
@@ -103,14 +104,12 @@ public class UserController {
             } else {
                 existUser.setRole("ROLE_USER");
             }
-            if (personDTO.getPassword() != "") {
-                existUser.setPassword(personDTO.getPassword());
-            }
+
             existUser.setUsername(personDTO.getUsername());
             existUser.setFirstName(personDTO.getFirstName());
             existUser.setSecondName(personDTO.getSecondName());
             existUser.setEmail(personDTO.getEmail());
-            personDAO.editUserId(existUser);
+            personDAO.editUserId(existUser, personDTO.getPassword());
         }
         return "redirect:/usersList";
     }
