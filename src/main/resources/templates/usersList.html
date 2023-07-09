@@ -41,15 +41,14 @@
                                         <li th:each="book : ${user.personBooks}">
                                             <span th:text="${book.title}"></span> -
                                             <span th:text="${book.author}"></span> -
-                                            <span th:text="${book.category}"></span> -
-                                            <span th:text="${book.state}"></span>
+                                            <span th:text="${book.category}"></span>
                                         </li>
                                     </ul>
                                 </td>
                                 <td>
                                     <a  th:href="@{/edit/{id}(id=*{user.id})}" class="btn btn-info btn-sm">Edytuj</a>
                                     <a th:href="@{/delete(id=${user.id})}" class="btn btn-danger btn-sm ms-2"
-                                       onclick="if (!(confirm('Czy na pewno chcesz skasoważ tego użytkownika ?'))) return false">Skasuj</a>
+                                       onclick="if (!(confirm('Czy na pewno chcesz skasować tego użytkownika ?'))) return false">Skasuj</a>
                                 </td>
                             </tr>
                             </tbody>
