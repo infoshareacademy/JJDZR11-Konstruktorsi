@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-    @JsonBackReference
+//    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     public List<Book> personBooks = new ArrayList<>();

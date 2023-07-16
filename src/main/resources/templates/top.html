@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="cntentTemplate">
                     <div style="display: flex; justify-content: center; margin-top: -50px">
-                        <img class="d-flex" src="/images/baseBooks.png">
+                        <img class="d-flex" th:src="@{'/images/' + ${category} + '.png'}" />
                     </div>
-                    <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Lista książek w bibliotece</h3>
+                    <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Najczęściej wypożyczane w kategorii <span th:text="${category}"></span></h3>
                     <br>
                     <section class="" th:if="${books.isEmpty()}">
                         <h3> Brak wyszukiwanego elementu</h3>

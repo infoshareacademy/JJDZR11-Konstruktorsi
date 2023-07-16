@@ -53,7 +53,7 @@ public class Book {
         }
     }
 
-    @JsonManagedReference
+//    @JsonManagedReference
     @ManyToOne
     private User user;
 

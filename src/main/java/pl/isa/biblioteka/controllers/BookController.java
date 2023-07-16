@@ -76,6 +76,7 @@ public class BookController {
     public String top(@PathVariable("category") String category, Model model, Book book) {
         List<Book> books = bookRepository.findAllByCategoryOrderByCounterDesc(category);
         model.addAttribute("books", books);
+        model.addAttribute("category", category);
         return "top";
     }
 
