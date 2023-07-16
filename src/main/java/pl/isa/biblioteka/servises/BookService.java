@@ -57,9 +57,12 @@ public class BookService {
     }
 
     public void setBorrowedAndReturnDate(Book book){
+        Optional<Integer> counter = Optional.ofNullable(book.getCounter());
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String borrowedDate = LocalDate.now().format(formatter);
         book.setBorrowingDate(borrowedDate);
+        book.setCounter(book.getCounter() + 1);
         LocalDate borrowDate = LocalDate.parse(borrowedDate);
         LocalDate returnDate = borrowDate.plusMonths(3);
         String nextDate = returnDate.format(formatter);

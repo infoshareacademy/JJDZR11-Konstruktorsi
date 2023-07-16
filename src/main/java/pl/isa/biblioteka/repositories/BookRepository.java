@@ -38,4 +38,15 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             return Collections.emptyList();
         }
     }
+
+    static List<Book> sampelReadBooks() {
+        try {
+            byte[] jsonData = Files.readAllBytes(Paths.get("test.json"));
+            ObjectMapper folderBooks = new ObjectMapper();
+            return Arrays.asList(folderBooks.readValue(jsonData, Book[].class));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
 }

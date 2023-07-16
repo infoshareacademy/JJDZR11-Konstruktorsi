@@ -76,6 +76,15 @@ class LibraryAppTests {
 
 
     @Test
+    void sampelReadAndSaveBook() {
+        List<Book> books = BookRepository.sampelReadBooks();
+        for (Book book : books) {
+            bookDAO.saveBook(book);
+        }
+    }
+
+
+    @Test
     void contextLoads() {
     }
 
