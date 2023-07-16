@@ -75,7 +75,8 @@ public class BookController {
     @GetMapping("/top/{category}")
     public String top(@PathVariable("category") String category, Model model, Book book) {
         List<Book> books = bookRepository.findAllByCategoryOrderByCounterDesc(category);
-        model.addAttribute("books", books);
+        List<Book> limitedBooks = books.subList(0, Math.min(books.size(), 10));
+        model.addAttribute("books", limitedBooks);
         model.addAttribute("category", category);
         return "top";
     }
