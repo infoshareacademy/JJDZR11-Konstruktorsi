@@ -27,11 +27,11 @@
                     <a class="nav-link scrollto me-1" th:href="@{/#team}"th:text="#{zespol}">Zespół</a>
                 </li>
             </ul>
-            <div style="color: khaki; font-weight: bold; font-size: large" th:if="${param.error}">Niewłaściwy login lub hasło</div>
-            <div style="color: khaki; font-weight: bold; font-size: large" th:if="${param.logout}">Zostałeś wylogowany</div>
+            <div style="color: khaki; font-weight: bold; font-size: large" th:if="${param.error}"th:text="#{alertHasloLogin}">Niewłaściwy login lub hasło</div>
+            <div style="color: khaki; font-weight: bold; font-size: large" th:if="${param.logout}" th:text="#{wylogowany}">Zostałeś wylogowany</div>
             <form th:action="@{/}" method="post" class="d-flex ms-3">
-                <input class="form-control me-2" type="text" name="user" placeholder="Login" aria-label="Login">
-                <input class="form-control me-2" type="password" name="password" placeholder="Hasło" aria-label="Hasło">
+                <input class="form-control me-2" type="text" name="user" placeholder="Login" aria-label="Login" th:placeholder="#{login}">
+                <input class="form-control me-2" type="password" name="password" placeholder="Hasło" aria-label="Hasło" th:placeholder="#{haslo}">
                 <button class="btn btn-light me-2" value="Log in" type="submit"th:text="#{noweKonto}">Zaloguj</button>
                 <a th:href="@{/register}" class="btn btn-light me-3" role="button"th:text="#{rejestracja}">Rejestracja</a>
             </form>
