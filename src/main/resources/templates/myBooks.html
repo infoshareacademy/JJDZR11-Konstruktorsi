@@ -22,6 +22,8 @@
                                 <th scope="col">Tytuł</th>
                                 <th scope="col">Autor</th>
                                 <th scope="col">Kategoria</th>
+                                <th scope="col">Data wypożyczenia</th>
+                                <th scope="col">Data zwrotu</th>
                                 <!--                                <th scope="col">State</th>-->
                             </tr>
                             </thead>
@@ -30,6 +32,9 @@
                                 <td th:text="*{title}"></td>
                                 <td th:text="*{author}"></td>
                                 <td th:text="*{category}"></td>
+                                <td th:text="*{borrowingDate}"></td>
+                                <td th:text="*{returnDate}"></td>
+
                                 <!--                                <td th:text="*{title}"></td>-->
                             </tr>
                             </tbody>
