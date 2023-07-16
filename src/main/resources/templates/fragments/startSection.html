@@ -38,7 +38,7 @@
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/register}"><img class="img-fluid" src="/images/adduser.png"></a></h4>
-                    <p class="description text-center"th:text="#{rejestracja}">Dodaj użytkownika</p>
+                    <p class="description text-center"th:text="#{rejestracja1}">Dodaj użytkownika</p>
                 </div>
             </div>
 
@@ -178,30 +178,30 @@
                 <div class="mb-3">
                     <label for="login" class="form-label text-primary"th:text="#{login}">Login</label>
                     <input type="text" class="form-control form-control-primary" id="login" placeholder="login"
-                           name="login" required >
+                           name="login" required th:placeholder="#{login}">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label text-primary"th:text="#{haslo}">Hasło</label>
                     <input type="password" class="form-control" id="password" placeholder="hasło" name="password"
-                           required>
+                           required th:placeholder="#{haslo}">
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label text-primary"th:text="#{imie}">Imię</label>
                     <input type="text" class="form-control form-control-primary" id="firstName"
-                           placeholder="imię" name="firstName" required>
+                           placeholder="imię" name="firstName" required th:placeholder="#{imie}">
                 </div>
                 <div class="mb-3">
                     <label for="secondName" class="form-label text-primary"th:text="#{nazwisko}">Nazwisko</label>
                     <input type="text" class="form-control form-control-primary" id="secondName"
-                           placeholder="nazwisko" name="secondName" required>
+                           placeholder="nazwisko" name="secondName" required th:placeholder="#{nazwisko}">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label text-primary"th:text="#{email}">Adres email</label>
                     <input type="email" class="form-control form-control-primary" id="email"
-                           placeholder="email" name="email" required>
+                           placeholder="email" name="email" required th:placeholder="#{email}">
                     <div id="emailHelp" class="form-text"th:text="#{alert}">Nigdy nie udostępnimy twojego adresu e-mail.</div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-1"th:text="#{noweKonto}">Utwórz konto</button>
+                <button type="submit" class="btn btn-primary mb-1"th:text="#{noweKonto1}">Utwórz konto</button>
             </form>
         </div>
     </div>
@@ -231,17 +231,17 @@
                 <div class="mb-3">
                     <label for="title" class="form-label text-primary"th:text="#{tytul}">Tytuł</label>
                     <input type="text" class="form-control form-control-primary" id="title" placeholder="Tytuł"
-                           name="title" required>
+                           name="title" required th:placeholder="#{tytul}">
                 </div>
                 <div class="mb-3">
                     <label for="author" class="form-label text-primary"th:text="#{autor}">Autor</label>
                     <input type="text" class="form-control" id="author" placeholder="Autor" name="author"
-                           required>
+                           required th:placeholder="#{autor}">
                 </div>
                 <div class="mb-3">
                     <label for="category" class="form-label text-primary"th:text="#{kategoria}">Kategoria</label>
                     <input type="text" class="form-control form-control-primary" id="category"
-                           placeholder="Kategoria" name="category" required>
+                           placeholder="Kategoria" name="category" required th:placeholder="#{kategoria}">
                 </div>
                 <button type="submit" class="btn btn-primary mb-1"th:text="#{dodaj}">Dodaj książkę</button>
             </form>
@@ -272,29 +272,29 @@
                 <div class="mb-3">
                     <label for="login" class="form-label text-primary"th:text="#{login}">Login</label>
                     <input type="text" class="form-control form-control-primary" id="login" placeholder="login"
-                           name="login" required>
+                           name="login" required th:placeholder="#{login}">
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label text-primary"th:text="#{haslo}">Hasło</label>
                     <input type="password" class="form-control" id="password" placeholder="hasło" name="password"
-                           required>
+                           required th:placeholder="#{haslo}">
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label text-primary"th:text="#{imie}">Imię</label>
                     <input type="text" class="form-control form-control-primary" id="firstName"
-                           placeholder="imię" name="firstName" required>
+                           placeholder="imię" name="firstName" required th:placeholder="#{imie}">
                 </div>
                 <div class="mb-3">
                     <label for="secondName" class="form-label text-primary"th:text="#{nazwisko}">Nazwisko</label>
                     <input type="text" class="form-control form-control-primary" id="secondName"
-                           placeholder="nazwisko" name="secondName" required>
+                           placeholder="nazwisko" name="secondName" required th:placeholder="#{nazwisko}">
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label text-primary"th:text="#{email}">Adres email</label>
                     <input type="email" class="form-control form-control-primary" id="email"
-                           placeholder="email" name="email" required>
+                           placeholder="email" name="email" required th:placeholder="#{haslo}">
                 </div>
-                <button type="submit" class="btn btn-primary mb-1"th:text="#{rejestracja}">Dodaj użytkownika</button>
+                <button type="submit" class="btn btn-primary mb-1"th:text="#{rejestracja1}">Dodaj użytkownika</button>
             </form>
         </div>
     </div>
