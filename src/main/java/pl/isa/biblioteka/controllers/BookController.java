@@ -1,5 +1,6 @@
 package pl.isa.biblioteka.controllers;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,6 +43,21 @@ public class BookController {
     }
 
 
+
+
+//    @GetMapping("/top10/{category}")
+//    private List<Book> findAllByProductName(@PathVariable(value = "name") String category) {
+//        return bookRepository.findTop10ByCategoryOrderByCounterDesc(category);
+//    }
+
+//    @GetMapping("/top10/{category}")
+//    public String getTop10BooksByCategory(@PathVariable("category") String category, Model model) {
+//        List<Book> top10Books = bookRepository.findTop10ByCategoryOrderByCounterDesc(category);
+//        model.addAttribute("top10Books", top10Books);
+//        return "list";
+//    }
+
+
     @GetMapping("/bookList")
     public String listBooks(Principal principal,
                             Model model,
@@ -53,6 +69,14 @@ public class BookController {
 
         return "list";
 
+    }
+
+
+    @GetMapping("/top/{category}")
+    public String top(@PathVariable("category") String category, Model model, Book book) {
+        List<Book> books = bookRepository.findAllByCategoryOrderByCounterDesc(category);
+        model.addAttribute("books", books);
+        return "top";
     }
 
     @GetMapping("/search")

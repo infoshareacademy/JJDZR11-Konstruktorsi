@@ -6,12 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import pl.isa.biblioteka.dto.BookDTO;
+import pl.isa.biblioteka.mappers.BookMaper;
 import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.BookRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Logger;
@@ -22,17 +23,26 @@ import java.util.stream.IntStream;
 public class BookService {
     private static final Logger LOGGER = Logger.getLogger(BookService.class.getName());
     public static List<Book> booksList2;
-
     private final BookRepository bookRepository;
     private final UserService userService;
+    private final BookMaper bookMaper;
 
-    public BookService(BookRepository bookRepository, UserService userService) {
+    public BookService(BookRepository bookRepository, UserService userService, BookMaper bookMaper) {
         this.bookRepository = bookRepository;
         this.userService = userService;
+        this.bookMaper = bookMaper;
     }
 
     public List<Book> getBooks(){
         return bookRepository.findAll();
+    }
+
+
+    public List<BookDTO> findTop(String category){
+        return bookRepository.findAllByCategoryOrderByCounterDesc(category)
+                .stream()
+                .map(bookMaper::toDto)
+                .collect(Collectors.toList());
     }
 
 

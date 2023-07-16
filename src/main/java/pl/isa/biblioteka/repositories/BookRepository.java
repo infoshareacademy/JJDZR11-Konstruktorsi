@@ -16,6 +16,18 @@ import java.util.Optional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+//    @Query("SELECT b FROM Book b WHERE b.category = :category ORDER BY b.counter DESC")
+//    List<Book> findAllByCategoryOrderByCounter(@Param("category") String category);
+
+
+//    Page<Book> findAllByCategoryOrderByCounterDesc(String category, PageRequest pageable);
+
+    List<Book> findAllByCategoryOrderByCounterDesc(String category);
+
+//    List<Book> findAllByCategoryOrderByCounter();
+
+
+
     Optional<Book> findById(Long id);
 
 //    static void saveBooks() {
