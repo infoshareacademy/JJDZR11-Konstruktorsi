@@ -72,7 +72,7 @@ class LibraryAppTests {
         List<Book> books = BookRepository.readBooks();
         for (Book book : books) {
             Random random = new Random();
-            int r = random.nextInt(50);
+            int r = random.nextInt(200);
             book.setCounter(r);
             System.out.println("r = " + r);
             bookDAO.saveBook(book);
