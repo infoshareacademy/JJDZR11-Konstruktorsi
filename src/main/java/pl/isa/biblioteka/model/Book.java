@@ -33,13 +33,13 @@ public class Book {
     @Convert(converter = YesNoConverter.class)
     private boolean state = true;
 
-    @CreationTimestamp
-    @Column(name = "borrowing_date", updatable = false)
-    private LocalDateTime borrowingDate;
+//    @CreationTimestamp
+    @Column(name = "borrowing_date")
+    private String borrowingDate;
 
-    @CreationTimestamp
-    @Column(name = "return_date", updatable = false)
-    private LocalDateTime returnDate;
+//    @CreationTimestamp
+    @Column(name = "return_date")
+    private String returnDate;
 
 
     @ManyToOne
@@ -55,11 +55,44 @@ public class Book {
         this.state = true;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Book(String title, String author, String category, boolean state) {
         this.title = title;
         this.author = author;
         this.category = category;
         this.state = state;
+    }
+
+    public Book(String title, String author, String category, boolean state, String borrowingDate, String returnDate) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.state = state;
+        this.borrowingDate = borrowingDate;
+        this.returnDate = returnDate;
+    }
+
+    public String getBorrowingDate() {
+        return borrowingDate;
+    }
+
+    public void setBorrowingDate(String borrowingDate) {
+        this.borrowingDate = borrowingDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
     }
 
     public String getTitle() {

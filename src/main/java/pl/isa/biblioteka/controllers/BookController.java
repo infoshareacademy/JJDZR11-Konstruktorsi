@@ -4,8 +4,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.isa.biblioteka.dto.CustomUserDetails;
-import pl.isa.biblioteka.dto.UserDto;
 import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.BookRepository;
@@ -26,7 +24,7 @@ public class BookController {
     private final UserService userService;
     private final UserRepository userRepository;
     private final BookRepository bookRepository;
-    UserDto userDto = new UserDto();
+//    private final MailService mailService;
 
     List<Book> bookListByAuthor;
     List<Book> searchCategoryBook;
@@ -40,6 +38,7 @@ public class BookController {
         this.userService = userService;
         this.userRepository = userRepository;
         this.bookRepository = bookRepository;
+//        this.mailService = mailService;
     }
 
 
@@ -162,6 +161,7 @@ public class BookController {
         bookService.returnBook(user, book);
         userRepository.save(user);
         bookRepository.save(book);
+
         return "redirect:/myBooksReturn";
     }
 
@@ -193,6 +193,9 @@ public class BookController {
     public String borrowBook(@RequestParam("id") Long id, Authentication principal) {
         User user = userRepository.findByUsername(principal.getName());
         Book book = bookRepository.getById(id);
+//        mailService.send();
+
+        bookService.setBorrowedAndReturnDate(book);
         bookService.addBookToPerson(user, book);
         userRepository.save(user);
         bookRepository.save(book);
@@ -230,7 +233,6 @@ public class BookController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(20);
         extracted(model, currentPage, pageSize, borrowedBooks);
-
         return "borrowedBooks";
 
     }

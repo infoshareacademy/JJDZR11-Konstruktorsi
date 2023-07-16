@@ -10,6 +10,9 @@ import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.BookRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -53,6 +56,19 @@ public class BookService {
         return bookPage;
     }
 
+    public void setBorrowedAndReturnDate(Book book){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String borrowedDate = LocalDate.now().format(formatter);
+        book.setBorrowingDate(borrowedDate);
+        LocalDate borrowDate = LocalDate.parse(borrowedDate);
+        LocalDate returnDate = borrowDate.plusMonths(3);
+        String nextDate = returnDate.format(formatter);
+        book.setReturnDate(nextDate);
+    }
+
+    public void setReturnDate(Book book){
+
+    }
 
     public List<Book> searchByText(String text) {
         List<Book> searchText = getBooks().stream().filter(book -> book.getTitle().contains(text) || book.getAuthor().contains(text)).collect(Collectors.toList());
