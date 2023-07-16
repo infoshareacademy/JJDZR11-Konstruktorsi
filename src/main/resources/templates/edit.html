@@ -17,7 +17,7 @@
                 <div style="display: flex; justify-content: center; margin-top: -50px">
                     <img class="d-flex" src="/images/adduser.png">
                 </div>
-                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Edytuj użytkownika</h3><br>
+                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold"  th:text="#{edytujUzytkownika}" >Edytuj użytkownika</h3><br>
                 <div style="text-align: center" th:if="${mesage}" class="alert alert-secondary" role="alert">
                     <span th:text="${mesage}"></span>
                 </div>
@@ -30,29 +30,29 @@
                     <input type="hidden" th:field="*{id}">
                 </div>
                 <div class="mb-3">
-                    <label for="username" class="form-label text-primary">Username</label>
+                    <label for="username" class="form-label text-primary"  th:text="#{login}" >Login</label>
                     <input th:field="*{username}" type="text" class="form-control form-control-primary" id="username"
                            placeholder="username"
                            name="username" required>
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label text-primary">Wprowadź aby zmienić hasło</label>
+                    <label for="password" class="form-label text-primary"  th:text="#{zmianaHasla}" >Wprowadź aby zmienić hasło</label>
                     <input th:field="*{password}" type="password" class="form-control" id="password"
                            placeholder="Puste aby zostawić obecne" name="password">
                 </div>
                 <div class="mb-3">
-                    <label for="firstName" class="form-label text-primary">Imię</label>
+                    <label for="firstName" class="form-label text-primary"  th:text="#{imie}" >Imię</label>
                     <input th:field="*{firstName}" type="text" class="form-control form-control-primary" id="firstName"
                            placeholder="imię" name="firstName" required>
                 </div>
                 <div class="mb-3">
-                    <label for="secondName" class="form-label text-primary">Nazwisko</label>
+                    <label for="secondName" class="form-label text-primary"  th:text="#{nazwisko}" >Nazwisko</label>
                     <input th:field="*{secondName}" type="text" class="form-control form-control-primary"
                            id="secondName"
                            placeholder="nazwisko" name="secondName" required>
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label text-primary">Addres email</label>
+                    <label for="email" class="form-label text-primary"  th:text="#{email}" >Adres email</label>
                     <input th:field="*{email}" type="email" class="form-control form-control-primary" id="email"
                            placeholder="email" name="email" required>
                 </div>
@@ -60,11 +60,11 @@
                 <div class="mb-3">
                     <input id="isAdmin" class="form-check-input" type="checkbox" name="isAdmin"
                            th:checked="${role == 'ROLE_ADMIN'}"/>
-                    <label class="form-label text-primary" for="isAdmin">
+                    <label class="form-label text-primary" for="isAdmin"  th:text="#{administrator}" >
                         Uprawnienia administratora
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary mb-1">Edytuj użytkownika</button>
+                <button type="submit" class="btn btn-primary mb-1"  th:text="#{edytujUzytkownika}" >Edytuj użytkownika</button>
             </form>
         </div>
     </div>
