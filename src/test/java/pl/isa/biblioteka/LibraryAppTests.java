@@ -13,6 +13,7 @@ import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.user.PersonDAO;
 
 import java.util.List;
+import java.util.Random;
 
 @SpringBootTest
 class LibraryAppTests {
@@ -70,6 +71,10 @@ class LibraryAppTests {
     void readAndSaveBook() {
         List<Book> books = BookRepository.readBooks();
         for (Book book : books) {
+            Random random = new Random();
+            int r = random.nextInt(50);
+            book.setCounter(r);
+            System.out.println("r = " + r);
             bookDAO.saveBook(book);
         }
     }
@@ -79,6 +84,10 @@ class LibraryAppTests {
     void sampelReadAndSaveBook() {
         List<Book> books = BookRepository.sampelReadBooks();
         for (Book book : books) {
+            Random random = new Random();
+            int r = random.nextInt(100);
+            book.setCounter(r);
+            System.out.println("r = " + r);
             bookDAO.saveBook(book);
         }
     }
