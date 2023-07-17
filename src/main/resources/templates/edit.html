@@ -38,7 +38,7 @@
                 <div class="mb-3">
                     <label for="password" class="form-label text-primary"  th:text="#{zmianaHasla}" >Wprowadź aby zmienić hasło</label>
                     <input th:field="*{password}" type="password" class="form-control" id="password"
-                           placeholder="Puste aby zostawić obecne" name="password">
+                           placeholder="Puste aby zostawić obecne" name="password" th:placeholder="#{puste}">
                 </div>
                 <div class="mb-3">
                     <label for="firstName" class="form-label text-primary"  th:text="#{imie}" >Imię</label>
