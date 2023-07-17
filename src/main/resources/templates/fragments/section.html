@@ -7,8 +7,8 @@
 <section th:fragment="service" id="service" class="services section-bg pb-5">
     <div class="container pb-5 mb-5">
         <div class="section-title">
-            <h2>Książki na topie</h2>
-            <p>Najczęściej wypożyczane książki</p>
+            <h2 th:text="#{top}">Książki na topie</h2>
+            <p th:text="#{popularne}">Najczęściej wypożyczane książki</p>
         </div>
         <div class="row pb-5">
             <div class="col-lg-4 col-md-6 d-flex ">
@@ -70,8 +70,8 @@
 <section th:fragment="product" id="product" class="tile2 my-5">
     <div class="container">
         <div class="section-title">
-            <h2>AKTUALNOŚCI</h2>
-            <p>Wiadomości z świata książek</p>
+            <h2 th:text="#{aktualnosci}">AKTUALNOŚCI</h2>
+            <p th:text="#{aktualnosci1}">Wiadomości z świata książek</p>
 
         </div>
 
@@ -128,7 +128,7 @@
     <div class="container pb-5 mb-5">
         <div style="margin-top: 98px" class="section-title">
             <h2>Konstruktorsi</h2>
-            <p>Twórcy serwisu</p>
+            <p th:text="#{tworcy}">Twórcy serwisu</p>
         </div>
         <div class="row pb-5 mb-5">
             <div class="col-lg-3 col-md-6 d-flex">

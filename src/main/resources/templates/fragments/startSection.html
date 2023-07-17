@@ -73,12 +73,12 @@
 <section th:fragment="start" id="start" class="d-flex align-items-center" sec:authorize="hasRole('ROLE_USER')">
     <div class="container position-relative">
         <div class="row justify-content-center">
-            <div class="col-xl-7 col-lg-9 text-center" th:text="#{biblioteka}">
-                <h1 class="library">>BIBLIOTEKA</h1>
-                <h2 class="library">Witamy w naszej internetowej bibliotece</h2>
+            <div class="col-xl-7 col-lg-9 text-center">
+                <h1 class="library" th:text="#{biblioteka}">BIBLIOTEKA</h1>
+                <h2 class="library" th:text="#{powitanie}">Witamy w naszej internetowej bibliotece</h2>
                 <form th:action="@{/searchByText}" method="post" class="d-flex my-2">
-                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece...">
-                    <button class="btn btn-primary" type="submit" th:text="#{szukaj}">>Szukaj</button>
+                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece..." th:placeholder="#{szukajTekst}">
+                    <button class="btn btn-primary" type="submit" th:text="#{szukaj}">Szukaj</button>
                 </form>
             </div>
         </div>
@@ -124,7 +124,7 @@
                 <h1 class="library" th:text="#{biblioteka}">BIBLIOTEKA</h1>
                 <h2 class="library"th:text="#{powitanie}">Witamy w naszej internetowej bibliotece</h2>
                 <form th:action="@{/searchByText}" method="post" class="d-flex my-2">
-                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece...">
+                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece..." th:placeholder="#{szukajTekst}">
                     <button class="btn btn-primary" type="submit"th:text="#{szukaj}">Szukaj</button>
                 </form>
             </div>
@@ -260,7 +260,7 @@
                 <div style="display: flex; justify-content: center; margin-top: -50px">
                     <img class="d-flex" src="/images/adduser.png">
                 </div>
-                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold"th:text="#{rejestracja}">Dodaj użytkownika</h3><br>
+                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold"th:text="#{rejestracja1}">Dodaj użytkownika</h3><br>
                 <div th:if="${mesage}" class="alert alert-secondary" role="alert">
                     <span th:text="${mesage}"></span>
                 </div>

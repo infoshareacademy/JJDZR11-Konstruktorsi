@@ -30,7 +30,7 @@
                                 <td th:text="*{author}"></td>
                                 <td th:text="*{category}"></td>
                                 <td>
-                                    <a th:href="@{/myBooksReturnByName(id=${book.id})}" class="btn btn-warning btn-sm ms-2">Zwróć</a>
+                                    <a th:href="@{/myBooksReturnByName(id=${book.id})}" class="btn btn-warning btn-sm ms-2" th:text="#{zwroc1}">Zwróć</a>
                                 </td>
                             </tr>
                             </tbody>
