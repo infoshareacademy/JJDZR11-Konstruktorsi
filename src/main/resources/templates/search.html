@@ -16,32 +16,32 @@
                     <div style="display: flex; justify-content: center; margin-top: -50px">
                         <img class="d-flex" src="/images/search.png">
                     </div>
-                    <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Wyszukiwanie zaawansowane</h3><br>
+                    <h3 style="color: #5e5e5e; text-align: center; font-weight: bold"th:text="#{szukaj}">Wyszukiwanie zaawansowane</h3><br>
                     <div style="width: auto; justify-content: center;"
                          class="border border-primary rounded-4 bg-light p-4 shadow-lg p-3 mb-5 bg-white rounded">
                         <form th:action="@{/searchByText}" method="post" class="d-flex my-2 mb-5">
                             <input class="form-control form-control-primary" type="text" name="text"
-                                   placeholder="Wyszukaj dowolną frazę w bibliotece...">
-                            <button class="btn btn-primary ms-4" type="submit">Szukaj</button>
+                                   placeholder="Wyszukaj dowolną frazę w bibliotece..." th:placeholder="#{szukajTekst}">
+                            <button class="btn btn-primary ms-4" type="submit" th:text="#{szukaj}">Szukaj</button>
                         </form>
 
                         <form th:action="@{/filterAuthor}" method="post" th:object="${book}" class="d-flex my-2 mb-5">
                             <input th:field="*{author}" class="form-control form-control-primary" type="text"
-                                   name="text" placeholder="Wyszukaj autora...">
-                            <button class="btn btn-primary ms-4" type="submit">Szukaj</button>
+                                   name="text" placeholder="Wyszukaj autora..."  th:placeholder="#{szukajAutora}">
+                            <button class="btn btn-primary ms-4" type="submit" th:text="#{szukaj}">Szukaj</button>
                         </form>
 
                         <form th:action="@{/filterTitle}" method="post" th:object="${book}" class="d-flex my-2 mb-5">
                             <input th:field="*{title}" class="form-control form-control-primary" type="text" name="text"
-                                   placeholder="Wyszukaj tytuł...">
-                            <button class="btn btn-primary ms-4" type="submit">Szukaj</button>
+                                   placeholder="Wyszukaj tytuł..." th:placeholder="#{szukajTytulu}">
+                            <button class="btn btn-primary ms-4" type="submit" th:text="#{szukaj}">Szukaj</button>
                         </form>
 
                         <form th:action="@{/filterCategory}" method="post" th:object="${book}" class="mb-5">
                             <select th:field="*{category}"
                                     class="form-control ml-2"
                                     onchange="this.form.submit()">
-                                <option th:value="${null}" placeholder="kategorie">Kategoria</option>
+                                <option th:value="${null}" placeholder="kategorie" th:text="#{kategoria}">Kategoria</option>
                                 <option th:each="categ : ${category}"
                                         th:value="${categ}"
                                         th:text="${categ.toUpperCase()}"></option>
