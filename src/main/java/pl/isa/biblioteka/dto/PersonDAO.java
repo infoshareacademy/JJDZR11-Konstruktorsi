@@ -1,4 +1,4 @@
-package pl.isa.biblioteka.user;
+package pl.isa.biblioteka.dto;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

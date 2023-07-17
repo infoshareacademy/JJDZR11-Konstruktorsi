@@ -12,7 +12,7 @@ import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.BookRepository;
 import pl.isa.biblioteka.servises.PersonService;
-import pl.isa.biblioteka.user.PersonDAO;
+import pl.isa.biblioteka.dto.PersonDAO;
 
 import java.util.List;
 import java.util.Random;
