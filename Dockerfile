@@ -1,8 +1,8 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 MAINTAINER "Library"
 RUN apt update -y
-RUN apt install -y openjdk-17-jdk:17.0.7
-RUN apt install -y maven:3.6.3
+RUN apt install -y openjdk-17-jdk
+RUN apt install -y maven
 RUN mkdir /app
 WORKDIR /app
 COPY src /app/src

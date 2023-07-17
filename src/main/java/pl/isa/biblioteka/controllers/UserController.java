@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.isa.biblioteka.dto.PersonDTO;
 import pl.isa.biblioteka.model.User;
-import pl.isa.biblioteka.servises.BookService;
 import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.servises.UserService;
-import pl.isa.biblioteka.user.PersonDAO;
+import pl.isa.biblioteka.dto.PersonDAO;
 
 import java.security.Principal;
 import java.util.Collections;
