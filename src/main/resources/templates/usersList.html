@@ -32,7 +32,10 @@
                             <tr th:each="user : ${users}">
                                 <td th:text="${user.id}"></td>
                                 <td th:text="${user.username}"></td>
-                                <td th:text="${user.role}"></td>
+                                <td  th:switch="${user.role}">
+                                    <p th:case="'ROLE_ADMIN'">Administrator</p>
+                                    <p th:case="'ROLE_USER'">Użytkownik</p>
+                                </td>
                                 <td th:text="${user.firstName}"></td>
                                 <td th:text="${user.secondName}"></td>
                                 <td th:text="${user.email}"></td>

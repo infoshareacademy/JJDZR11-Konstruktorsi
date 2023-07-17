@@ -16,6 +16,18 @@ import java.util.Optional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+//    @Query("SELECT b FROM Book b WHERE b.category = :category ORDER BY b.counter DESC")
+//    List<Book> findAllByCategoryOrderByCounter(@Param("category") String category);
+
+
+//    Page<Book> findAllByCategoryOrderByCounterDesc(String category, PageRequest pageable);
+
+    List<Book> findAllByCategoryOrderByCounterDesc(String category);
+
+//    List<Book> findAllByCategoryOrderByCounter();
+
+
+
     Optional<Book> findById(Long id);
 
 //    static void saveBooks() {
@@ -31,6 +43,17 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     static List<Book> readBooks() {
         try {
             byte[] jsonData = Files.readAllBytes(Paths.get("booksFile.json"));
+            ObjectMapper folderBooks = new ObjectMapper();
+            return Arrays.asList(folderBooks.readValue(jsonData, Book[].class));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
+    static List<Book> sampelReadBooks() {
+        try {
+            byte[] jsonData = Files.readAllBytes(Paths.get("test.json"));
             ObjectMapper folderBooks = new ObjectMapper();
             return Arrays.asList(folderBooks.readValue(jsonData, Book[].class));
         } catch (IOException e) {
