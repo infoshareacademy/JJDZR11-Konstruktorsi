@@ -136,10 +136,11 @@ public class BookController {
         return "list";
 
     }
-
+    // TU
     @PostMapping("/searchByText")
     public String searchByText(@RequestParam("text") String text, Model model) {
         localSearchBook = bookService.searchByText(text);
+
         return "redirect:searchText";
     }
 

@@ -2,6 +2,8 @@ package pl.isa.biblioteka.repositories;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pl.isa.biblioteka.model.Book;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 public interface BookRepository extends JpaRepository<Book, Long> {
 
     Optional<Book> findById(Long id);
+
 
 //    static void saveBooks() {
 //        ObjectMapper mapper = new ObjectMapper();
@@ -38,4 +41,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             return Collections.emptyList();
         }
     }
+    @Query("SELECT b from Book b where title like concat(:title, '%')")
+
+
+    List<Book> findBookByTitleLike(@Param("title") String title);
 }

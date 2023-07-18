@@ -1,9 +1,6 @@
 package pl.isa.biblioteka.servises;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import pl.isa.biblioteka.model.Book;
@@ -52,11 +49,14 @@ public class BookService {
         Page<Book> bookPage = new PageImpl<>(list, PageRequest.of(currentPage, pageSize), bookList.size());
         return bookPage;
     }
-
-
-    public List<Book> searchByText(String text) {
+    //Pierwotna wersja
+/*    public List<Book> searchByText(String text) {
         List<Book> searchText = getBooks().stream().filter(book -> book.getTitle().contains(text) || book.getAuthor().contains(text)).collect(Collectors.toList());
-
+        return searchText;
+    }*/
+    //Spring Data
+    public List<Book> searchByText(String title){
+        List<Book> searchText = bookRepository.findBookByTitleLike(title);
         return searchText;
     }
 
