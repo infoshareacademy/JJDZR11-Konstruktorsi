@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.isa.biblioteka.dto.PersonDAO;
-import pl.isa.biblioteka.dto.PersonDTO;
+import pl.isa.biblioteka.dto.UserDto;
 import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.UserRepository;
@@ -14,7 +14,6 @@ import pl.isa.biblioteka.servises.BookService;
 import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.servises.UserService;
 
-import java.security.Principal;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -87,7 +86,7 @@ public class UserController {
     }
 
     @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") Integer id, @ModelAttribute PersonDTO personDTO, RedirectAttributes redirectAttributes, @RequestParam(value = "isAdmin", required = false) String isAdmin) {
+    public String editUser(@PathVariable("id") Integer id, @ModelAttribute UserDto personDTO, RedirectAttributes redirectAttributes, @RequestParam(value = "isAdmin", required = false) String isAdmin) {
         User existUser = personDAO.findById(id);
         if (existUser != null) {
             String newUsername = personDTO.getUsername();
