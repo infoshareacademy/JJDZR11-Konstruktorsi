@@ -8,6 +8,14 @@ import pl.isa.biblioteka.model.Book;
 public class BookMaper {
 
     public BookDTO toDto(Book book) {
-        return BookDTO.builder().id(book.getId()).title(book.getTitle()).author(book.getAuthor()).category(book.getCategory()).borrowingDate(book.getBorrowingDate()).returnDate(book.getReturnDate()).counter(book.getCounter()).build();
+        return BookDTO.builder()
+                .id(book.getId())
+                .title(book.getTitle())
+                .author(book.getAuthor())
+                .category(book.getCategory())
+                .borrowingDate(book.getBorrowingDate())
+                .returnDate(book.getReturnDate())
+                .counter(book.getCounter())
+                .build();
     }
 }
