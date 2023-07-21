@@ -3,19 +3,16 @@ package pl.isa.biblioteka.controllers;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import pl.isa.biblioteka.model.Book;
-import pl.isa.biblioteka.repositories.UserRepository;
-import pl.isa.biblioteka.servises.BookService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pl.isa.biblioteka.dto.PersonDAO;
 import pl.isa.biblioteka.dto.PersonDTO;
+import pl.isa.biblioteka.model.Book;
 import pl.isa.biblioteka.model.User;
+import pl.isa.biblioteka.repositories.UserRepository;
+import pl.isa.biblioteka.servises.BookService;
 import pl.isa.biblioteka.servises.PersonService;
 import pl.isa.biblioteka.servises.UserService;
-import pl.isa.biblioteka.dto.PersonDAO;
 
 import java.security.Principal;
 import java.util.Collections;
@@ -47,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping("/usersList")
-    public String getUsers(Principal principal, Model model) {
+    public String getUsers(Model model) {
         List<User> users = personDAO.findAll();
         Collections.sort(users, Comparator.comparing(User::getId));
         model.addAttribute("users", users);
@@ -81,7 +78,7 @@ public class UserController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(Principal principal, @PathVariable("id") Integer id, Model model) {
+    public String edit(@PathVariable("id") Integer id, Model model) {
         User userDTO = personDAO.findById(id);
         model.addAttribute("personDTO", userDTO);
 
