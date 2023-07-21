@@ -1,16 +1,11 @@
 package pl.isa.biblioteka.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.type.YesNoConverter;
-
-import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
@@ -35,25 +30,17 @@ public class Book {
     @Convert(converter = YesNoConverter.class)
     private boolean state = true;
 
-//    @CreationTimestamp
+    //    @CreationTimestamp
     @Column(name = "borrowing_date")
     private String borrowingDate;
 
-//    @CreationTimestamp
+    //    @CreationTimestamp
     @Column(name = "return_date")
     private String returnDate;
 
     @Column(name = "counter", nullable = false)
     private Integer counter;
 
-    @PrePersist
-    public void setDefaultValues() {
-        if (counter == null) {
-            counter = 0;
-        }
-    }
-
-//    @JsonManagedReference
     @ManyToOne
     private User user;
 
@@ -64,27 +51,11 @@ public class Book {
         this.counter = counter;
     }
 
-    public Integer getCounter() {
-        return counter;
-    }
-
-    public void setCounter(Integer counter) {
-        this.counter = counter;
-    }
-
     public Book(String title, String author, String category) {
         this.title = title;
         this.author = author;
         this.category = category;
         this.state = true;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Book(String title, String author, String category, boolean state) {
@@ -102,6 +73,29 @@ public class Book {
         this.borrowingDate = borrowingDate;
         this.returnDate = returnDate;
         this.counter = counter;
+    }
+
+    @PrePersist
+    public void setDefaultValues() {
+        if (counter == null) {
+            counter = 0;
+        }
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getBorrowingDate() {
