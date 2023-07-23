@@ -1,16 +1,16 @@
-package pl.isa.biblioteka.book;
+package pl.isa.biblioteka.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import org.hibernate.annotations.CreationTimestamp;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import org.hibernate.type.YesNoConverter;
-import pl.isa.biblioteka.user.Person;
-
-import java.time.LocalDateTime;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
+@AllArgsConstructor
+@Builder
 public class Book {
 
     @Id
@@ -30,22 +30,25 @@ public class Book {
     @Convert(converter = YesNoConverter.class)
     private boolean state = true;
 
-    @CreationTimestamp
-    @Column(name = "borrowing_date", updatable = false)
-    private LocalDateTime borrowingDate;
+    //    @CreationTimestamp
+    @Column(name = "borrowing_date")
+    private String borrowingDate;
 
-    @CreationTimestamp
-    @Column(name = "return_date", updatable = false)
-    private LocalDateTime returnDate;
+    //    @CreationTimestamp
+    @Column(name = "return_date")
+    private String returnDate;
 
+    @Column(name = "counter", nullable = false)
+    private Integer counter;
 
     @ManyToOne
-    private Person person;
-
-    //mennyToOne
-    //Person person
+    private User user;
 
     public Book() {
+    }
+
+    public Book(Integer counter) {
+        this.counter = counter;
     }
 
     public Book(String title, String author, String category) {
@@ -62,12 +65,65 @@ public class Book {
         this.state = state;
     }
 
+    public Book(String title, String author, String category, boolean state, String borrowingDate, String returnDate, Integer counter) {
+        this.title = title;
+        this.author = author;
+        this.category = category;
+        this.state = state;
+        this.borrowingDate = borrowingDate;
+        this.returnDate = returnDate;
+        this.counter = counter;
+    }
+
+    @PrePersist
+    public void setDefaultValues() {
+        if (counter == null) {
+            counter = 0;
+        }
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getBorrowingDate() {
+        return borrowingDate;
+    }
+
+    public void setBorrowingDate(String borrowingDate) {
+        this.borrowingDate = borrowingDate;
+    }
+
+    public String getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(String returnDate) {
+        this.returnDate = returnDate;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public User getPerson() {
+        return user;
     }
 
     public String getAuthor() {
@@ -106,4 +162,5 @@ public class Book {
     public void setId(Long id) {
         this.id = id;
     }
+
 }

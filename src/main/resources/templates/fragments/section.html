@@ -7,56 +7,57 @@
 <section th:fragment="service" id="service" class="services section-bg pb-5">
     <div class="container pb-5 mb-5">
         <div class="section-title">
-            <h2>Książki na topie</h2>
-            <p>Najczęściej wypożyczane książki</p>
+            <h2 th:text="#{top}">Książki na topie</h2>
+            <p th:text="#{popularne}">Najczęściej wypożyczane książki</p>
         </div>
         <div class="row pb-5">
             <div class="col-lg-4 col-md-6 d-flex ">
                 <div class="tile">
-                    <h4><a href="#">Dramat</a></h4>
-                    <span style="float: left; margin-right: 10px;"><img src="/images/drama.png"></span>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et molestias excepturi</p>
-                    <p> deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                    <h4><a th:href="@{top/dramat}" th:text="#{dramat}">Dramat</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/dramat.png"></span>
+                    <p th:text="#{dramatOpis}">Dramat to gatunek literacki, który wzbudza emocje i stawia trudne pytania.
+                    Bohaterowie dramatów zmierzają się z konfliktami, dylematami moralnymi i losowymi przeciwnościami
+                        życiowymi.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex mt-4 mt-md-0">
                 <div class="tile">
-                    <h4><a href="#">Romans</a></h4>
-                    <span style="float: left; margin-right: 10px;"><img src="/images/romance.png"></span>
-                    <p>Voluptatum atque corrupti quos dolores et quas molestias excepturi</p>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias </p>
+                    <h4><a th:href="@{top/romans}" th:text="#{romans}">Romans</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/romans.png"></span>
+                    <p th:text="#{romansOpis}">Romans to gatunek literacki, który ukazuje uczucia, namiętność i romantyczne związki.
+                    Bohaterowie romansów przeżywają miłość i emocje, walczą z przeszkodami i dążą do szczęścia.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex mt-4 mt-lg-0">
                 <div class="tile">
-                    <h4><a href="#">Epika</a></h4>
-                    <span style="float: left; margin-right: 10px;"><img src="/images/epic.png"></span>
-                    <p>Voluptatum deleniti atque quos dolores et quas molestias excepturi</p>
-                    <p>Voluptatum atque corrupti quos dolores et quas molestias excepturi</p>
+                    <h4><a th:href="@{top/epika}" th:text="#{epika}">Epika</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/epika.png"></span>
+                    <p th:text="#{epikaOpis}">Epika to gatunek literacki, który opowiada historie bohaterów, ich przygody i wyzwania.
+                    Przeplatają się w nim wątki fabularne i morał, tworząc niezapomniane opowieści.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex mt-4">
                 <div class="tile">
-                    <h4><a href="#">Tragedia</a></h4>
-                    <span style="float: left; margin-right: 10px;"><img src="/images/tragedy.png"></span>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas excepturi</p>
-                    <p> deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                    <h4><a th:href="@{top/tragedia}" th:text="#{tragedia}">Tragedia</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/tragedia.png"></span>
+                    <p th:text="#{tragediaOpis}">Tragedia to gatunek literacki pełen dramatycznych wydarzeń, bólu i nieodwracalnych strat.
+                    Porusza tematy ciężkie i trudne, ukazując ludzką naturę w obliczu nieuchronnych tragedii.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex mt-4">
                 <div class="tile">
-                    <h4><a href="#">Liryka</a></h4>
-                    <span style="float: left; margin-right: 10px;"><img src="/images/lyrics.png"></span>
-                    <p>Voluptatum deleniti corrupti quos dolores et quas molestias excepturi</p>
-                    <p>Voluptatum deleniti atque quos dolores et quas molestias excepturi</p>
+                    <h4><a th:href="@{top/liryka}" th:text="#{liryka}">Liryka</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/liryka.png"></span>
+                    <p th:text="#{lirykaOpis}">Liryka jest gatunkiem poezji, w której wyrażane są osobiste emocje, uczucia i refleksje.
+                    Jest to forma artystycznego wyrazu, w której słowa ukazują głębokie wnętrze człowieka.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 d-flex mt-4">
                 <div class="tile">
-                    <h4><a href="#">Klasyka</a></h4>
-                    <span style="float: left; margin-right: 10px;"><img src="/images/clasic.png"></span>
-                    <p>Voluptatum atque corrupti quos dolores et quas molestias excepturi</p>
-                    <p>Voluptatum deleniti atque corrupti quos dolores et quas excepturi</p>
+                    <h4><a th:href="@{top/klasyka}" th:text="#{klasyka}">Klasyka</a></h4>
+                    <span style="float: left; margin-right: 10px;"><img src="/images/klasyka.png"></span>
+                    <p th:text="#{klasykaOpis}">Klasyczna literatura to najważniejsze i najcenniejsze dzieła w danym języku i okresie.
+                    Są one ponadczasowe, głębokie i artystyczne.</p>
                 </div>
             </div>
         </div>
@@ -70,8 +71,8 @@
 <section th:fragment="product" id="product" class="tile2 my-5">
     <div class="container">
         <div class="section-title">
-            <h2>AKTUALNOŚCI</h2>
-            <p>Nowości z świata książek</p>
+            <h2 th:text="#{aktualnosci}">AKTUALNOŚCI</h2>
+            <p th:text="#{aktualnosci1}">Wiadomości z świata książek</p>
 
         </div>
 
@@ -128,7 +129,7 @@
     <div class="container pb-5 mb-5">
         <div style="margin-top: 98px" class="section-title">
             <h2>Konstruktorsi</h2>
-            <p>Twórcy serwisu</p>
+            <p th:text="#{tworcy}">Twórcy serwisu</p>
         </div>
         <div class="row pb-5 mb-5">
             <div class="col-lg-3 col-md-6 d-flex">

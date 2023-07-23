@@ -10,26 +10,26 @@
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/addBook}"><img class="img-fluid" src="/images/add.png"></a></h4>
-                    <p class="description text-center">Dodaj książkę</p>
+                    <p class="description text-center" th:text="#{dodaj}">Dodaj książkę</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/borrowBooksList}"><img class="img-fluid" src="/images/borrow.png"></a></h4>
-                    <p class="description text-center">Wypożycz książkę</p>
+                    <p class="description text-center"th:text="#{wypozycz}">Wypożycz książkę</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/myBooksReturn}"><img class="img-fluid" src="/images/returnBook.png"></a></h4>
-                    <p class="description text-center">Zwróć książkę</p>
+                    <p class="description text-center"th:text="#{zwroc}">Zwróć książkę</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/bookList}"><img class="img-fluid" src="/images/baseBooks.png"></a>
                     </h4>
-                    <p class="description text-center">Lista książek</p>
+                    <p class="description text-center"th:text="#{lista}">Lista książek</p>
                 </div>
             </div>
         </div>
@@ -38,21 +38,21 @@
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/register}"><img class="img-fluid" src="/images/adduser.png"></a></h4>
-                    <p class="description text-center">Dodaj użytkownika</p>
+                    <p class="description text-center"th:text="#{rejestracja1}">Dodaj użytkownika</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/usersList}"><img class="img-fluid" src="/images/userList.png"></a></h4>
-                    <p class="description text-center">Lista użytkowników</p>
+                    <p class="description text-center"th:text="#{uzytkownicy}">Lista użytkowników</p>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/borrowedBooks}"><img class="img-fluid" src="/images/borrowList.png"></a></h4>
-                    <p class="description text-center">Lista wypożyczonych książek</p>
+                    <p class="description text-center"th:text="#{wypozyczone}">Lista wypożyczonych książek</p>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/availableBooks}"><img class="img-fluid" src="/images/availableList.png"></a>
                     </h4>
-                    <p class="description text-center">Zobacz dostępne książki</p>
+                    <p class="description text-center"th:text="#{dostepne}">Zobacz dostępne książki</p>
                 </div>
             </div>
         </div>
@@ -74,11 +74,11 @@
     <div class="container position-relative">
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-9 text-center">
-                <h1 class="library">BIBLIOTEKA</h1>
-                <h2 class="library">Witamy w naszej internetowej bibliotece</h2>
+                <h1 class="library" th:text="#{biblioteka}">BIBLIOTEKA</h1>
+                <h2 class="library" th:text="#{powitanie}">Witamy w naszej internetowej bibliotece</h2>
                 <form th:action="@{/searchByText}" method="post" class="d-flex my-2">
-                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece...">
-                    <button class="btn btn-primary" type="submit">Szukaj</button>
+                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece..." th:placeholder="#{szukajTekst}">
+                    <button class="btn btn-primary" type="submit" th:text="#{szukaj}">Szukaj</button>
                 </form>
             </div>
         </div>
@@ -87,26 +87,26 @@
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/myBooks}"><img class="img-fluid" src="/images/myBooks.png"></a></h4>
-                    <p class="description text-center">Moje wypożyczone książki</p>
+                    <p class="description text-center" th:text="#{wypozyczoneJa}">Moje wypożyczone książki</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/borrowBooksList}"><img class="img-fluid" src="/images/borrow.png"></a></h4>
-                    <p class="description text-center">Wypożycz książkę</p>
+                    <p class="description text-center" th:text="#{wypozycz}">Wypożycz książkę</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/myBooksReturn}"><img class="img-fluid" src="/images/returnBook.png"></a></h4>
-                    <p class="description text-center">Zwróć książkę</p>
+                    <p class="description text-center"th:text="#{zwroc}">Zwróć książkę</p>
                 </div>
             </div>
             <div class="col-md-6 col-lg-3 d-flex mb-5 mb-lg-0 d-flex justify-content-center">
                 <div class="tile1">
                     <h4 class="title"><a th:href="@{/bookList}"><img class="img-fluid" src="/images/baseBooks.png"></a>
                     </h4>
-                    <p class="description text-center">Lista książek</p>
+                    <p class="description text-center" th:text="#{lista}">Lista książek</p>
                 </div>
             </div>
         </div>
@@ -121,11 +121,11 @@
     <div class="container position-relative">
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-9 text-center">
-                <h1 class="library">BIBLIOTEKA</h1>
-                <h2 class="library">Witamy w naszej internetowej bibliotece</h2>
+                <h1 class="library" th:text="#{biblioteka}">BIBLIOTEKA</h1>
+                <h2 class="library"th:text="#{powitanie}">Witamy w naszej internetowej bibliotece</h2>
                 <form th:action="@{/searchByText}" method="post" class="d-flex my-2">
-                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece...">
-                    <button class="btn btn-primary" type="submit">Szukaj</button>
+                    <input class="form-control" type="text" name="text" placeholder="Wyszukaj w bibliotece..." th:placeholder="#{szukajTekst}">
+                    <button class="btn btn-primary" type="submit"th:text="#{szukaj}">Szukaj</button>
                 </form>
             </div>
         </div>
@@ -133,13 +133,13 @@
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/images/a.png" class="d-block h-50 mx-auto" alt="a">
+                        <img src="/images/a.png" class="d-block img-fluid h-50 mx-auto" alt="a">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/b.png" class="d-block h-50 mx-auto" alt="b">
+                        <img src="/images/b.png" class="d-block img-fluid h-50 mx-auto" alt="b">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/c.png" class="d-block h-50 mx-auto" alt="c">
+                        <img src="/images/c.png" class="d-block img-fluid h-50 mx-auto" alt="c">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
@@ -165,8 +165,8 @@
     <div class="container position-relative">
         <div class="row justify-content-center">
             <div class="col-xl-7 col-lg-9 text-center">
-                <h1 class="library">BIBLIOTEKA</h1>
-                <h3 class="library" style="font-weight: bold">Utwórz konto</h3>
+                <h1 class="library"th:text="#{biblioteka}">BIBLIOTEKA</h1>
+                <h3 class="library" style="font-weight: bold"th:text="#{noweKonto1}">Utwórz konto</h3>
                 <div th:if="${mesage}" class="alert alert-secondary" role="alert">
                     <span th:text="${mesage}"></span>
                 </div>
@@ -176,32 +176,32 @@
             <form action="/register" method="post" style="width: 400px"
                   class="border border-primary rounded-4 bg-light p-4 shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="mb-3">
-                    <label for="login" class="form-label text-primary">Login</label>
+                    <label for="login" class="form-label text-primary"th:text="#{login}">Login</label>
                     <input type="text" class="form-control form-control-primary" id="login" placeholder="login"
-                           name="login" required>
+                           name="login" required th:placeholder="#{login}">
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label text-primary">Hasło</label>
+                    <label for="password" class="form-label text-primary"th:text="#{haslo}">Hasło</label>
                     <input type="password" class="form-control" id="password" placeholder="hasło" name="password"
-                           required>
+                           required th:placeholder="#{haslo}">
                 </div>
                 <div class="mb-3">
-                    <label for="firstName" class="form-label text-primary">Imię</label>
+                    <label for="firstName" class="form-label text-primary"th:text="#{imie}">Imię</label>
                     <input type="text" class="form-control form-control-primary" id="firstName"
-                           placeholder="imię" name="firstName" required>
+                           placeholder="imię" name="firstName" required th:placeholder="#{imie}">
                 </div>
                 <div class="mb-3">
-                    <label for="secondName" class="form-label text-primary">Nazwisko</label>
+                    <label for="secondName" class="form-label text-primary"th:text="#{nazwisko}">Nazwisko</label>
                     <input type="text" class="form-control form-control-primary" id="secondName"
-                           placeholder="nazwisko" name="secondName" required>
+                           placeholder="nazwisko" name="secondName" required th:placeholder="#{nazwisko}">
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label text-primary">Addres email</label>
+                    <label for="email" class="form-label text-primary"th:text="#{email}">Adres email</label>
                     <input type="email" class="form-control form-control-primary" id="email"
-                           placeholder="email" name="email" required>
-                    <div id="emailHelp" class="form-text">Nigdy nie udostępnimy twojego adresu e-mail.</div>
+                           placeholder="email" name="email" required th:placeholder="#{email}">
+                    <div id="emailHelp" class="form-text"th:text="#{alert}">Nigdy nie udostępnimy twojego adresu e-mail.</div>
                 </div>
-                <button type="submit" class="btn btn-primary mb-1">Utwórz konto</button>
+                <button type="submit" class="btn btn-primary mb-1"th:text="#{noweKonto1}">Utwórz konto</button>
             </form>
         </div>
     </div>
@@ -219,7 +219,7 @@
                 <div style="display: flex; justify-content: center; margin-top: -50px">
                     <img class="d-flex" src="/images/add.png">
                 </div>
-                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Dodaj książkę</h3><br>
+                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold"th:text="#{dodaj}">Dodaj książkę</h3><br>
                 <div th:if="${mesage}" class="alert alert-secondary" role="alert">
                     <span th:text="${mesage}"></span>
                 </div>
@@ -229,21 +229,21 @@
             <form action="/addBook" method="post" style="width: 400px"
                   class="border border-primary rounded-4 bg-light p-4 shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="mb-3">
-                    <label for="title" class="form-label text-primary">Tytuł</label>
+                    <label for="title" class="form-label text-primary"th:text="#{tytul}">Tytuł</label>
                     <input type="text" class="form-control form-control-primary" id="title" placeholder="Tytuł"
-                           name="title" required>
+                           name="title" required th:placeholder="#{tytul}">
                 </div>
                 <div class="mb-3">
-                    <label for="author" class="form-label text-primary">Autor</label>
+                    <label for="author" class="form-label text-primary"th:text="#{autor}">Autor</label>
                     <input type="text" class="form-control" id="author" placeholder="Autor" name="author"
-                           required>
+                           required th:placeholder="#{autor}">
                 </div>
                 <div class="mb-3">
-                    <label for="category" class="form-label text-primary">Kategoria</label>
+                    <label for="category" class="form-label text-primary"th:text="#{kategoria}">Kategoria</label>
                     <input type="text" class="form-control form-control-primary" id="category"
-                           placeholder="Kategoria" name="category" required>
+                           placeholder="Kategoria" name="category" required th:placeholder="#{kategoria}">
                 </div>
-                <button type="submit" class="btn btn-primary mb-1">Dodaj książkę</button>
+                <button type="submit" class="btn btn-primary mb-1"th:text="#{dodaj}">Dodaj książkę</button>
             </form>
         </div>
     </div>
@@ -260,7 +260,7 @@
                 <div style="display: flex; justify-content: center; margin-top: -50px">
                     <img class="d-flex" src="/images/adduser.png">
                 </div>
-                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold">Dodaj użytkownika</h3><br>
+                <h3 style="color: #5e5e5e; text-align: center; font-weight: bold"th:text="#{rejestracja1}">Dodaj użytkownika</h3><br>
                 <div th:if="${mesage}" class="alert alert-secondary" role="alert">
                     <span th:text="${mesage}"></span>
                 </div>
@@ -270,31 +270,31 @@
             <form action="/register" method="post" style="width: 400px"
                   class="border border-primary rounded-4 bg-light p-4 shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="mb-3">
-                    <label for="login" class="form-label text-primary">Login</label>
+                    <label for="login" class="form-label text-primary"th:text="#{login}">Login</label>
                     <input type="text" class="form-control form-control-primary" id="login" placeholder="login"
-                           name="login" required>
+                           name="login" required th:placeholder="#{login}">
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label text-primary">Hasło</label>
+                    <label for="password" class="form-label text-primary"th:text="#{haslo}">Hasło</label>
                     <input type="password" class="form-control" id="password" placeholder="hasło" name="password"
-                           required>
+                           required th:placeholder="#{haslo}">
                 </div>
                 <div class="mb-3">
-                    <label for="firstName" class="form-label text-primary">Imię</label>
+                    <label for="firstName" class="form-label text-primary"th:text="#{imie}">Imię</label>
                     <input type="text" class="form-control form-control-primary" id="firstName"
-                           placeholder="imię" name="firstName" required>
+                           placeholder="imię" name="firstName" required th:placeholder="#{imie}">
                 </div>
                 <div class="mb-3">
-                    <label for="secondName" class="form-label text-primary">Nazwisko</label>
+                    <label for="secondName" class="form-label text-primary"th:text="#{nazwisko}">Nazwisko</label>
                     <input type="text" class="form-control form-control-primary" id="secondName"
-                           placeholder="nazwisko" name="secondName" required>
+                           placeholder="nazwisko" name="secondName" required th:placeholder="#{nazwisko}">
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-label text-primary">Addres email</label>
+                    <label for="email" class="form-label text-primary"th:text="#{email}">Adres email</label>
                     <input type="email" class="form-control form-control-primary" id="email"
-                           placeholder="email" name="email" required>
+                           placeholder="email" name="email" required th:placeholder="#{haslo}">
                 </div>
-                <button type="submit" class="btn btn-primary mb-1">Dodaj użytkownika</button>
+                <button type="submit" class="btn btn-primary mb-1"th:text="#{rejestracja1}">Dodaj użytkownika</button>
             </form>
         </div>
     </div>
