@@ -1,6 +1,5 @@
 package pl.isa.biblioteka.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,6 @@ import java.util.List;
 @Table(name = "users")
 public class User {
 
-//    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     public List<Book> personBooks = new ArrayList<>();

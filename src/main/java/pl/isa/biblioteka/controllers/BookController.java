@@ -1,6 +1,5 @@
 package pl.isa.biblioteka.controllers;
 
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,25 +42,8 @@ public class BookController {
 //        this.mailService = mailService;
     }
 
-
-
-
-//    @GetMapping("/top10/{category}")
-//    private List<Book> findAllByProductName(@PathVariable(value = "name") String category) {
-//        return bookRepository.findTop10ByCategoryOrderByCounterDesc(category);
-//    }
-
-//    @GetMapping("/top10/{category}")
-//    public String getTop10BooksByCategory(@PathVariable("category") String category, Model model) {
-//        List<Book> top10Books = bookRepository.findTop10ByCategoryOrderByCounterDesc(category);
-//        model.addAttribute("top10Books", top10Books);
-//        return "list";
-//    }
-
-
     @GetMapping("/bookList")
-    public String listBooks(Principal principal,
-                            Model model,
+    public String listBooks(Model model,
                             @RequestParam("page") Optional<Integer> page,
                             @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -99,8 +81,7 @@ public class BookController {
 
 
     @RequestMapping(value = "/bookAuthorList", method = RequestMethod.GET)
-    public String listBooksAuthor(Principal principal,
-                                  Model model,
+    public String listBooksAuthor(Model model,
                                   @RequestParam("page") Optional<Integer> page,
                                   @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -118,8 +99,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/bookByTitle", method = RequestMethod.GET)
-    public String listBooksTitle(Principal principal,
-                                 Model model,
+    public String listBooksTitle(Model model,
                                  @RequestParam("page") Optional<Integer> page,
                                  @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -138,8 +118,7 @@ public class BookController {
 
 
     @RequestMapping(value = "/bookByCategory", method = RequestMethod.GET)
-    public String listBooksCategory(Principal principal,
-                                    Model model,
+    public String listBooksCategory(Model model,
                                     @RequestParam("page") Optional<Integer> page,
                                     @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -151,8 +130,7 @@ public class BookController {
     }
 
     @GetMapping("/searchText")
-    public String searchByText(Principal principal,
-                               Model model,
+    public String searchByText(Model model,
                                @RequestParam("page") Optional<Integer> page,
                                @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -162,6 +140,7 @@ public class BookController {
         return "list";
 
     }
+
     // TU
     @PostMapping("/searchByText")
     public String searchByText(@RequestParam("text") String text, Model model) {
@@ -176,7 +155,7 @@ public class BookController {
     }
 
     @GetMapping("/addBook")
-    public String addBook(Principal principal, Model model) {
+    public String addBook(Model model) {
 
         return "addBook";
 
@@ -207,8 +186,7 @@ public class BookController {
 
 
     @RequestMapping(value = "/borrowBooksList", method = RequestMethod.GET)
-    public String listBooksToBorrow(Principal principal,
-                                    Model model,
+    public String listBooksToBorrow(Model model,
                                     @RequestParam("page") Optional<Integer> page,
                                     @RequestParam("size") Optional<Integer> size) {
         int currentPage = page.orElse(1);
@@ -233,7 +211,7 @@ public class BookController {
 
 
     @PostMapping("/addBook")
-    public String addBook(Principal principal, @RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
+    public String addBook(@RequestParam String title, @RequestParam String author, @RequestParam String category, Model model) {
         Book book = new Book(title, author, category);
         String str = bookService.addBook(book);
         model.addAttribute("result", book);
@@ -244,7 +222,7 @@ public class BookController {
     }
 
     @GetMapping("/availableBooks")
-    public String availableBooks(Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    public String availableBooks(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         availableBooks = bookService.showAllAvailableBooks();
 
         int currentPage = page.orElse(1);
@@ -257,7 +235,7 @@ public class BookController {
     }
 
     @GetMapping("/borrowedBooks")
-    public String borrowedBooks(Principal principal, Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
+    public String borrowedBooks(Model model, @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
         borrowedBooks = bookService.showAllBorrowedBooks();
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(20);
@@ -266,4 +244,3 @@ public class BookController {
 
     }
 }
-
