@@ -1,3 +1,4 @@
+/*
 package pl.isa.biblioteka.model;
 
 import jakarta.mail.*;
@@ -64,4 +65,4 @@ public class MailSender {
 
 
 
-}
+}*/
