@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.isa.biblioteka.model.Book;
-import pl.isa.biblioteka.model.MailSender;
 import pl.isa.biblioteka.model.User;
 import pl.isa.biblioteka.repositories.BookRepository;
 import pl.isa.biblioteka.repositories.UserRepository;
@@ -177,7 +176,7 @@ public class BookController {
         List<User> users = userService.getAllPerson();
         User user = userRepository.findByUsername(principal.getName());
         List<Book> personBooks = user.getPersonBooks();
-        MailSender.sendToAssignee();
+//        MailSender.sendToAssignee();
         model.addAttribute("users", users);
         model.addAttribute("books", personBooks);
         return "returnBook";
