@@ -3,6 +3,8 @@
 
 The Library project is a web application for managing a book collection and users in a library. It allows for adding, editing, and deleting books, as well as registering and managing users.
 
+[![Tytuł wideo](https://img.youtube.com/vi/ERAf8oRzwPg/0.jpg)](https://www.youtube.com/watch?v=ERAf8oRzwPg)
+
 ## Table of Contents
 - [Requirements](#requirements)
 - [Installation Instructions](#installation-instructions)
